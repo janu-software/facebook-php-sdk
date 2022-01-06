@@ -11,6 +11,7 @@ namespace JanuSoftware\FacebookSDK\Config;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use JanuSoftware\FacebookSDK\Authentication\AccessToken;
 use JanuSoftware\FacebookSDK\Exceptions\InvalidArgumentException;
 use Safe\Exceptions\PcreException;
 use function Safe\preg_match;
@@ -24,9 +25,10 @@ class Options
 
 
 	public function __construct(
-		protected int $appId,
+		protected string $appId,
 		protected string $appSecret,
 		string $graphApiVersion = 'v12.0',
+		protected ?AccessToken $defaultAccessToken = null,
 		?ClientInterface $httpClient = null,
 	) {
 		try {
@@ -42,7 +44,7 @@ class Options
 	}
 
 
-	public function getAppId(): int
+	public function getAppId(): string
 	{
 		return $this->appId;
 	}
@@ -63,5 +65,11 @@ class Options
 	public function getHttpClient(): ClientInterface
 	{
 		return $this->httpClient;
+	}
+
+
+	public function getDefaultAccessToken(): ?AccessToken
+	{
+		return $this->defaultAccessToken;
 	}
 }

@@ -10,17 +10,17 @@ declare(strict_types=1);
 namespace JanuSoftware\FacebookSDK;
 
 
-use JanuSoftware\FacebookSDK\Config\Options;
+use GuzzleHttp\ClientInterface;
 
 
 class Client
 {
-	protected const GraphUrl = 'https://graph.facebook.com/';
+	public const GraphUrl = 'https://graph.facebook.com/';
 
 
 	public function __construct(
 		/** @phpstan-ignore-next-line */
-		private Options $options,
+		private ClientInterface $client,
 	) {
 	}
 }
