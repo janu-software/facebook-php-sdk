@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "php": ">=8.0 <8.2"
+        "php": ">=8.0 <8.2",
+        "guzzlehttp/guzzle": "^7.4"
     },
     "require-dev": {
         "stanislav-janu/phpstan": "^1.0",

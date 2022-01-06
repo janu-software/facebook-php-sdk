@@ -10,16 +10,6 @@ declare(strict_types=1);
 namespace JanuSoftware\FacebookSDK;
 
 
-use JanuSoftware\FacebookSDK\Config\Options;
-
-
-class Client
+class InvalidArgumentException extends GeneralException
 {
-	protected const GraphUrl = 'https://graph.facebook.com/';
-
-
-	public function __construct(
-		private Options $options,
-	) {
-	}
 }

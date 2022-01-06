@@ -1,0 +1,5 @@
+DateTime::__set_state(/* #faf9 */ [
+	'date' => '2022-01-06 12:44:37.124979',
+	'timezone_type' => 3,
+	'timezone' => 'UTC',
+])
