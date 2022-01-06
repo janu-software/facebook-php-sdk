@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace JanuSoftware\FacebookSDK;
+namespace JanuSoftware\FacebookSDK\Exceptions;
 
 
 class InvalidArgumentException extends GeneralException

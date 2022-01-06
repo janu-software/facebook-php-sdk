@@ -11,7 +11,7 @@ namespace JanuSoftware\FacebookSDK\Config;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
-use JanuSoftware\FacebookSDK\InvalidArgumentException;
+use JanuSoftware\FacebookSDK\Exceptions\InvalidArgumentException;
 use Safe\Exceptions\PcreException;
 use function Safe\preg_match;
 
