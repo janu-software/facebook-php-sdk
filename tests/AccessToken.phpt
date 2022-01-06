@@ -10,6 +10,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/bootstrap.php';
 
 use JanuSoftware\FacebookSDK\Authentication\AccessToken;
+use DateTime;
 use Tester\Assert;
 
 $at = new AccessToken(
@@ -24,7 +25,7 @@ Assert::false($at->isLongLived(), 'IsLongLived method is wrong.');
 $time = new DateTime('now');
 $at = new AccessToken(
 	'def',
-	$time
+	$time,
 );
 
 Assert::same('def', $at->getValue(), 'Value parameter is wrong.');
@@ -35,7 +36,7 @@ Assert::false($at->isLongLived(), 'IsLongLived method is wrong.');
 $time = (new DateTime('now'))->getTimestamp();
 $at = new AccessToken(
 	'xyz',
-	$time
+	$time,
 );
 
 Assert::same('xyz', $at->getValue(), 'Value parameter is wrong.');

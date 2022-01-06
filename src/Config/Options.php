@@ -22,6 +22,7 @@ class Options
 	protected string $graphApiVersion;
 	protected ClientInterface $httpClient;
 
+
 	public function __construct(
 		protected int $appId,
 		protected string $appSecret,
@@ -29,7 +30,7 @@ class Options
 		?ClientInterface $httpClient = null,
 	) {
 		try {
-			if (!preg_match(self::ApiVersionRegex, $graphApiVersion)) {
+			if (preg_match(self::ApiVersionRegex, $graphApiVersion) === 0) {
 				throw new InvalidArgumentException('The "graphApiVersion" must start with letter "v" followed by version number, ie: "v12.0".');
 			}
 			$this->graphApiVersion = $graphApiVersion;

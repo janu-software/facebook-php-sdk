@@ -24,10 +24,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 	// Define what rule sets will be applied
 	$containerConfigurator->import(SetList::PHP_80);
 	$containerConfigurator->import(SetList::CODE_QUALITY);
-	$containerConfigurator->import(NetteSetList::NETTE_31);
-	$containerConfigurator->import(NetteSetList::NETTE_REMOVE_INJECT);
 	$containerConfigurator->import(NetteSetList::NETTE_CODE_QUALITY);
-	$containerConfigurator->import(NetteSetList::NETTE_UTILS_CODE_QUALITY);
 
 	$parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_80);
 

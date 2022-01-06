@@ -30,6 +30,6 @@ Assert::exception(function () {
 	new Options(
 		123,
 		'def',
-		'12.0'
+		'12.0',
 	);
 }, InvalidArgumentException::class, 'The "graphApiVersion" must start with letter "v" followed by version number, ie: "v12.0".');

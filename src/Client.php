@@ -19,6 +19,7 @@ class Client
 
 
 	public function __construct(
+		/** @phpstan-ignore-next-line */
 		private Options $options,
 	) {
 	}
