@@ -1,0 +1,46 @@
+{
+    "name": "janu-software/facebook-php-sdk",
+    "description": "Alternative toolkit for Facebook Graph API",
+    "homepage": "https://janu.software",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stanislav Janů",
+            "homepage": "https://janu.software"
+        }
+    ],
+    "require": {
+        "php": ">=8.0 <8.2"
+    },
+    "require-dev": {
+        "stanislav-janu/phpstan": "^1.0",
+        "nette/tester": "^2.4",
+        "rector/rector": "^0.12"
+    },
+    "scripts": {
+        "t": "vendor/bin/tester tests",
+        "sa": "vendor/bin/phpstan analyse",
+        "sap": "vendor/bin/phpstan analyse --pro",
+        "r": "vendor/bin/rector process src --config rector.php --dry-run --ansi",
+        "r-f": "vendor/bin/rector process src --config rector.php --ansi",
+        "cs": "temp/nette-coding-standard/ecs check src tests --preset php80",
+        "cs-f": "temp/nette-coding-standard/ecs check src tests --preset php80 --fix",
+        "cs-i": "rm -rf temp/nette-coding-standard && composer create-project nette/coding-standard temp/nette-coding-standard"
+    },
+    "autoload": {
+        "psr-4": {
+            "JanuSoftware\\FacebookSDK\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JCode\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.0-dev"
+        }
+    },
+    "minimum-stability": "stable"
+}

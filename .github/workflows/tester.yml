@@ -1,0 +1,22 @@
+name: Nette Tester
+
+on:
+  push:
+    branches: [ master ]
+  pull_request: null
+
+jobs:
+  tester:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [ '8.0', '8.1' ]
+    name: PHP ${{ matrix.php }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - run: composer install --prefer-dist --no-progress --no-suggest
+      - run: vendor/bin/tester tests -C -s
