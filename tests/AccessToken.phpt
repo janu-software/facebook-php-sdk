@@ -10,7 +10,6 @@ declare(strict_types=1);
 require_once __DIR__ . '/bootstrap.php';
 
 use JanuSoftware\FacebookSDK\Authentication\AccessToken;
-use DateTime;
 use Tester\Assert;
 
 $at = new AccessToken(

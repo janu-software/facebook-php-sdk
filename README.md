@@ -1,4 +1,4 @@
-# Facebook PHP SDK
+# Facebook PHP Graph API SDK
 
 Alternative toolkit for Facebook Graph API
 
