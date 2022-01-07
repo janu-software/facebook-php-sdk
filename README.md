@@ -2,7 +2,7 @@
 
 [![Composer](https://github.com/janu-software/facebook-php-sdk/actions/workflows/composer.yml/badge.svg)](https://github.com/janu-software/facebook-php-sdk/actions/workflows/composer.yml)
 [![Code style](https://github.com/janu-software/facebook-php-sdk/actions/workflows/code_style.yml/badge.svg)](https://github.com/janu-software/facebook-php-sdk/actions/workflows/code_style.yml)
-[![Tester](https://github.com/janu-software/facebook-php-sdk/actions/workflows/tester.yml/badge.svg)](https://github.com/janu-software/facebook-php-sdk/actions/workflows/tester.yml)
+[![Tester](https://github.com/janu-software/facebook-php-sdk/actions/workflows/phpunit.yml/badge.svg)](https://github.com/janu-software/facebook-php-sdk/actions/workflows/phpunit.yml)
 [![PhpStan](https://github.com/janu-software/facebook-php-sdk/actions/workflows/static_analysis.yml/badge.svg)](https://github.com/janu-software/facebook-php-sdk/actions/workflows/static_analysis.yml)
 
 [![Latest Stable Version](https://poser.pugx.org/janu-software/facebook-php-sdk/v/stable)](https://packagist.org/packages/janu-software/facebook-php-sdk)
