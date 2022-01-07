@@ -67,7 +67,7 @@ class Application implements Serializable
 	 */
 	public function serialize(): string
 	{
-		return implode('|', [$this->id, $this->secret]);
+		return implode('|', $this->__serialize());
 	}
 
 
@@ -77,5 +77,17 @@ class Application implements Serializable
 	public function unserialize(string $serialized): void
 	{
 		[$this->id, $this->secret] = explode('|', $serialized);
+	}
+
+
+	public function __serialize(): array
+	{
+		return [$this->id, $this->secret];
+	}
+
+
+	public function __unserialize(array $data): void
+	{
+		[$this->id, $this->secret] = $data;
 	}
 }

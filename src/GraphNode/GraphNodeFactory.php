@@ -82,20 +82,10 @@ class GraphNodeFactory
 	 */
 	public function makeGraphNode(
 		string $subclassName = null,
-	): GraphEdge|GraphNode {
+	): GraphNode {
 		$this->validateResponseCastableAsGraphNode();
 
 		return $this->castAsGraphNodeOrGraphEdge($this->decodedBody, $subclassName);
-	}
-
-
-	/**
-	 * Convenience method for creating a GraphAchievement collection.
-	 * @throws SDKException
-	 */
-	public function makeGraphAchievement(): GraphNode
-	{
-		return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX . 'GraphAchievement');
 	}
 
 
@@ -107,7 +97,7 @@ class GraphNodeFactory
 	 *
 	 * @throws SDKException
 	 */
-	public function makeGraphEdge(string $subclassName = null, bool $auto_prefix = true): GraphEdge|GraphNode
+	public function makeGraphEdge(string $subclassName = null, bool $auto_prefix = true): GraphEdge
 	{
 		$this->validateResponseCastableAsGraphEdge();
 

@@ -225,7 +225,7 @@ class Response
 	 *
 	 * @throws SDKException
 	 */
-	public function getGraphNode(string $subclassName = null): GraphEdge|GraphNode
+	public function getGraphNode(string $subclassName = null): GraphNode
 	{
 		$factory = new GraphNodeFactory($this);
 
@@ -241,7 +241,7 @@ class Response
 	 *
 	 * @throws SDKException
 	 */
-	public function getGraphEdge(string $subclassName = null, bool $auto_prefix = true): GraphEdge|GraphNode
+	public function getGraphEdge(string $subclassName = null, bool $auto_prefix = true): GraphEdge
 	{
 		$factory = new GraphNodeFactory($this);
 
