@@ -1,4 +1,4 @@
-name: Nette Tester
+name: PHPUnit
 
 on:
   push:
