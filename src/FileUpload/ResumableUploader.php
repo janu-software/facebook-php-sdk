@@ -32,13 +32,10 @@ use JanuSoftware\Facebook\Request;
 use Safe\Exceptions\FilesystemException;
 
 
-/**
- * @package Facebook
- */
 class ResumableUploader
 {
 	public function __construct(
-		protected Application $app,
+		protected Application $application,
 		protected Client $client,
 		protected AccessToken|string|null $accessToken,
 		protected string $graphVersion,
@@ -67,13 +64,13 @@ class ResumableUploader
 	 *
 	 * @throws ResponseException
 	 */
-	public function transfer(string $endpoint, TransferChunk $chunk, bool $allowToThrow = false): TransferChunk
+	public function transfer(string $endpoint, TransferChunk $transferChunk, bool $allowToThrow = false): TransferChunk
 	{
 		$params = [
 			'upload_phase' => 'transfer',
-			'upload_session_id' => $chunk->getUploadSessionId(),
-			'start_offset' => $chunk->getStartOffset(),
-			'video_file_chunk' => $chunk->getPartialFile(),
+			'upload_session_id' => $transferChunk->getUploadSessionId(),
+			'start_offset' => $transferChunk->getStartOffset(),
+			'video_file_chunk' => $transferChunk->getPartialFile(),
 		];
 
 		try {
@@ -85,10 +82,10 @@ class ResumableUploader
 			}
 
 			// Return the same chunk entity so it can be retried.
-			return $chunk;
+			return $transferChunk;
 		}
 
-		return new TransferChunk($chunk->getFile(), $chunk->getUploadSessionId(), $chunk->getVideoId(), (int) $response['start_offset'], (int) $response['end_offset']);
+		return new TransferChunk($transferChunk->getFile(), $transferChunk->getUploadSessionId(), $transferChunk->getVideoId(), (int) $response['start_offset'], (int) $response['end_offset']);
 	}
 
 
@@ -114,10 +111,11 @@ class ResumableUploader
 	 *
 	 * @param string $endpoint the endpoint to POST to
 	 * @param array  $params   the params to send with the request
+	 * @return mixed[]
 	 */
 	private function sendUploadRequest(string $endpoint, array $params = []): array
 	{
-		$request = new Request($this->app, $this->accessToken, 'POST', $endpoint, $params, null, $this->graphVersion);
+		$request = new Request($this->application, $this->accessToken, 'POST', $endpoint, $params, null, $this->graphVersion);
 
 		return $this->client->sendRequest($request)
 			->getDecodedBody();

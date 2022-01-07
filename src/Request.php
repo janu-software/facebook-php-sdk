@@ -69,7 +69,7 @@ class Request
 	 * @throws SDKException
 	 */
 	public function __construct(
-		Application $app = null,
+		Application $application = null,
 		AccessToken|string $accessToken = null,
 		string $method = null,
 		string $endpoint = null,
@@ -77,7 +77,7 @@ class Request
 		string $eTag = null,
 		protected ?string $graphVersion = null,
 	) {
-		$this->setApp($app);
+		$this->setApp($application);
 		$this->setAccessToken($accessToken);
 		$this->setMethod($method);
 		$this->setEndpoint($endpoint);
@@ -136,9 +136,9 @@ class Request
 	/**
 	 * Set the Application entity used for this request.
 	 */
-	public function setApp(Application $app = null): void
+	public function setApp(Application $application = null): void
 	{
-		$this->app = $app;
+		$this->app = $application;
 	}
 
 
@@ -181,7 +181,7 @@ class Request
 	/**
 	 * Set the HTTP method for this request.
 	 */
-	public function setMethod(?string $method)
+	public function setMethod(?string $method): void
 	{
 		if ($method !== null) {
 			$this->method = strtoupper($method);
@@ -192,7 +192,7 @@ class Request
 	/**
 	 * Return the HTTP method for this request.
 	 */
-	public function getMethod(): string
+	public function getMethod(): ?string
 	{
 		return $this->method;
 	}
@@ -241,7 +241,7 @@ class Request
 	/**
 	 * Return the endpoint for this request.
 	 */
-	public function getEndpoint(): string
+	public function getEndpoint(): ?string
 	{
 		// For batch requests, this will be empty
 		return $this->endpoint;

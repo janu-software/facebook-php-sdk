@@ -26,9 +26,6 @@ use function Safe\preg_match;
 use function Safe\preg_replace;
 
 
-/**
- * @package Facebook
- */
 class UrlDetectionHandler implements UrlDetectionInterface
 {
 	public function getCurrentUrl(): string
@@ -105,11 +102,11 @@ class UrlDetectionHandler implements UrlDetectionInterface
 
 		// Port number
 		$scheme = $this->getHttpScheme();
-		$port = $this->getCurrentPort();
-		$appendPort = ':' . $port;
+		$currentPort = $this->getCurrentPort();
+		$appendPort = ':' . $currentPort;
 
 		// Don't append port number if a normal port.
-		if (($scheme == 'http' && $port == '80') || ($scheme == 'https' && $port == '443')) {
+		if (($scheme == 'http' && $currentPort == '80') || ($scheme == 'https' && $currentPort == '443')) {
 			$appendPort = '';
 		}
 
@@ -155,10 +152,8 @@ class UrlDetectionHandler implements UrlDetectionInterface
 	/**
 	 * Checks if the value in X_FORWARDED_HOST is a valid hostname
 	 * Could prevent unintended redirections.
-	 *
-	 * @param string $header
 	 */
-	protected function isValidForwardedHost($header): bool
+	protected function isValidForwardedHost(string $header): bool
 	{
 		$elements = explode(',', $header);
 		$host = $elements[count($elements) - 1];

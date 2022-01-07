@@ -31,9 +31,6 @@ use Safe\Exceptions\JsonException;
 use function Safe\json_decode;
 
 
-/**
- * @package Facebook
- */
 class Response
 {
 	protected array $decodedBody = [];
@@ -227,9 +224,9 @@ class Response
 	 */
 	public function getGraphNode(string $subclassName = null): GraphNode
 	{
-		$factory = new GraphNodeFactory($this);
+		$graphNodeFactory = new GraphNodeFactory($this);
 
-		return $factory->makeGraphNode($subclassName);
+		return $graphNodeFactory->makeGraphNode($subclassName);
 	}
 
 
@@ -243,8 +240,8 @@ class Response
 	 */
 	public function getGraphEdge(string $subclassName = null, bool $auto_prefix = true): GraphEdge
 	{
-		$factory = new GraphNodeFactory($this);
+		$graphNodeFactory = new GraphNodeFactory($this);
 
-		return $factory->makeGraphEdge($subclassName, $auto_prefix);
+		return $graphNodeFactory->makeGraphEdge($subclassName, $auto_prefix);
 	}
 }

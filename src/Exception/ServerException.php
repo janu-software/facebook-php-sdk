@@ -25,9 +25,6 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\Exception;
 
-/**
- * @package Facebook
- */
 class ServerException extends SDKException
 {
 }

@@ -80,6 +80,9 @@ class Application implements Serializable
 	}
 
 
+	/**
+	 * @return string[]
+	 */
 	public function __serialize(): array
 	{
 		return [$this->id, $this->secret];

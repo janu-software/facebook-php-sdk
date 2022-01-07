@@ -68,10 +68,8 @@ class AccessTokenMetadata
 	 *
 	 * @param string $field   the property to retrieve
 	 * @param mixed  $default the default to return if the property doesn't exist
-	 *
-	 * @return mixed
 	 */
-	public function getField($field, $default = null)
+	public function getField(string $field, mixed $default = null): mixed
 	{
 		if (isset($this->metadata[$field])) {
 			return $this->metadata[$field];
@@ -87,10 +85,8 @@ class AccessTokenMetadata
 	 * @param string $parentField the parent property
 	 * @param string $field       the property to retrieve
 	 * @param mixed  $default     the default to return if the property doesn't exist
-	 *
-	 * @return mixed
 	 */
-	public function getChildProperty($parentField, $field, $default = null)
+	public function getChildProperty(string $parentField, string $field, mixed $default = null): mixed
 	{
 		if (!isset($this->metadata[$parentField])) {
 			return $default;
@@ -109,10 +105,8 @@ class AccessTokenMetadata
 	 *
 	 * @param string $field   the property to retrieve
 	 * @param mixed  $default the default to return if the property doesn't exist
-	 *
-	 * @return mixed
 	 */
-	public function getErrorProperty($field, $default = null)
+	public function getErrorProperty(string $field, mixed $default = null): mixed
 	{
 		return $this->getChildProperty('error', $field, $default);
 	}
@@ -123,10 +117,8 @@ class AccessTokenMetadata
 	 *
 	 * @param string $field   the property to retrieve
 	 * @param mixed  $default the default to return if the property doesn't exist
-	 *
-	 * @return mixed
 	 */
-	public function getMetadataProperty($field, $default = null)
+	public function getMetadataProperty(string $field, mixed $default = null): mixed
 	{
 		return $this->getChildProperty('metadata', $field, $default);
 	}
@@ -134,10 +126,8 @@ class AccessTokenMetadata
 
 	/**
 	 * The ID of the application this access token is for.
-	 *
-	 * @return string|null
 	 */
-	public function getAppId()
+	public function getAppId(): ?string
 	{
 		return $this->getField('app_id');
 	}
@@ -145,10 +135,8 @@ class AccessTokenMetadata
 
 	/**
 	 * Name of the application this access token is for.
-	 *
-	 * @return string|null
 	 */
-	public function getApplication()
+	public function getApplication(): ?string
 	{
 		return $this->getField('application');
 	}
@@ -166,10 +154,8 @@ class AccessTokenMetadata
 
 	/**
 	 * The error code for the error.
-	 *
-	 * @return int|null
 	 */
-	public function getErrorCode()
+	public function getErrorCode(): ?int
 	{
 		return $this->getErrorProperty('code');
 	}
@@ -177,10 +163,8 @@ class AccessTokenMetadata
 
 	/**
 	 * The error message for the error.
-	 *
-	 * @return string|null
 	 */
-	public function getErrorMessage()
+	public function getErrorMessage(): ?string
 	{
 		return $this->getErrorProperty('message');
 	}
@@ -188,10 +172,8 @@ class AccessTokenMetadata
 
 	/**
 	 * The error subcode for the error.
-	 *
-	 * @return int|null
 	 */
-	public function getErrorSubcode()
+	public function getErrorSubcode(): ?int
 	{
 		return $this->getErrorProperty('subcode');
 	}
@@ -199,10 +181,8 @@ class AccessTokenMetadata
 
 	/**
 	 * DateTime when this access token expires.
-	 *
-	 * @return DateTime|null
 	 */
-	public function getExpiresAt()
+	public function getExpiresAt(): ?DateTime
 	{
 		return $this->getField('expires_at');
 	}
@@ -210,10 +190,8 @@ class AccessTokenMetadata
 
 	/**
 	 * Whether the access token is still valid or not.
-	 *
-	 * @return bool|null
 	 */
-	public function getIsValid()
+	public function getIsValid(): ?bool
 	{
 		return $this->getField('is_valid');
 	}
@@ -226,10 +204,8 @@ class AccessTokenMetadata
 	 * for short-lived access tokens.
 	 *
 	 * @see https://developers.facebook.com/docs/facebook-login/access-tokens#debug
-	 *
-	 * @return DateTime|null
 	 */
-	public function getIssuedAt()
+	public function getIssuedAt(): ?DateTime
 	{
 		return $this->getField('issued_at');
 	}
@@ -238,10 +214,8 @@ class AccessTokenMetadata
 	/**
 	 * General metadata associated with the access token.
 	 * Can contain data like 'sso', 'auth_type', 'auth_nonce'.
-	 *
-	 * @return array|null
 	 */
-	public function getMetadata()
+	public function getMetadata(): ?array
 	{
 		return $this->getField('metadata');
 	}
@@ -249,10 +223,8 @@ class AccessTokenMetadata
 
 	/**
 	 * The 'sso' child property from the 'metadata' parent property.
-	 *
-	 * @return string|null
 	 */
-	public function getSso()
+	public function getSso(): ?string
 	{
 		return $this->getMetadataProperty('sso');
 	}
@@ -260,10 +232,8 @@ class AccessTokenMetadata
 
 	/**
 	 * The 'auth_type' child property from the 'metadata' parent property.
-	 *
-	 * @return string|null
 	 */
-	public function getAuthType()
+	public function getAuthType(): ?string
 	{
 		return $this->getMetadataProperty('auth_type');
 	}
@@ -271,10 +241,8 @@ class AccessTokenMetadata
 
 	/**
 	 * The 'auth_nonce' child property from the 'metadata' parent property.
-	 *
-	 * @return string|null
 	 */
-	public function getAuthNonce()
+	public function getAuthNonce(): ?string
 	{
 		return $this->getMetadataProperty('auth_nonce');
 	}
@@ -283,10 +251,8 @@ class AccessTokenMetadata
 	/**
 	 * For impersonated access tokens, the ID of
 	 * the page this token contains.
-	 *
-	 * @return string|null
 	 */
-	public function getProfileId()
+	public function getProfileId(): ?string
 	{
 		return $this->getField('profile_id');
 	}
@@ -296,9 +262,9 @@ class AccessTokenMetadata
 	 * List of permissions that the user has granted for
 	 * the app in this access token.
 	 *
-	 * @return array
+	 * @return mixed[]
 	 */
-	public function getScopes()
+	public function getScopes(): array
 	{
 		return $this->getField('scopes');
 	}
@@ -306,10 +272,8 @@ class AccessTokenMetadata
 
 	/**
 	 * The ID of the user this access token is for.
-	 *
-	 * @return string|null
 	 */
-	public function getUserId()
+	public function getUserId(): ?string
 	{
 		return $this->getField('user_id');
 	}
@@ -319,11 +283,9 @@ class AccessTokenMetadata
 	 * Ensures the app ID from the access token
 	 * metadata is what we expect.
 	 *
-	 * @param string $appId
-	 *
 	 * @throws SDKException
 	 */
-	public function validateAppId($appId): void
+	public function validateAppId(string $appId): void
 	{
 		if ($this->getAppId() !== $appId) {
 			throw new SDKException('Access token metadata contains unexpected app ID.', 401);
@@ -335,11 +297,9 @@ class AccessTokenMetadata
 	 * Ensures the user ID from the access token
 	 * metadata is what we expect.
 	 *
-	 * @param string $userId
-	 *
 	 * @throws SDKException
 	 */
-	public function validateUserId($userId): void
+	public function validateUserId(string $userId): void
 	{
 		if ($this->getUserId() !== $userId) {
 			throw new SDKException('Access token metadata contains unexpected user ID.', 401);
@@ -366,15 +326,13 @@ class AccessTokenMetadata
 
 	/**
 	 * Converts a unix timestamp into a DateTime entity.
-	 *
-	 * @param int $timestamp
 	 */
-	private function convertTimestampToDateTime($timestamp): DateTime
+	private function convertTimestampToDateTime(int $timestamp): DateTime
 	{
-		$dt = new DateTime;
-		$dt->setTimestamp($timestamp);
+		$dateTime = new DateTime;
+		$dateTime->setTimestamp($timestamp);
 
-		return $dt;
+		return $dateTime;
 	}
 
 
@@ -383,9 +341,9 @@ class AccessTokenMetadata
 	 */
 	private function castTimestampsToDateTime(): void
 	{
-		foreach (static::$dateProperties as $key) {
-			if (isset($this->metadata[$key]) && $this->metadata[$key] !== 0) {
-				$this->metadata[$key] = $this->convertTimestampToDateTime($this->metadata[$key]);
+		foreach (static::$dateProperties as $dateProperty) {
+			if (isset($this->metadata[$dateProperty]) && $this->metadata[$dateProperty] !== 0) {
+				$this->metadata[$dateProperty] = $this->convertTimestampToDateTime($this->metadata[$dateProperty]);
 			}
 		}
 	}

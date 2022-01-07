@@ -25,9 +25,6 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\Http;
 
-/**
- * @package Facebook
- */
 class RequestBodyUrlEncoded implements RequestBodyInterface
 {
 	/**

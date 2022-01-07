@@ -25,9 +25,6 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\FileUpload;
 
-/**
- * @package Facebook
- */
 class Video extends File
 {
 }

@@ -25,15 +25,10 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\Url;
 
-/**
- * @package Facebook
- */
 interface UrlDetectionInterface
 {
 	/**
 	 * Get the currently active URL.
-	 *
-	 * @return string
 	 */
-	public function getCurrentUrl();
+	public function getCurrentUrl(): string;
 }

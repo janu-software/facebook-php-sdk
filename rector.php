@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Rector\CodeQuality\Rector\ClassMethod\DateTimeToDateTimeInterfaceRector;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\Core\Configuration\Option;
 use Rector\Set\ValueObject\SetList;
@@ -24,8 +25,14 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 	// Define what rule sets will be applied
 	$containerConfigurator->import(SetList::PHP_80);
 	$containerConfigurator->import(SetList::CODE_QUALITY);
+	$containerConfigurator->import(SetList::NAMING);
+	$containerConfigurator->import(SetList::PSR_4);
+	$containerConfigurator->import(SetList::SAFE_07);
 	$containerConfigurator->import(NetteSetList::NETTE_CODE_QUALITY);
 
+	$parameters->set(Option::SKIP, [
+		DateTimeToDateTimeInterfaceRector::class
+	]);
 	$parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_80);
 
 	$services = $containerConfigurator->services();

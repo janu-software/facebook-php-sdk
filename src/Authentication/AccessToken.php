@@ -124,8 +124,8 @@ class AccessToken implements Stringable
 	 */
 	protected function setExpiresAtFromTimeStamp(int $timeStamp): void
 	{
-		$dt = new DateTime;
-		$dt->setTimestamp($timeStamp);
-		$this->expiresAt = $dt;
+		$dateTime = new DateTime;
+		$dateTime->setTimestamp($timeStamp);
+		$this->expiresAt = $dateTime;
 	}
 }

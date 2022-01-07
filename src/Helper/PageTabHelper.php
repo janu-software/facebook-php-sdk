@@ -28,25 +28,21 @@ namespace JanuSoftware\Facebook\Helper;
 use JanuSoftware\Facebook\Application;
 use JanuSoftware\Facebook\Client;
 
-/**
- * @package Facebook
- */
 class PageTabHelper extends CanvasHelper
 {
-	/** @var array|null */
-	protected $pageData;
+	protected ?array $pageData = null;
 
 
 	/**
 	 * Initialize the helper and process available signed request data.
 	 *
-	 * @param Application $app          the Application entity
+	 * @param Application $application the Application entity
 	 * @param Client      $client       the client to make HTTP requests
 	 * @param string      $graphVersion the version of Graph to use
 	 */
-	public function __construct(Application $app, Client $client, $graphVersion)
+	public function __construct(Application $application, Client $client, string $graphVersion)
 	{
-		parent::__construct($app, $client, $graphVersion);
+		parent::__construct($application, $client, $graphVersion);
 
 		if ($this->signedRequest === null) {
 			return;
@@ -58,13 +54,8 @@ class PageTabHelper extends CanvasHelper
 
 	/**
 	 * Returns a value from the page data.
-	 *
-	 * @param string     $key
-	 * @param mixed|null $default
-	 *
-	 * @return mixed|null
 	 */
-	public function getPageData($key, $default = null)
+	public function getPageData(string $key, mixed $default = null): mixed
 	{
 		if (isset($this->pageData[$key])) {
 			return $this->pageData[$key];
@@ -85,10 +76,8 @@ class PageTabHelper extends CanvasHelper
 
 	/**
 	 * Returns the page id if available.
-	 *
-	 * @return string|null
 	 */
-	public function getPageId()
+	public function getPageId(): ?string
 	{
 		return $this->getPageData('id');
 	}

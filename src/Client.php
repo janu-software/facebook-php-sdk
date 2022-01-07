@@ -29,9 +29,6 @@ use JanuSoftware\Facebook\Exception\SDKException;
 use function Safe\sprintf;
 
 
-/**
- * @package Facebook
- */
 class Client
 {
 	/**
@@ -105,10 +102,8 @@ class Client
 
 	/**
 	 * Toggle beta mode.
-	 *
-	 * @param bool $betaMode
 	 */
-	public function enableBetaMode($betaMode = true): void
+	public function enableBetaMode(bool $betaMode = true): void
 	{
 		$this->enableBetaMode = $betaMode;
 	}
@@ -119,7 +114,7 @@ class Client
 	 *
 	 * @param bool $postToVideoUrl post to the video API if videos are being uploaded
 	 */
-	public function getBaseGraphUrl($postToVideoUrl = false): string
+	public function getBaseGraphUrl(bool $postToVideoUrl = false): string
 	{
 		if ($postToVideoUrl) {
 			return $this->enableBetaMode
@@ -201,11 +196,11 @@ class Client
 	 * Makes a batched request to Graph and returns the result.
 	 * @throws SDKException
 	 */
-	public function sendBatchRequest(BatchRequest $request): BatchResponse
+	public function sendBatchRequest(BatchRequest $batchRequest): BatchResponse
 	{
-		$request->prepareRequestsForBatch();
-		$response = $this->sendRequest($request);
+		$batchRequest->prepareRequestsForBatch();
+		$response = $this->sendRequest($batchRequest);
 
-		return new BatchResponse($request, $response);
+		return new BatchResponse($batchRequest, $response);
 	}
 }

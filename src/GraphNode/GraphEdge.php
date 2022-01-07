@@ -34,9 +34,6 @@ use function Safe\json_encode;
 use Stringable;
 
 
-/**
- * @package Facebook
- */
 class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 {
 	/**
@@ -63,10 +60,8 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 	 *
 	 * @param string $name    the field to retrieve
 	 * @param mixed  $default the default to return if the field doesn't exist
-	 *
-	 * @return mixed
 	 */
-	public function getField($name, $default = null)
+	public function getField(string $name, mixed $default = null): mixed
 	{
 		if (isset($this->items[$name])) {
 			return $this->items[$name];
@@ -78,6 +73,7 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 
 	/**
 	 * Returns a list of all fields set on the object.
+	 * @return int[]|string[]
 	 */
 	public function getFieldNames(): array
 	{
@@ -87,6 +83,7 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 
 	/**
 	 * Get all of the items in the collection.
+	 * @return mixed[]
 	 */
 	public function all(): array
 	{
@@ -96,6 +93,7 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 
 	/**
 	 * Get the collection of items as a plain array.
+	 * @return mixed[]
 	 */
 	public function asArray(): array
 	{
@@ -117,10 +115,8 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 
 	/**
 	 * Get the collection of items as JSON.
-	 *
-	 * @param int $options
 	 */
-	public function asJson($options = 0): string
+	public function asJson(int $options = 0): string
 	{
 		return json_encode($this->asArray(), $options);
 	}
@@ -146,40 +142,31 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 
 	/**
 	 * Determine if an item exists at an offset.
-	 *
-	 * @param mixed $key
 	 */
-	public function offsetExists($key): bool
+	public function offsetExists(mixed $offset): bool
 	{
-		return array_key_exists($key, $this->items);
+		return array_key_exists($offset, $this->items);
 	}
 
 
 	/**
 	 * Get an item at a given offset.
-	 *
-	 * @param mixed $key
-	 *
-	 * @return mixed
 	 */
-	public function offsetGet($key)
+	public function offsetGet(mixed $offset): mixed
 	{
-		return $this->items[$key];
+		return $this->items[$offset];
 	}
 
 
 	/**
 	 * Set the item at a given offset.
-	 *
-	 * @param mixed $key
-	 * @param mixed $value
 	 */
-	public function offsetSet($key, $value): void
+	public function offsetSet(mixed $offset, mixed $value): void
 	{
-		if ($key === null) {
+		if ($offset === null) {
 			$this->items[] = $value;
 		} else {
-			$this->items[$key] = $value;
+			$this->items[$offset] = $value;
 		}
 	}
 
@@ -222,6 +209,7 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 
 	/**
 	 * Returns the raw meta data associated with this GraphEdge.
+	 * @return mixed[]
 	 */
 	public function getMetaData(): array
 	{
@@ -251,10 +239,8 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 	 * Returns the cursor for a specific direction if it exists.
 	 *
 	 * @param string $direction The direction of the page: after|before
-	 *
-	 * @return string|null
 	 */
-	public function getCursor($direction)
+	public function getCursor(string $direction): ?string
 	{
 		if (isset($this->metaData['paging']['cursors'][$direction])) {
 			return $this->metaData['paging']['cursors'][$direction];
@@ -271,7 +257,7 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 	 *
 	 * @throws SDKException
 	 */
-	public function getPaginationUrl($direction): ?string
+	public function getPaginationUrl(string $direction): ?string
 	{
 		$this->validateForPagination();
 
@@ -305,7 +291,7 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 	 *
 	 * @throws SDKException
 	 */
-	public function getPaginationRequest($direction): ?Request
+	public function getPaginationRequest(string $direction): ?Request
 	{
 		$pageUrl = $this->getPaginationUrl($direction);
 		if ($pageUrl === null) {
@@ -342,9 +328,8 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 	/**
 	 * The total number of results according to Graph if it exists.
 	 * This will be returned if the summary=true modifier is present in the request.
-	 * @return int|null
 	 */
-	public function getTotalCount()
+	public function getTotalCount(): ?int
 	{
 		if (isset($this->metaData['summary']['total_count'])) {
 			return $this->metaData['summary']['total_count'];

@@ -32,9 +32,6 @@ use JanuSoftware\Facebook\Url\UrlDetectionInterface;
 use JanuSoftware\Facebook\Url\UrlManipulator;
 
 
-/**
- * @package Facebook
- */
 class RedirectLoginHelper
 {
 	/**
@@ -42,25 +39,22 @@ class RedirectLoginHelper
 	 */
 	public const CSRF_LENGTH = 32;
 
-	/** @var UrlDetectionInterface the URL detection handler */
-	protected $urlDetectionHandler;
-
-	/** @var PersistentDataInterface the persistent data handler */
-	protected $persistentDataHandler;
+	protected UrlDetectionInterface $urlDetectionHandler;
+	protected PersistentDataInterface $persistentDataHandler;
 
 
 	/**
 	 * @param OAuth2Client                 $oAuth2Client          The OAuth 2.0 client service.
-	 * @param PersistentDataInterface|null $persistentDataHandler the persistent data handler
-	 * @param UrlDetectionInterface|null $urlHandler the URL detection handler
+	 * @param PersistentDataInterface|null $persistentData the persistent data handler
+	 * @param UrlDetectionInterface|null   $urlDetection the URL detection handler
 	 */
 	public function __construct(
 		protected OAuth2Client $oAuth2Client,
-		PersistentDataInterface $persistentDataHandler = null,
-		UrlDetectionInterface $urlHandler = null,
+		PersistentDataInterface $persistentData = null,
+		UrlDetectionInterface $urlDetection = null,
 	) {
-		$this->persistentDataHandler = $persistentDataHandler ?? new SessionPersistentDataHandler;
-		$this->urlDetectionHandler = $urlHandler ?? new UrlDetectionHandler;
+		$this->persistentDataHandler = $persistentData ?? new SessionPersistentDataHandler;
+		$this->urlDetectionHandler = $urlDetection ?? new UrlDetectionHandler;
 	}
 
 
@@ -289,10 +283,8 @@ class RedirectLoginHelper
 
 	/**
 	 * Returns a value from a GET param.
-	 *
-	 * @param string $key
 	 */
-	private function getInput($key): ?string
+	private function getInput(string $key): ?string
 	{
 		return $_GET[$key] ?? null;
 	}

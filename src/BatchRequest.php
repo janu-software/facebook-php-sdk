@@ -32,9 +32,6 @@ use JanuSoftware\Facebook\FileUpload\File;
 use function Safe\json_encode;
 
 
-/**
- * @package Facebook
- */
 class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 {
 	protected array $requests = [];
@@ -46,18 +43,15 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 	/**
 	 * Creates a new Request entity.
 	 *
-	 * @param Application|null $app
 	 * @param Request[] $requests
-	 * @param AccessToken|string|null $accessToken
-	 * @param string|null $graphVersion
 	 */
 	public function __construct(
-		Application $app = null,
+		Application $application = null,
 		array $requests = [],
-		$accessToken = null,
-		$graphVersion = null,
+		AccessToken|string $accessToken = null,
+		?string $graphVersion = null,
 	) {
-		parent::__construct($app, $accessToken, 'POST', '', [], null, $graphVersion);
+		parent::__construct($application, $accessToken, 'POST', '', [], null, $graphVersion);
 
 		$this->add($requests);
 	}
@@ -117,11 +111,11 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 	public function addFallbackDefaults(Request $request): void
 	{
 		if ($request->getApplication() === null) {
-			$app = $this->getApplication();
-			if (!$app instanceof Application) {
+			$application = $this->getApplication();
+			if (!$application instanceof Application) {
 				throw new SDKException('Missing Application on Request and no fallback detected on BatchRequest.');
 			}
-			$request->setApp($app);
+			$request->setApp($application);
 		}
 
 		if ($request->getAccessToken() === null) {
@@ -161,6 +155,7 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 
 	/**
 	 * Return the Request entities.
+	 * @return mixed[]
 	 */
 	public function getRequests(): array
 	{
@@ -228,6 +223,7 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 	 * @param array|string|null $options Array of batch request options e.g. 'name', 'omit_response_on_success'.
 	 * If a string is given, it is the value of the 'name' option.
 	 * @param string|null $attachedFiles names of files associated with the request
+	 * @return mixed[]
 	 */
 	public function requestEntityToBatchArray(
 		Request $request,

@@ -67,7 +67,7 @@ class File
 	 * Opens a stream for the file.
 	 * @throws SDKException
 	 */
-	public function open()
+	public function open(): void
 	{
 		if (!$this->isRemoteFile($this->path) && !is_readable($this->path)) {
 			throw new SDKException('Failed to create File entity. Unable to read resource: ' . $this->path . '.');
@@ -85,7 +85,7 @@ class File
 	 * Stops the file stream.
 	 * @throws FilesystemException
 	 */
-	public function close()
+	public function close(): void
 	{
 		fclose($this->stream);
 	}

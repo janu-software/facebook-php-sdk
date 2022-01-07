@@ -29,7 +29,7 @@ use JanuSoftware\Facebook\GraphNode\GraphNode;
 
 class MyFooGraphNode extends GraphNode
 {
-	protected static $graphNodeMap = [
+	protected static array $graphNodeMap = [
 		'foo_object' => MyFooSubClassGraphNode::class,
 	];
 }

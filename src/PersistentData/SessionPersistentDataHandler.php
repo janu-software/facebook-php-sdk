@@ -27,23 +27,18 @@ namespace JanuSoftware\Facebook\PersistentData;
 
 use JanuSoftware\Facebook\Exception\SDKException;
 
-/**
- * @package Facebook
- */
 class SessionPersistentDataHandler implements PersistentDataInterface
 {
-	/** @var string prefix to use for session variables */
-	protected $sessionPrefix = 'FBRLH_';
+	/** Prefix to use for session variables */
+	protected string $sessionPrefix = 'FBRLH_';
 
 
 	/**
 	 * Init the session handler.
 	 *
-	 * @param bool $enableSessionCheck
-	 *
 	 * @throws SDKException
 	 */
-	public function __construct($enableSessionCheck = true)
+	public function __construct(bool $enableSessionCheck = true)
 	{
 		if ($enableSessionCheck && session_status() !== PHP_SESSION_ACTIVE) {
 			throw new SDKException(
@@ -54,10 +49,7 @@ class SessionPersistentDataHandler implements PersistentDataInterface
 	}
 
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function get($key)
+	public function get(string $key): mixed
 	{
 		if (isset($_SESSION[$this->sessionPrefix . $key])) {
 			return $_SESSION[$this->sessionPrefix . $key];

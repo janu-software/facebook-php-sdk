@@ -28,19 +28,15 @@ use function Safe\preg_match;
 use Stringable;
 
 
-/**
- * @package Facebook
- */
 class GraphNode implements Stringable
 {
 	/** @var array maps object key names to Graph object types */
-	protected static $graphNodeMap = [];
+	protected static array $graphNodeMap = [];
 
 	/**
 	 * The fields contained in the node.
-	 * @var array
 	 */
-	private $fields = [];
+	private array $fields;
 
 
 	/**
@@ -57,10 +53,8 @@ class GraphNode implements Stringable
 	 *
 	 * @param string $name    the field to retrieve
 	 * @param mixed  $default the default to return if the field doesn't exist
-	 *
-	 * @return mixed
 	 */
-	public function getField($name, $default = null)
+	public function getField(string $name, mixed $default = null): mixed
 	{
 		if (isset($this->fields[$name])) {
 			return $this->fields[$name];
@@ -72,9 +66,9 @@ class GraphNode implements Stringable
 
 	/**
 	 * Returns a list of all fields set on the object.
-	 * @return array
+	 * @return int[]|string[]
 	 */
-	public function getFieldNames()
+	public function getFieldNames(): array
 	{
 		return array_keys($this->fields);
 	}
@@ -82,19 +76,18 @@ class GraphNode implements Stringable
 
 	/**
 	 * Get all of the fields in the node.
-	 * @return array
+	 * @return mixed[]
 	 */
-	public function getFields()
+	public function getFields(): array
 	{
 		return $this->fields;
 	}
 
 
 	/**
-	 * Get all fields as a plain array.
-	 * @return array
+	 * @return mixed[]
 	 */
-	public function asArray()
+	public function asArray(): array
 	{
 		return array_map(function ($value) {
 			if ($value instanceof self || $value instanceof GraphEdge) {
@@ -116,10 +109,9 @@ class GraphNode implements Stringable
 
 
 	/**
-	 * Getter for $graphNodeMap.
-	 * @return array
+	 * @return mixed[]
 	 */
-	public static function getNodeMap()
+	public static function getNodeMap(): array
 	{
 		return static::$graphNodeMap;
 	}
@@ -129,12 +121,9 @@ class GraphNode implements Stringable
 	 * Iterates over an array and detects the types each node
 	 * should be cast to and returns all the fields as an array.
 	 * @TODO Add auto-casting to AccessToken entities.
-	 *
-	 * @param array $data the array to iterate over
-	 *
-	 * @return array
+	 * @return mixed[]
 	 */
-	private function castFields(array $data)
+	private function castFields(array $data): array
 	{
 		$fields = [];
 
@@ -155,9 +144,9 @@ class GraphNode implements Stringable
 	/**
 	 * Uncasts any auto-casted datatypes.
 	 * Basically the reverse of castFields().
-	 * @return array
+	 * @return mixed[]
 	 */
-	private function uncastFields()
+	private function uncastFields(): array
 	{
 		$fields = $this->asArray();
 
@@ -173,12 +162,8 @@ class GraphNode implements Stringable
 
 	/**
 	 * Determines if a value from Graph should be cast to DateTime.
-	 *
-	 * @param string $key
-	 *
-	 * @return bool
 	 */
-	private function shouldCastAsDateTime($key)
+	private function shouldCastAsDateTime(mixed $key): bool
 	{
 		return in_array($key, [
 			'created_time',
@@ -197,14 +182,11 @@ class GraphNode implements Stringable
 	/**
 	 * Detects an ISO 8601 formatted string.
 	 *
-	 * @param string $string
-	 *
-	 * @return bool
 	 * @see https://developers.facebook.com/docs/graph-api/using-graph-api/#readmodifiers
 	 * @see http://www.cl.cam.ac.uk/~mgk25/iso-time.html
 	 * @see http://en.wikipedia.org/wiki/ISO_8601
 	 */
-	private function isIso8601DateString($string)
+	private function isIso8601DateString(string $string): bool
 	{
 		// This insane regex was yoinked from here:
 		// http://www.pelagodesign.com/blog/2009/05/20/iso-8601-date-validation-that-doesnt-suck/
@@ -218,9 +200,8 @@ class GraphNode implements Stringable
 
 	/**
 	 * Casts a date value from Graph to DateTime.
-	 * @return DateTime
 	 */
-	private function castToDateTime(int|string $value)
+	private function castToDateTime(int|string $value): DateTime
 	{
 		if (is_int($value)) {
 			$dt = new DateTime;
@@ -235,12 +216,8 @@ class GraphNode implements Stringable
 
 	/**
 	 * Casts a birthday value from Graph to Birthday.
-	 *
-	 * @param string $value
-	 *
-	 * @return Birthday
 	 */
-	private function castToBirthday($value)
+	private function castToBirthday(string $value): Birthday
 	{
 		return new Birthday($value);
 	}

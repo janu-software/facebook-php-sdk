@@ -25,8 +25,6 @@ The Facebook PHP SDK can be installed with [Composer](https://getcomposer.org/).
 
 ## Usage
 
-> **Note:** This version of the Facebook SDK for PHP requires PHP 5.6 or greater.
-
 Simple GET example of a user's profile.
 
 ```php
@@ -35,18 +33,11 @@ require_once __DIR__ . '/vendor/autoload.php'; // change path as needed
 $fb = new \JanuSoftware\Facebook\Facebook([
   'app_id' => '{app-id}',
   'app_secret' => '{app-secret}',
-  'default_graph_version' => 'v2.10',
+  'default_graph_version' => 'v12.0',
   //'default_access_token' => '{access-token}', // optional
 ]);
 
-// Use one of the helper classes to get a  JanuSoftware\Facebook\Authentication\AccessToken entity.
-//   $helper = $fb->getRedirectLoginHelper();
-//   $helper = $fb->getJavaScriptHelper();
-//   $helper = $fb->getCanvasHelper();
-//   $helper = $fb->getPageTabHelper();
-
 try {
-  // Get the \JanuSoftware\Facebook\GraphNode\GraphUser object for the current user.
   // If you provided a 'default_access_token', the '{access-token}' is optional.
   $response = $fb->get('/me', '{access-token}');
 } catch(\JanuSoftware\Facebook\Exception\FacebookResponseException $e) {
@@ -59,8 +50,8 @@ try {
   exit;
 }
 
-$me = $response->getGraphUser();
-echo 'Logged in as ' . $me->getName();
+$me = $response->getGraphNode();
+echo 'Logged in as ' . $me->getField('name');
 ```
 
 Complete documentation, installation instructions, and examples are available [here](docs/).

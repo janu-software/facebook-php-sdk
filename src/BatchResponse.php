@@ -29,9 +29,6 @@ use ArrayAccess;
 use ArrayIterator;
 use IteratorAggregate;
 
-/**
- * @package Facebook
- */
 class BatchResponse extends Response implements IteratorAggregate, ArrayAccess
 {
 	/** @var Response[] */
@@ -148,13 +145,14 @@ class BatchResponse extends Response implements IteratorAggregate, ArrayAccess
 	 * Converts the batch header array into a standard format.
 	 *
 	 * @TODO replace with array_column() when PHP 5.5 is supported.
+	 * @return array<int|string, mixed>
 	 */
 	private function normalizeBatchHeaders(array $batchHeaders): array
 	{
 		$headers = [];
 
-		foreach ($batchHeaders as $header) {
-			$headers[$header['name']] = $header['value'];
+		foreach ($batchHeaders as $batchHeader) {
+			$headers[$batchHeader['name']] = $batchHeader['value'];
 		}
 
 		return $headers;

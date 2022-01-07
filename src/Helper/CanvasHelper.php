@@ -22,9 +22,6 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\Helper;
 
-/**
- * @package Facebook
- */
 class CanvasHelper extends SignedRequestFromInputHelper
 {
 	/**

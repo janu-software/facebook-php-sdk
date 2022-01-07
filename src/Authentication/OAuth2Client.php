@@ -32,9 +32,6 @@ use JanuSoftware\Facebook\Facebook;
 use JanuSoftware\Facebook\Request;
 use JanuSoftware\Facebook\Response;
 
-/**
- * @package Facebook
- */
 class OAuth2Client
 {
 	/**
@@ -52,7 +49,7 @@ class OAuth2Client
 	 * @param string $graphVersion the version of the Graph API to use
 	 */
 	public function __construct(
-		protected Application $app,
+		protected Application $application,
 		protected Client $client,
 		protected string $graphVersion,
 	) {
@@ -84,8 +81,8 @@ class OAuth2Client
 		$params = ['input_token' => $accessToken];
 
 		$this->lastRequest = new Request(
-			$this->app,
-			$this->app->getAccessToken(),
+			$this->application,
+			$this->application->getAccessToken(),
 			'GET',
 			'/debug_token',
 			$params,
@@ -116,7 +113,7 @@ class OAuth2Client
 		string $separator = '&',
 	): string {
 		$params += [
-			'client_id' => $this->app->getId(),
+			'client_id' => $this->application->getId(),
 			'state' => $state,
 			'response_type' => 'code',
 			'sdk' => 'php-sdk-' . Facebook::VERSION,
@@ -131,12 +128,9 @@ class OAuth2Client
 	/**
 	 * Get a valid access token from a code.
 	 *
-	 * @param string $code
-	 * @param string $redirectUri
-	 *
 	 * @throws SDKException
 	 */
-	public function getAccessTokenFromCode($code, $redirectUri = ''): AccessToken
+	public function getAccessTokenFromCode(string $code, string $redirectUri = ''): AccessToken
 	{
 		$params = [
 			'code' => $code,
@@ -230,10 +224,10 @@ class OAuth2Client
 	): Response {
 		$params += $this->getClientParams();
 
-		$accessToken ??= $this->app->getAccessToken();
+		$accessToken ??= $this->application->getAccessToken();
 
 		$this->lastRequest = new Request(
-			$this->app,
+			$this->application,
 			$accessToken,
 			'GET',
 			$endpoint,
@@ -248,12 +242,13 @@ class OAuth2Client
 
 	/**
 	 * Returns the client_* params for OAuth requests.
+	 * @return array<string, string>
 	 */
 	protected function getClientParams(): array
 	{
 		return [
-			'client_id' => $this->app->getId(),
-			'client_secret' => $this->app->getSecret(),
+			'client_id' => $this->application->getId(),
+			'client_secret' => $this->application->getSecret(),
 		];
 	}
 }

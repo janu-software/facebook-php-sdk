@@ -26,9 +26,6 @@ use function Safe\ksort;
 use function Safe\parse_url;
 use function Safe\preg_replace;
 
-/**
- * @package Facebook
- */
 class UrlManipulator
 {
 	/**
@@ -49,8 +46,8 @@ class UrlManipulator
 			parse_str($parts['query'], $params);
 
 			// Remove query params
-			foreach ($paramsToFilter as $paramName) {
-				unset($params[$paramName]);
+			foreach ($paramsToFilter as $paramToFilter) {
+				unset($params[$paramToFilter]);
 			}
 
 			if (count($params) > 0) {
@@ -102,8 +99,9 @@ class UrlManipulator
 	 * Returns the params from a URL in the form of an array.
 	 *
 	 * @param string $url the URL to parse the params from
+	 * @return mixed[]
 	 */
-	public static function getParamsAsArray($url): array
+	public static function getParamsAsArray(string $url): array
 	{
 		$query = parse_url($url, PHP_URL_QUERY);
 		if ($query === null) {
@@ -125,7 +123,7 @@ class UrlManipulator
 	 *
 	 * @return string the $urlToAddTo with any new params from $urlToStealFrom
 	 */
-	public static function mergeUrlParams($urlToStealFrom, $urlToAddTo): string
+	public static function mergeUrlParams(string $urlToStealFrom, string $urlToAddTo): string
 	{
 		$newParams = static::getParamsAsArray($urlToStealFrom);
 		// Nothing new to add, return as-is
@@ -157,7 +155,7 @@ class UrlManipulator
 	 *
 	 * @return string the $urlToTrim with the hostname and Graph version removed
 	 */
-	public static function baseGraphUrlEndpoint($urlToTrim): string
+	public static function baseGraphUrlEndpoint(string $urlToTrim): string
 	{
 		return '/' . preg_replace('/^https:\/\/.+\.facebook\.com(\/v.+?)?\//', '', $urlToTrim);
 	}

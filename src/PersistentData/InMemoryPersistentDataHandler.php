@@ -25,28 +25,19 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\PersistentData;
 
-/**
- * @package Facebook
- */
 class InMemoryPersistentDataHandler implements PersistentDataInterface
 {
-	/** @var array the session data to keep in memory */
-	protected $sessionData = [];
+	/** The session data to keep in memory */
+	protected array $sessionData = [];
 
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function get($key)
+	public function get(string $key): mixed
 	{
 		return $this->sessionData[$key] ?? null;
 	}
 
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function set($key, $value): void
+	public function set(string $key, mixed $value): void
 	{
 		$this->sessionData[$key] = $value;
 	}

@@ -87,10 +87,8 @@ class RequestBodyMultipart implements RequestBodyInterface
 
 	/**
 	 * Get the string needed to transfer a file.
-	 *
-	 * @param string $name
 	 */
-	private function getFileString($name, File $file): string
+	private function getFileString(string $name, File $file): string
 	{
 		return sprintf(
 			"--%s\r\nContent-Disposition: form-data; name=\"%s\"; filename=\"%s\"%s\r\n\r\n%s\r\n",
@@ -119,6 +117,7 @@ class RequestBodyMultipart implements RequestBodyInterface
 
 	/**
 	 * Returns the params as an array of nested params.
+	 * @return array<string, string>
 	 */
 	private function getNestedParams(array $params): array
 	{

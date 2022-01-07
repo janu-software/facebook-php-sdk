@@ -242,6 +242,7 @@ class GraphNodeFactory
 	 * Get the meta data from a list in a Graph response.
 	 *
 	 * @param array $data the Graph response
+	 * @return mixed[]
 	 */
 	public function getMetaData(array $data): array
 	{
@@ -272,7 +273,7 @@ class GraphNodeFactory
 	 *
 	 * @throws SDKException
 	 */
-	public static function validateSubclass($subclassName): void
+	public static function validateSubclass(string $subclassName): void
 	{
 		if (
 			$subclassName == static::BASE_GRAPH_NODE_CLASS

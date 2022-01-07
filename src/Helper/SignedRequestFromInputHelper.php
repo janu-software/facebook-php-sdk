@@ -30,9 +30,6 @@ use JanuSoftware\Facebook\Exception\SDKException;
 use JanuSoftware\Facebook\SignedRequest;
 
 
-/**
- * @package Facebook
- */
 abstract class SignedRequestFromInputHelper
 {
 	protected ?SignedRequest $signedRequest;
@@ -42,16 +39,16 @@ abstract class SignedRequestFromInputHelper
 	/**
 	 * Initialize the helper and process available signed request data.
 	 *
-	 * @param Application $app          the Application entity
+	 * @param Application $application the Application entity
 	 * @param Client      $client       the client to make HTTP requests
 	 * @param string      $graphVersion the version of Graph to use
 	 */
 	public function __construct(
-		protected Application $app,
+		protected Application $application,
 		Client $client,
 		string $graphVersion,
 	) {
-		$this->oAuth2Client = new OAuth2Client($this->app, $client, $graphVersion);
+		$this->oAuth2Client = new OAuth2Client($this->application, $client, $graphVersion);
 
 		$this->instantiateSignedRequest();
 	}
@@ -68,7 +65,7 @@ abstract class SignedRequestFromInputHelper
 			return;
 		}
 
-		$this->signedRequest = new SignedRequest($this->app, $rawSignedRequest);
+		$this->signedRequest = new SignedRequest($this->application, $rawSignedRequest);
 	}
 
 
@@ -137,8 +134,8 @@ abstract class SignedRequestFromInputHelper
 	 */
 	public function getRawSignedRequestFromCookie(): ?string
 	{
-		if (isset($_COOKIE['fbsr_' . $this->app->getId()])) {
-			return $_COOKIE['fbsr_' . $this->app->getId()];
+		if (isset($_COOKIE['fbsr_' . $this->application->getId()])) {
+			return $_COOKIE['fbsr_' . $this->application->getId()];
 		}
 
 		return null;

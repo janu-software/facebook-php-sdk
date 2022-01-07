@@ -40,12 +40,10 @@ use JanuSoftware\Facebook\PersistentData\PersistentDataFactory;
 use JanuSoftware\Facebook\PersistentData\PersistentDataInterface;
 use JanuSoftware\Facebook\Url\UrlDetectionHandler;
 use JanuSoftware\Facebook\Url\UrlDetectionInterface;
+use Safe\Exceptions\FilesystemException;
 use TypeError;
 
 
-/**
- * @package Facebook
- */
 class Facebook
 {
 	/**
@@ -178,9 +176,9 @@ class Facebook
 	public function getOAuth2Client(): OAuth2Client
 	{
 		if ($this->oAuth2Client === null) {
-			$app = $this->getApplication();
+			$application = $this->getApplication();
 			$client = $this->getClient();
-			$this->oAuth2Client = new OAuth2Client($app, $client, $this->defaultGraphVersion);
+			$this->oAuth2Client = new OAuth2Client($application, $client, $this->defaultGraphVersion);
 		}
 
 		return $this->oAuth2Client;
@@ -209,9 +207,9 @@ class Facebook
 	/**
 	 * Changes the URL detection handler.
 	 */
-	private function setUrlDetectionHandler(UrlDetectionInterface $urlDetectionHandler): void
+	private function setUrlDetectionHandler(UrlDetectionInterface $urlDetection): void
 	{
-		$this->urlDetectionHandler = $urlDetectionHandler;
+		$this->urlDetectionHandler = $urlDetection;
 	}
 
 
@@ -287,15 +285,14 @@ class Facebook
 	/**
 	 * Sends a GET request to Graph and returns the result.
 	 *
-	 * @param string                  $endpoint
-	 * @param AccessToken|string|null $accessToken
-	 * @param string|null $eTag
-	 * @param string|null $graphVersion
-	 *
 	 * @throws SDKException
 	 */
-	public function get($endpoint, $accessToken = null, $eTag = null, $graphVersion = null): Response
-	{
+	public function get(
+		string $endpoint,
+		AccessToken|string $accessToken = null,
+		string $eTag = null,
+		string $graphVersion = null,
+	): Response {
 		return $this->sendRequest('GET', $endpoint, $params = [], $accessToken, $eTag, $graphVersion);
 	}
 
@@ -303,19 +300,14 @@ class Facebook
 	/**
 	 * Sends a POST request to Graph and returns the result.
 	 *
-	 * @param string                  $endpoint
-	 * @param AccessToken|string|null $accessToken
-	 * @param string|null $eTag
-	 * @param string|null $graphVersion
-	 *
 	 * @throws SDKException
 	 */
 	public function post(
-		$endpoint,
+		string $endpoint,
 		array $params = [],
-		$accessToken = null,
-		$eTag = null,
-		$graphVersion = null,
+		AccessToken|string $accessToken = null,
+		string $eTag = null,
+		string $graphVersion = null,
 	): Response {
 		return $this->sendRequest('POST', $endpoint, $params, $accessToken, $eTag, $graphVersion);
 	}
@@ -324,19 +316,14 @@ class Facebook
 	/**
 	 * Sends a DELETE request to Graph and returns the result.
 	 *
-	 * @param string                  $endpoint
-	 * @param AccessToken|string|null $accessToken
-	 * @param string|null $eTag
-	 * @param string|null $graphVersion
-	 *
 	 * @throws SDKException
 	 */
 	public function delete(
-		$endpoint,
+		string $endpoint,
 		array $params = [],
-		$accessToken = null,
-		$eTag = null,
-		$graphVersion = null,
+		AccessToken|string $accessToken = null,
+		string $eTag = null,
+		string $graphVersion = null,
 	): Response {
 		return $this->sendRequest('DELETE', $endpoint, $params, $accessToken, $eTag, $graphVersion);
 	}
@@ -454,8 +441,6 @@ class Facebook
 	/**
 	 * Instantiates a new Request entity.
 	 *
-	 * @param string                  $method
-	 * @param string                  $endpoint
 	 * @param AccessToken|string|null $accessToken
 	 * @param string|null $eTag
 	 * @param string|null $graphVersion
@@ -463,8 +448,8 @@ class Facebook
 	 * @throws SDKException
 	 */
 	public function request(
-		$method,
-		$endpoint,
+		string $method,
+		string $endpoint,
 		array $params = [],
 		$accessToken = null,
 		$eTag = null,
@@ -480,11 +465,9 @@ class Facebook
 	/**
 	 * Factory to create File's.
 	 *
-	 * @param string $pathToFile
-	 *
 	 * @throws SDKException
 	 */
-	public function fileToUpload($pathToFile): File
+	public function fileToUpload(string $pathToFile): File
 	{
 		return new File($pathToFile);
 	}
@@ -493,11 +476,9 @@ class Facebook
 	/**
 	 * Factory to create Video's.
 	 *
-	 * @param string $pathToFile
-	 *
 	 * @throws SDKException
 	 */
-	public function videoToUpload($pathToFile): Video
+	public function videoToUpload(string $pathToFile): Video
 	{
 		return new Video($pathToFile);
 	}
@@ -506,38 +487,39 @@ class Facebook
 	/**
 	 * Upload a video in chunks.
 	 *
-	 * @param int         $target           the id of the target node before the /videos edge
-	 * @param string      $pathToFile       the full path to the file
-	 * @param array       $metadata         the metadata associated with the video file
-	 * @param string|null $accessToken the access token
-	 * @param int         $maxTransferTries the max times to retry a failed upload chunk
-	 * @param string|null $graphVersion the Graph API version to use
+	 * @param int|string                $target             the id of the target node before the /videos edge
+	 * @param string                    $pathToFile         the full path to the file
+	 * @param array                     $metadata           the metadata associated with the video file
+	 * @param string|AccessToken|null   $accessToken        the access token
+	 * @param int                       $maxTransferTries   the max times to retry a failed upload chunk
+	 * @param string|null               $graphVersion       the Graph API version to use
 	 *
-	 * @throws SDKException
+	 * @return array<string, bool>|array<string, int>
+	 * @throws SDKException|FilesystemException
 	 */
 	public function uploadVideo(
-		$target,
-		$pathToFile,
-		$metadata = [],
-		$accessToken = null,
-		$maxTransferTries = 5,
-		$graphVersion = null,
+		int|string $target,
+		string $pathToFile,
+		array $metadata = [],
+		string|AccessToken $accessToken = null,
+		int $maxTransferTries = 5,
+		string $graphVersion = null,
 	): array {
 		$accessToken ??= $this->defaultAccessToken;
 		$graphVersion ??= $this->defaultGraphVersion;
 
-		$uploader = new ResumableUploader($this->app, $this->client, $accessToken, $graphVersion);
+		$resumableUploader = new ResumableUploader($this->app, $this->client, $accessToken, $graphVersion);
 		$endpoint = '/' . $target . '/videos';
-		$file = $this->videoToUpload($pathToFile);
-		$chunk = $uploader->start($endpoint, $file);
+		$video = $this->videoToUpload($pathToFile);
+		$chunk = $resumableUploader->start($endpoint, $video);
 
 		do {
-			$chunk = $this->maxTriesTransfer($uploader, $endpoint, $chunk, $maxTransferTries);
+			$chunk = $this->maxTriesTransfer($resumableUploader, $endpoint, $chunk, $maxTransferTries);
 		} while (!$chunk->isLastChunk());
 
 		return [
 			'video_id' => $chunk->getVideoId(),
-			'success' => $uploader->finish($endpoint, $chunk->getUploadSessionId(), $metadata),
+			'success' => $resumableUploader->finish($endpoint, $chunk->getUploadSessionId(), $metadata),
 		];
 	}
 
@@ -545,26 +527,23 @@ class Facebook
 	/**
 	 * Attempts to upload a chunk of a file in $retryCountdown tries.
 	 *
-	 * @param string $endpoint
-	 * @param int    $retryCountdown
-	 *
 	 * @throws SDKException
 	 */
 	private function maxTriesTransfer(
-		ResumableUploader $uploader,
-		$endpoint,
-		TransferChunk $chunk,
-		$retryCountdown,
+		ResumableUploader $resumableUploader,
+		string $endpoint,
+		TransferChunk $transferChunk,
+		int $retryCountdown,
 	): TransferChunk {
-		$newChunk = $uploader->transfer($endpoint, $chunk, $retryCountdown < 1);
+		$newChunk = $resumableUploader->transfer($endpoint, $transferChunk, $retryCountdown < 1);
 
-		if ($newChunk !== $chunk) {
+		if ($newChunk !== $transferChunk) {
 			return $newChunk;
 		}
 
 		$retryCountdown--;
 
 		// If transfer() returned the same chunk entity, the transfer failed but is resumable.
-		return $this->maxTriesTransfer($uploader, $endpoint, $chunk, $retryCountdown);
+		return $this->maxTriesTransfer($resumableUploader, $endpoint, $transferChunk, $retryCountdown);
 	}
 }

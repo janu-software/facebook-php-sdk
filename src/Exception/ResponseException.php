@@ -25,9 +25,6 @@ namespace JanuSoftware\Facebook\Exception;
 use JanuSoftware\Facebook\Response;
 
 
-/**
- * @package Facebook
- */
 class ResponseException extends SDKException
 {
 	protected array $responseData;
@@ -35,14 +32,14 @@ class ResponseException extends SDKException
 
 	public function __construct(
 		protected Response $response,
-		SDKException $previousException = null,
+		SDKException $sdkException = null,
 	) {
 		$this->responseData = $response->getDecodedBody();
 
 		$errorMessage = $this->get('message', 'Unknown error from Graph.');
 		$errorCode = $this->get('code', -1);
 
-		parent::__construct($errorMessage, $errorCode, $previousException);
+		parent::__construct($errorMessage, $errorCode, $sdkException);
 	}
 
 
@@ -110,7 +107,7 @@ class ResponseException extends SDKException
 	/**
 	 * Returns the HTTP status code.
 	 */
-	public function getHttpStatusCode(): int
+	public function getHttpStatusCode(): ?int
 	{
 		return $this->response->getHttpStatusCode();
 	}
@@ -137,7 +134,7 @@ class ResponseException extends SDKException
 	/**
 	 * Returns the raw response used to create the exception.
 	 */
-	public function getRawResponse(): string
+	public function getRawResponse(): ?string
 	{
 		return $this->response->getBody();
 	}
@@ -145,6 +142,7 @@ class ResponseException extends SDKException
 
 	/**
 	 * Returns the decoded response used to create the exception.
+	 * @return mixed[]
 	 */
 	public function getResponseData(): array
 	{
