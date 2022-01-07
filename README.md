@@ -21,7 +21,7 @@ The Facebook PHP SDK can be installed with [Composer](https://getcomposer.org/).
 
 | Version | PHP  |
 |---------|------|
-| 0.0-dev | ^8.0 |
+| 0.1     | ^8.0 |
 
 ## Usage
 
