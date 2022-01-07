@@ -32,28 +32,28 @@ Simple GET example of a user's profile.
 ```php
 require_once __DIR__ . '/vendor/autoload.php'; // change path as needed
 
-$fb = new \Facebook\Facebook([
+$fb = new \JanuSoftware\Facebook\Facebook([
   'app_id' => '{app-id}',
   'app_secret' => '{app-secret}',
   'default_graph_version' => 'v2.10',
   //'default_access_token' => '{access-token}', // optional
 ]);
 
-// Use one of the helper classes to get a Facebook\Authentication\AccessToken entity.
+// Use one of the helper classes to get a  JanuSoftware\Facebook\Authentication\AccessToken entity.
 //   $helper = $fb->getRedirectLoginHelper();
 //   $helper = $fb->getJavaScriptHelper();
 //   $helper = $fb->getCanvasHelper();
 //   $helper = $fb->getPageTabHelper();
 
 try {
-  // Get the \Facebook\GraphNode\GraphUser object for the current user.
+  // Get the \JanuSoftware\Facebook\GraphNode\GraphUser object for the current user.
   // If you provided a 'default_access_token', the '{access-token}' is optional.
   $response = $fb->get('/me', '{access-token}');
-} catch(\Facebook\Exception\FacebookResponseException $e) {
+} catch(\JanuSoftware\Facebook\Exception\FacebookResponseException $e) {
   // When Graph returns an error
   echo 'Graph returned an error: ' . $e->getMessage();
   exit;
-} catch(\Facebook\Exception\FacebookSDKException $e) {
+} catch(\JanuSoftware\Facebook\Exception\FacebookSDKException $e) {
   // When validation fails or other local issues
   echo 'Facebook SDK returned an error: ' . $e->getMessage();
   exit;
