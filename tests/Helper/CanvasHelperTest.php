@@ -22,11 +22,33 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\Tests\Helper;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+use JanuSoftware\Facebook\Application;
+use JanuSoftware\Facebook\Client;
+use JanuSoftware\Facebook\Helper\CanvasHelper;
+use PHPUnit\Framework\TestCase;
+
+class CanvasHelperTest extends TestCase
+{
+	public string $rawSignedRequestAuthorized = 'vdZXlVEQ5NTRRTFvJ7Jeo_kP4SKnBDvbNP0fEYKS0Sg=.eyJvYXV0aF90b2tlbiI6ImZvb190b2tlbiIsImFsZ29yaXRobSI6IkhNQUMtU0hBMjU2IiwiaXNzdWVkX2F0IjoxNDAyNTUxMDMxLCJ1c2VyX2lkIjoiMTIzIn0=';
+	protected CanvasHelper $helper;
+
+
+	protected function setUp(): void
+	{
+		$app = new Application('123', 'foo_app_secret');
+		$this->helper = new CanvasHelper($app, new Client, 'v0.0');
+	}
+
+
+	public function testSignedRequestDataCanBeRetrievedFromPostData(): void
+	{
+		$_POST['signed_request'] = $this->rawSignedRequestAuthorized;
+
+		$rawSignedRequest = $this->helper->getRawSignedRequest();
+
+		$this->assertEquals($this->rawSignedRequestAuthorized, $rawSignedRequest);
+	}
+}

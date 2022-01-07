@@ -22,11 +22,46 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\Tests\PersistentData;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+use JanuSoftware\Facebook\Exception\SDKException;
+use JanuSoftware\Facebook\PersistentData\SessionPersistentDataHandler;
+use PHPUnit\Framework\TestCase;
+
+class FacebookSessionPersistentDataHandlerTest extends TestCase
+{
+	public function testInactiveSessionsWillThrow(): void
+	{
+		$this->expectException(SDKException::class);
+		new SessionPersistentDataHandler;
+	}
+
+
+	public function testCanSetAValue(): void
+	{
+		$handler = new SessionPersistentDataHandler($enableSessionCheck = false);
+		$handler->set('foo', 'bar');
+
+		$this->assertEquals('bar', $_SESSION['FBRLH_foo']);
+	}
+
+
+	public function testCanGetAValue(): void
+	{
+		$_SESSION['FBRLH_faz'] = 'baz';
+		$handler = new SessionPersistentDataHandler($enableSessionCheck = false);
+		$value = $handler->get('faz');
+
+		$this->assertEquals('baz', $value);
+	}
+
+
+	public function testGettingAValueThatDoesntExistWillReturnNull(): void
+	{
+		$handler = new SessionPersistentDataHandler($enableSessionCheck = false);
+		$value = $handler->get('does_not_exist');
+
+		$this->assertNull($value);
+	}
+}

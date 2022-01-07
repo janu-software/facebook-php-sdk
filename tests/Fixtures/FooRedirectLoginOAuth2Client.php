@@ -22,11 +22,16 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\Tests\Fixtures;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+use JanuSoftware\Facebook\Authentication\AccessToken;
+use JanuSoftware\Facebook\Authentication\OAuth2Client;
+
+class FooRedirectLoginOAuth2Client extends OAuth2Client
+{
+	public function getAccessTokenFromCode($code, $redirectUri = '', $machineId = null): AccessToken
+	{
+		return new AccessToken('foo_token_from_code|' . $code . '|' . $redirectUri);
+	}
+}

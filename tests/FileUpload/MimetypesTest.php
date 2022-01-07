@@ -22,11 +22,39 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\Tests\FileUpload;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+use JanuSoftware\Facebook\FileUpload\Mimetypes;
+use PHPUnit\Framework\TestCase;
+
+class MimetypesTest extends TestCase
+{
+	/**
+	 * Taken from Guzzle.
+	 *
+	 * @see https://github.com/guzzle/guzzle/blob/master/tests/MimetypesTest.php
+	 */
+	public function testGetsFromExtension(): void
+	{
+		$this->assertEquals('text/x-php', Mimetypes::getInstance()->fromExtension('php'));
+	}
+
+
+	public function testGetsFromFilename(): void
+	{
+		$this->assertEquals('text/x-php', Mimetypes::getInstance()->fromFilename(__FILE__));
+	}
+
+
+	public function testGetsFromCaseInsensitiveFilename(): void
+	{
+		$this->assertEquals('text/x-php', Mimetypes::getInstance()->fromFilename(strtoupper(__FILE__)));
+	}
+
+
+	public function testReturnsNullWhenNoMatchFound(): void
+	{
+		$this->assertNull(Mimetypes::getInstance()->fromExtension('foobar'));
+	}
+}

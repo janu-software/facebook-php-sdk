@@ -22,11 +22,32 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\Tests\GraphNode;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+use JanuSoftware\Facebook\GraphNode\GraphNodeFactory;
+use JanuSoftware\Facebook\Response;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Prophecy\ObjectProphecy;
+
+abstract class AbstractGraphNode extends TestCase
+{
+	/** @var ObjectProphecy|Response */
+	protected $responseMock;
+
+
+	protected function setUp(): void
+	{
+		parent::setUp();
+
+		$this->responseMock = $this->prophesize(Response::class);
+	}
+
+
+	protected function makeFactoryWithData($data): GraphNodeFactory
+	{
+		$this->responseMock->getDecodedBody()->willReturn($data);
+
+		return new GraphNodeFactory($this->responseMock->reveal());
+	}
+}

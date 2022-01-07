@@ -22,11 +22,73 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\FileUpload;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+/**
+ * @package Facebook
+ */
+class TransferChunk
+{
+	public function __construct(
+		private File $file,
+		private int $uploadSessionId,
+		private int $videoId,
+		private int $startOffset,
+		private int $endOffset,
+	) {
+	}
+
+
+	/**
+	 * Return the file entity.
+	 */
+	public function getFile(): File
+	{
+		return $this->file;
+	}
+
+
+	/**
+	 * Return a File entity with partial content.
+	 */
+	public function getPartialFile(): File
+	{
+		$maxLength = $this->endOffset - $this->startOffset;
+
+		return new File($this->file->getFilePath(), $maxLength, $this->startOffset);
+	}
+
+
+	/**
+	 * Return upload session Id.
+	 */
+	public function getUploadSessionId(): int
+	{
+		return $this->uploadSessionId;
+	}
+
+
+	/**
+	 * Check whether is the last chunk.
+	 */
+	public function isLastChunk(): bool
+	{
+		return $this->startOffset === $this->endOffset;
+	}
+
+
+	public function getStartOffset(): int
+	{
+		return $this->startOffset;
+	}
+
+
+	/**
+	 * Get uploaded video Id.
+	 */
+	public function getVideoId(): int
+	{
+		return $this->videoId;
+	}
+}

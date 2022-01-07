@@ -22,11 +22,25 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\Http;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+/**
+ * @package Facebook
+ */
+class RequestBodyUrlEncoded implements RequestBodyInterface
+{
+	/**
+	 * Creates a new GraphUrlEncodedBody entity.
+	 */
+	public function __construct(
+		protected array $params,
+	) {
+	}
+
+
+	public function getBody(): string
+	{
+		return http_build_query($this->params);
+	}
+}

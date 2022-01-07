@@ -22,11 +22,23 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\Tests\Fixtures;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+use GuzzleHttp\Psr7\Response;
+use Http\Client\HttpClient;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+
+class MyFooBatchHttpClient implements HttpClient
+{
+	public function sendRequest(RequestInterface $request): ResponseInterface
+	{
+		return new Response(
+			200,
+			['Date' => 'Mon, 19 May 2014 18:37:17 GMT'],
+			'[{"code":"123","body":"Foo"},{"code":"1337","body":"Bar"}]',
+		);
+	}
+}

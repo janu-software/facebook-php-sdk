@@ -22,11 +22,28 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\PersistentData;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+/**
+ * @package Facebook
+ */
+interface PersistentDataInterface
+{
+	/**
+	 * Get a value from a persistent data store.
+	 *
+	 * @param string $key
+	 *
+	 * @return mixed
+	 */
+	public function get($key);
+
+	/**
+	 * Set a value in the persistent data store.
+	 *
+	 * @param string $key
+	 * @param mixed  $value
+	 */
+	public function set($key, $value);
+}

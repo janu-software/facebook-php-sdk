@@ -22,11 +22,61 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\GraphNode;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+use DateTime;
+
+/**
+ * Birthday object to handle various Graph return formats.
+ *
+ * @package Facebook
+ */
+class Birthday extends DateTime
+{
+	/** @var bool */
+	private $hasDate = false;
+
+	/** @var bool */
+	private $hasYear = false;
+
+
+	/**
+	 * Parses Graph birthday format to set indication flags, possible values:.
+	 *
+	 *  MM/DD/YYYY
+	 *  MM/DD
+	 *  YYYY
+	 *
+	 * @link https://developers.facebook.com/docs/graph-api/reference/user
+	 *
+	 * @param string $date
+	 */
+	public function __construct($date)
+	{
+		$parts = explode('/', $date);
+
+		$this->hasYear = count($parts) === 3 || count($parts) === 1;
+		$this->hasDate = count($parts) === 3 || count($parts) === 2;
+
+		parent::__construct($date);
+	}
+
+
+	/**
+	 * Returns whether date object contains birth day and month.
+	 */
+	public function hasDate(): bool
+	{
+		return $this->hasDate;
+	}
+
+
+	/**
+	 * Returns whether date object contains birth year.
+	 */
+	public function hasYear(): bool
+	{
+		return $this->hasYear;
+	}
+}

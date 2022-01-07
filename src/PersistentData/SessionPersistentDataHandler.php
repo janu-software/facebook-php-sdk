@@ -22,11 +22,56 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\PersistentData;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+use JanuSoftware\Facebook\Exception\SDKException;
+
+/**
+ * @package Facebook
+ */
+class SessionPersistentDataHandler implements PersistentDataInterface
+{
+	/** @var string prefix to use for session variables */
+	protected $sessionPrefix = 'FBRLH_';
+
+
+	/**
+	 * Init the session handler.
+	 *
+	 * @param bool $enableSessionCheck
+	 *
+	 * @throws SDKException
+	 */
+	public function __construct($enableSessionCheck = true)
+	{
+		if ($enableSessionCheck && session_status() !== PHP_SESSION_ACTIVE) {
+			throw new SDKException(
+				'Sessions are not active. Please make sure session_start() is at the top of your script.',
+				720,
+			);
+		}
+	}
+
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function get($key)
+	{
+		if (isset($_SESSION[$this->sessionPrefix . $key])) {
+			return $_SESSION[$this->sessionPrefix . $key];
+		}
+
+		return null;
+	}
+
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function set($key, $value): void
+	{
+		$_SESSION[$this->sessionPrefix . $key] = $value;
+	}
+}

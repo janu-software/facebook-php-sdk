@@ -22,11 +22,43 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\Tests\Authentication;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+use JanuSoftware\Facebook\Client;
+use JanuSoftware\Facebook\Request;
+use JanuSoftware\Facebook\Response;
+
+class FooClientForOAuth2Test extends Client
+{
+	protected string $response = '';
+
+
+	public function setMetadataResponse(): void
+	{
+		$this->response = '{"data":{"user_id":"444"}}';
+	}
+
+
+	public function setAccessTokenResponse(): void
+	{
+		$this->response = '{"access_token":"my_access_token","expires":"1422115200"}';
+	}
+
+
+	public function setCodeResponse(): void
+	{
+		$this->response = '{"code":"my_neat_code"}';
+	}
+
+
+	public function sendRequest(Request $request): Response
+	{
+		return new Response(
+			$request,
+			$this->response,
+			200,
+			[],
+		);
+	}
+}

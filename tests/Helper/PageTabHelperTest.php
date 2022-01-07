@@ -22,11 +22,29 @@ declare(strict_types=1);
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-date_default_timezone_set('Europe/Paris');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace JanuSoftware\Facebook\Tests\Helper;
 
-// Delete the temp test user after all tests have fired
-register_shutdown_function(function () {
-	//echo "\nTotal requests made to Graph: " . Client::$requestCount . "\n\n";
-});
+use JanuSoftware\Facebook\Application;
+use JanuSoftware\Facebook\Client;
+use JanuSoftware\Facebook\Helper\PageTabHelper;
+use PHPUnit\Framework\TestCase;
+
+class PageTabHelperTest extends TestCase
+{
+	protected string $rawSignedRequestAuthorized = '6Hi26ECjkj347belC0O8b8H5lwiIz5eA6V9VVjTg-HU=.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MzIxLCJvYXV0aF90b2tlbiI6ImZvb190b2tlbiIsInVzZXJfaWQiOiIxMjMiLCJwYWdlIjp7ImlkIjoiNDIiLCJsaWtlZCI6dHJ1ZSwiYWRtaW4iOmZhbHNlfX0=';
+
+
+	public function testPageDataCanBeAccessed(): void
+	{
+		$_POST['signed_request'] = $this->rawSignedRequestAuthorized;
+
+		$app = new Application('123', 'foo_app_secret');
+		$helper = new PageTabHelper($app, new Client, 'v0.0');
+
+		$this->assertFalse($helper->isAdmin());
+		$this->assertEquals('42', $helper->getPageId());
+		$this->assertEquals('42', $helper->getPageData('id'));
+		$this->assertEquals('default', $helper->getPageData('foo', 'default'));
+	}
+}
