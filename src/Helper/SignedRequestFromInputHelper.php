@@ -107,7 +107,7 @@ abstract class SignedRequestFromInputHelper
 	/**
 	 * Returns the user_id if available.
 	 */
-	public function getUserId(): ?string
+	public function getUserId(): ?int
 	{
 		return $this->signedRequest?->getUserId();
 	}

@@ -25,14 +25,13 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\Authentication;
 
-use DateTimeImmutable;
 use DateTimeInterface;
 use Safe\DateTime;
 use Stringable;
 
 class AccessToken implements Stringable
 {
-	protected ?DateTime $expiresAt = null;
+	protected ?DateTimeInterface $expiresAt = null;
 
 
 	public function __construct(
@@ -56,7 +55,6 @@ class AccessToken implements Stringable
 
 	/**
 	 * Getter for expiresAt.
-	 * @return DateTimeInterface|null
 	 */
 	public function getExpiresAt(): ?DateTimeInterface
 	{
@@ -91,7 +89,7 @@ class AccessToken implements Stringable
 	 */
 	public function isExpired(): ?bool
 	{
-		if ($this->getExpiresAt() instanceof DateTime) {
+		if ($this->getExpiresAt() instanceof DateTimeInterface) {
 			return $this->getExpiresAt()->getTimestamp() < time();
 		}
 

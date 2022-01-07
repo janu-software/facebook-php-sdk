@@ -65,7 +65,7 @@ class Response
 	/**
 	 * Return the Application entity used for this response.
 	 */
-	public function getApplication(): Application
+	public function getApplication(): ?Application
 	{
 		return $this->request->getApplication();
 	}
@@ -83,7 +83,7 @@ class Response
 	/**
 	 * Return the HTTP status code for this response.
 	 */
-	public function getHttpStatusCode(): int
+	public function getHttpStatusCode(): ?int
 	{
 		return $this->httpStatusCode;
 	}
@@ -100,9 +100,8 @@ class Response
 
 	/**
 	 * Return the raw body response.
-	 * @return string
 	 */
-	public function getBody()
+	public function getBody(): ?string
 	{
 		return $this->body;
 	}
@@ -110,9 +109,8 @@ class Response
 
 	/**
 	 * Return the decoded body response.
-	 * @return array
 	 */
-	public function getDecodedBody()
+	public function getDecodedBody(): array
 	{
 		return $this->decodedBody;
 	}
@@ -120,9 +118,8 @@ class Response
 
 	/**
 	 * Get the app secret proof that was used for this response.
-	 * @return string|null
 	 */
-	public function getAppSecretProof()
+	public function getAppSecretProof(): ?string
 	{
 		return $this->request->getAppSecretProof();
 	}
@@ -130,9 +127,8 @@ class Response
 
 	/**
 	 * Get the ETag associated with the response.
-	 * @return string|null
 	 */
-	public function getETag()
+	public function getETag(): ?string
 	{
 		return $this->headers['ETag'] ?? null;
 	}
@@ -140,9 +136,8 @@ class Response
 
 	/**
 	 * Get the version of Graph that returned this response.
-	 * @return string|null
 	 */
-	public function getGraphVersion()
+	public function getGraphVersion(): ?string
 	{
 		return $this->headers['Facebook-API-Version'] ?? null;
 	}
@@ -150,9 +145,8 @@ class Response
 
 	/**
 	 * Returns true if Graph returned an error message.
-	 * @return bool
 	 */
-	public function isError()
+	public function isError(): bool
 	{
 		return isset($this->decodedBody['error']);
 	}
@@ -162,7 +156,7 @@ class Response
 	 * Throws the exception.
 	 * @throws SDKException
 	 */
-	public function throwException()
+	public function throwException(): void
 	{
 		throw $this->thrownException;
 	}
@@ -171,7 +165,7 @@ class Response
 	/**
 	 * Instantiates an exception to be thrown later.
 	 */
-	public function makeException()
+	public function makeException(): void
 	{
 		$this->thrownException = ResponseException::create($this);
 	}
@@ -196,7 +190,7 @@ class Response
 	 *    a short-lived access token for a long-lived access token
 	 * - And sometimes nothing :/ but that'd be a bug.
 	 */
-	public function decodeBody()
+	public function decodeBody(): void
 	{
 		if ($this->body === null) {
 			$this->decodedBody = [];
@@ -204,11 +198,9 @@ class Response
 			try {
 				$decodedBody = json_decode($this->body, true);
 
-				if (is_bool($decodedBody)) {
-					$this->decodedBody = ['success' => $decodedBody];
-				} else {
-					$this->decodedBody = $decodedBody;
-				}
+				$this->decodedBody = is_bool($decodedBody)
+					? ['success' => $decodedBody]
+					: $decodedBody;
 
 			} catch (JsonException) {
 				$this->decodedBody = [];
@@ -233,7 +225,7 @@ class Response
 	 *
 	 * @throws SDKException
 	 */
-	public function getGraphNode(string $subclassName = null): GraphNode
+	public function getGraphNode(string $subclassName = null): GraphEdge|GraphNode
 	{
 		$factory = new GraphNodeFactory($this);
 
@@ -249,7 +241,7 @@ class Response
 	 *
 	 * @throws SDKException
 	 */
-	public function getGraphEdge(string $subclassName = null, bool $auto_prefix = true): GraphEdge
+	public function getGraphEdge(string $subclassName = null, bool $auto_prefix = true): GraphEdge|GraphNode
 	{
 		$factory = new GraphNodeFactory($this);
 

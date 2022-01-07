@@ -29,6 +29,7 @@ use JanuSoftware\Facebook\Exception\ResponseException;
 use JanuSoftware\Facebook\Exception\ResumableUploadException;
 use JanuSoftware\Facebook\Exception\SDKException;
 use JanuSoftware\Facebook\Request;
+use Safe\Exceptions\FilesystemException;
 
 
 /**
@@ -47,7 +48,7 @@ class ResumableUploader
 
 	/**
 	 * Upload by chunks - start phase.
-	 * @throws SDKException|\Safe\Exceptions\FilesystemException
+	 * @throws SDKException|FilesystemException
 	 */
 	public function start(string $endpoint, File $file): TransferChunk
 	{

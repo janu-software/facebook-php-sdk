@@ -173,6 +173,9 @@ class Client
 
 		[$url, $method, $headers, $body] = $this->prepareRequestMessage($request);
 
+		/**
+		 * @phpstan-ignore-next-line
+		 */
 		$psr7Response = $this->httpClient->sendRequest(MessageFactoryDiscovery::find()
 			->createRequest($method, $url, $headers, $body));
 

@@ -29,6 +29,7 @@
 		"t": "vendor/bin/phpunit --exclude-group integration tests",
 		"sa": "vendor/bin/phpstan analyse --memory-limit=1G",
 		"sap": "vendor/bin/phpstan analyse --memory-limit=1G --pro",
+		"sacc": "vendor/bin/phpstan.phar clear-result-cache",
 		"r": "vendor/bin/rector process src --config rector.php --dry-run --ansi",
 		"r-f": "vendor/bin/rector process src --config rector.php --ansi",
 		"cs": "temp/nette-coding-standard/ecs check src tests --preset php80",

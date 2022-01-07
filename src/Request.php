@@ -91,7 +91,9 @@ class Request
 	 */
 	public function setAccessToken(AccessToken|string|null $accessToken): self
 	{
-		$this->accessToken = $accessToken instanceof AccessToken ? $accessToken->getValue() : $accessToken;
+		$this->accessToken = $accessToken instanceof AccessToken
+			? $accessToken->getValue()
+			: $accessToken;
 
 		return $this;
 	}
@@ -155,7 +157,7 @@ class Request
 	public function getAppSecretProof(): ?string
 	{
 		$accessTokenEntity = $this->getAccessTokenEntity();
-		if ($accessTokenEntity === null) {
+		if (!$accessTokenEntity instanceof AccessToken) {
 			return null;
 		}
 

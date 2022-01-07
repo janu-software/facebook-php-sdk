@@ -33,7 +33,6 @@ use JanuSoftware\Facebook\Exception\SDKException;
 use JanuSoftware\Facebook\Facebook;
 use JanuSoftware\Facebook\GraphNode\GraphEdge;
 use JanuSoftware\Facebook\GraphNode\GraphNode;
-use JanuSoftware\Facebook\GraphNode\GraphUser;
 use JanuSoftware\Facebook\PersistentData\InMemoryPersistentDataHandler;
 use JanuSoftware\Facebook\Request;
 use JanuSoftware\Facebook\Response;
@@ -42,7 +41,6 @@ use JanuSoftware\Facebook\Tests\Fixtures\FooHttpClientInterface;
 use JanuSoftware\Facebook\Tests\Fixtures\FooPersistentDataInterface;
 use JanuSoftware\Facebook\Tests\Fixtures\FooUrlDetectionInterface;
 use JanuSoftware\Facebook\Url\UrlDetectionHandler;
-use PHPUnit\Framework\Error\Error;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 

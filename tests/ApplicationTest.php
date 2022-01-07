@@ -27,7 +27,6 @@ namespace JanuSoftware\Facebook\Tests;
 
 use JanuSoftware\Facebook\Application;
 use JanuSoftware\Facebook\Authentication\AccessToken;
-use JanuSoftware\Facebook\Exception\SDKException;
 use PHPUnit\Framework\TestCase;
 
 class ApplicationTest extends TestCase

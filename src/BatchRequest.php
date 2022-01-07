@@ -37,7 +37,6 @@ use function Safe\json_encode;
  */
 class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 {
-	/** @var Request[] */
 	protected array $requests = [];
 
 	/** @var File[] */
@@ -119,7 +118,7 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 	{
 		if ($request->getApplication() === null) {
 			$app = $this->getApplication();
-			if ($app === null) {
+			if (!$app instanceof Application) {
 				throw new SDKException('Missing Application on Request and no fallback detected on BatchRequest.');
 			}
 			$request->setApp($app);
@@ -230,8 +229,11 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 	 * If a string is given, it is the value of the 'name' option.
 	 * @param string|null $attachedFiles names of files associated with the request
 	 */
-	public function requestEntityToBatchArray(Request $request, array|string $options = null, string $attachedFiles = null): array
-	{
+	public function requestEntityToBatchArray(
+		Request $request,
+		array|string $options = null,
+		string $attachedFiles = null,
+	): array {
 		if ($options === null) {
 			$options = [];
 		} elseif (!is_array($options)) {

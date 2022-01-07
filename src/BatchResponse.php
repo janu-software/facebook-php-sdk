@@ -83,9 +83,6 @@ class BatchResponse extends Response implements IteratorAggregate, ArrayAccess
 
 	/**
 	 * Add a response to the list.
-	 *
-	 * @param int        $key
-	 * @param array|null $response
 	 */
 	public function addResponse(int $key, ?array $response): void
 	{

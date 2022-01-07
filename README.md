@@ -85,7 +85,7 @@ $ ./vendor/bin/phpunit --exclude-group integration
 
 ## License
 
-Please see the [license file](https://github.com/janu-software/facebook-php-sdk/blob/master/LICENSE) for more information.
+Please see the [license file](https://github.com/janu-software/facebook-php-sdk/blob/main/LICENSE) for more information.
 
 
 ## Security Vulnerabilities

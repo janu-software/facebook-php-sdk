@@ -169,8 +169,6 @@ class OAuth2Client
 	/**
 	 * Get a valid code from an access token.
 	 *
-	 * @param string             $redirectUri
-	 *
 	 * @throws SDKException
 	 */
 	public function getCodeFromLongLivedAccessToken(AccessToken|string $accessToken, string $redirectUri = ''): string

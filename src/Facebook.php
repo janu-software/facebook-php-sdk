@@ -141,7 +141,11 @@ class Facebook
 		if (isset($config['default_access_token'])) {
 			try {
 				$this->setDefaultAccessToken($config['default_access_token']);
-			} catch (TypeError) {
+			}
+			/**
+			 * @phpstan-ignore-next-line
+			 */
+			catch (TypeError) {
 				throw new InvalidArgumentException('Key "default_access_token" must be string or class AccessToken');
 			}
 		}
@@ -385,7 +389,7 @@ class Facebook
 		$subClassName = $graphEdge->getSubClassName();
 		$graphEdge = $this->lastResponse->getGraphEdge($subClassName, false);
 
-		return count($graphEdge->asArray()) > 0 ? $graphEdge : null;
+		return $graphEdge->asArray() !== [] ? $graphEdge : null;
 	}
 
 
