@@ -1,9 +1,15 @@
 {
 	"name": "janu-software/facebook-php-sdk",
 	"description": "Alternative toolkit for Facebook Graph API",
-	"homepage": "https://janu.software",
-	"license": "MIT",
+	"keywords": ["facebook", "sdk", "graph"],
+	"type": "library",
+	"homepage": "https://github.com/janu-software/facebook-php-sdk",
+	"license": "Facebook Platform",
 	"authors": [
+		{
+			"name": "Facebook",
+			"homepage": "https://github.com/facebook/php-graph-sdk/contributors"
+		},
 		{
 			"name": "Stanislav Janů",
 			"homepage": "https://janu.software"
