@@ -4,7 +4,7 @@
 	"keywords": ["facebook", "sdk", "graph"],
 	"type": "library",
 	"homepage": "https://github.com/janu-software/facebook-php-sdk",
-	"license": "Facebook Platform",
+	"license": "proprietary",
 	"authors": [
 		{
 			"name": "Facebook",
