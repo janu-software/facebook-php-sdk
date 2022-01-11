@@ -305,7 +305,7 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 	/**
 	 * {@inheritdoc}
 	 */
-	public function offsetGet($offset)
+	public function offsetGet($offset): mixed
 	{
 		return $this->requests[$offset] ?? null;
 	}

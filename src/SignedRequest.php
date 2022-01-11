@@ -79,11 +79,8 @@ class SignedRequest
 
 	/**
 	 * Returns a property from the signed request data if available.
-	 *
-	 * @param mixed|null $default
-	 * @return mixed|null
 	 */
-	public function get(string $key, mixed $default = null)
+	public function get(string $key, mixed $default = null): mixed
 	{
 		if (isset($this->payload[$key])) {
 			return $this->payload[$key];
