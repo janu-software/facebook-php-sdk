@@ -28,7 +28,7 @@ jobs:
           command: "${{ inputs.composer }}"
 
       - name: "Run PHPUnit"
-        run: vendor/bin/phpunit --exclude-group integration tests --coverage-clover=coverage.xml
+        run: phpdbg -qrr vendor/bin/phpunit --exclude-group integration tests --coverage-clover=coverage.xml
 
       - name: "Coveralls.io"
         env:
