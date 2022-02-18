@@ -20,3 +20,11 @@ jobs:
           coverage: none
       - run: composer install --prefer-dist --no-progress --no-suggest
       - run: vendor/bin/phpunit --exclude-group integration tests
+      - name: "Coveralls.io"
+        env:
+          CI_NAME: github
+          CI: true
+          COVERALLS_REPO_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: |
+          wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.5.1/php-coveralls.phar
+          php php-coveralls.phar --verbose --config tests/.coveralls.yml

@@ -8,6 +8,7 @@
 [![Latest Stable Version](https://poser.pugx.org/janu-software/facebook-php-sdk/v/stable)](https://packagist.org/packages/janu-software/facebook-php-sdk)
 [![Total Downloads](https://poser.pugx.org/janu-software/facebook-php-sdk/downloads)](https://packagist.org/packages/janu-software/facebook-php-sdk)
 [![License](https://poser.pugx.org/janu-software/facebook-php-sdk/license)](https://packagist.org/packages/janu-software/facebook-php-sdk)
+[![Coverage Status](https://coveralls.io/repos/github/janu-software/facebook-php-sdk/badge.svg?branch=main)](https://coveralls.io/github/janu-software/facebook-php-sdk?branch=main)
 
 This repository contains the open source PHP SDK that allows you to access the Facebook Platform from your PHP app. Based on `facebookarchive/php-graph-sdk` v6.
 
