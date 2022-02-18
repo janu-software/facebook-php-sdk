@@ -1,12 +1,9 @@
 <?xml version="1.0"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" stderr="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" stopOnFailure="false" bootstrap="tests/bootstrap.php" verbose="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage cacheDirectory=".phpunit.cache/code-coverage" processUncoveredFiles="true">
+  <coverage>
     <include>
       <directory suffix=".php">./src</directory>
     </include>
-    <report>
-      <clover outputFile="clover.xml" />
-    </report>
   </coverage>
   <testsuites>
     <testsuite name="Facebook PHP SDK Test Suite">

@@ -1,0 +1,40 @@
+name: Coverage
+
+on:
+  pull_request:
+
+  push:
+    branches: ["*"]
+
+  schedule:
+    - cron: "0 8 * * 1"
+
+jobs:
+  test80:
+    runs-on: ubuntu-latest
+    name: PHPUnit
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "PHP"
+        uses: "contributte/.github/.github/actions/setup-php@v1"
+        with:
+          php: "${{ inputs.php }}"
+
+      - name: "Composer"
+        uses: "contributte/.github/.github/actions/setup-composer@v1"
+        with:
+          command: "${{ inputs.composer }}"
+
+      - name: "Run PHPUnit"
+        run: vendor/bin/phpunit --exclude-group integration tests --coverage-clover=coverage.xml
+
+      - name: "Coveralls.io"
+        env:
+          CI_NAME: github
+          CI: true
+          COVERALLS_REPO_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: |
+          wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.5.1/php-coveralls.phar
+          php php-coveralls.phar --verbose --config tests/.coveralls.yml
