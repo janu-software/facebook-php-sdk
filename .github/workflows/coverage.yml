@@ -21,6 +21,7 @@ jobs:
         uses: "contributte/.github/.github/actions/setup-php@v1"
         with:
           php: "8.0"
+        run: pecl install pcov
 
       - name: "Composer"
         uses: "contributte/.github/.github/actions/setup-composer@v1"
