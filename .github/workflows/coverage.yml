@@ -26,9 +26,7 @@ jobs:
         run: pecl install pcov
 
       - name: "Composer"
-        uses: "contributte/.github/.github/actions/setup-composer@v1"
-        with:
-          command: "${{ inputs.composer }}"
+        run: "composer install --prefer-dist --no-progress --no-suggest"
 
       - name: "Run PHPUnit"
         run: "make coverage"
