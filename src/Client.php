@@ -26,7 +26,6 @@ use Http\Client\HttpClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
 use JanuSoftware\Facebook\Exception\SDKException;
-use function Safe\sprintf;
 
 
 class Client

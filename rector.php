@@ -27,7 +27,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 	$containerConfigurator->import(SetList::CODE_QUALITY);
 	$containerConfigurator->import(SetList::NAMING);
 	$containerConfigurator->import(SetList::PSR_4);
-	$containerConfigurator->import(SetList::SAFE_07);
+	$containerConfigurator->import(SetList::TYPE_DECLARATION_STRICT);
 	$containerConfigurator->import(NetteSetList::NETTE_CODE_QUALITY);
 
 	$parameters->set(Option::SKIP, [

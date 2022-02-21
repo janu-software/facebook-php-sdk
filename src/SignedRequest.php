@@ -27,6 +27,7 @@ use function Safe\base64_decode;
 use function Safe\json_decode;
 use function Safe\json_encode;
 use function Safe\preg_match;
+use ValueError;
 
 
 class SignedRequest
@@ -217,13 +218,11 @@ class SignedRequest
 	 */
 	protected function hashSignature(string $encodedData): string
 	{
-		$hashedSig = hash_hmac('sha256', $encodedData, $this->application->getSecret(), $raw_output = true);
-
-		if ($hashedSig === '' || $hashedSig === '0') {
-			throw new SDKException('Unable to hash signature from encoded payload data.', 602);
+		try {
+			return hash_hmac('sha256', $encodedData, $this->application->getSecret(), $raw_output = true);
+		} catch (ValueError $exception) {
+			throw new SDKException('Unable to hash signature from encoded payload data.', 602, $exception);
 		}
-
-		return $hashedSig;
 	}
 
 
