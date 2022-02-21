@@ -124,7 +124,24 @@ class GraphNodeTest extends TestCase
 	{
 		$graphNode = new GraphNode(['birthday' => '11/02/1989']);
 
-		$this->assertInstanceOf(Birthday::class, $graphNode->getField('birthday'));
+		$birthday = $graphNode->getField('birthday');
+		$this->assertInstanceOf(Birthday::class, $birthday);
+		$this->assertTrue($birthday->hasDate());
+		$this->assertTrue($birthday->hasYear());
+
+		$graphNode = new GraphNode(['birthday' => '1989']);
+
+		$birthday = $graphNode->getField('birthday');
+		$this->assertInstanceOf(Birthday::class, $birthday);
+		$this->assertFalse($birthday->hasDate());
+		$this->assertTrue($birthday->hasYear());
+
+		$graphNode = new GraphNode(['birthday' => '11/02']);
+
+		$birthday = $graphNode->getField('birthday');
+		$this->assertInstanceOf(Birthday::class, $birthday);
+		$this->assertTrue($birthday->hasDate());
+		$this->assertFalse($birthday->hasYear());
 	}
 
 

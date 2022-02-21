@@ -114,6 +114,10 @@ class GraphEdgeTest extends TestCase
 			'/1234567890/likes',
 		);
 
+		$this->assertEquals(2, count($graphEdge->all()));
+		$this->assertTrue($graphEdge->offsetExists(1));
+		$this->assertFalse($graphEdge->offsetExists(2));
+
 		$output = '';
 
 		$graphEdge->map(function (GraphNode $node) use (&$output) {
@@ -121,6 +125,21 @@ class GraphEdgeTest extends TestCase
 		});
 
 		$this->assertEquals('dummy1dummy2', $output);
+
+		$graphEdge->offsetSet(null, new GraphNode(['name' => 'dummy3']));
+		$this->assertEquals(3, count($graphEdge->all()));
+		$this->assertTrue($graphEdge->offsetExists(2));
+		$this->assertFalse($graphEdge->offsetExists(3));
+
+		$graphEdge->offsetSet(2, new GraphNode(['name' => 'dummy3']));
+		$this->assertEquals(3, count($graphEdge->all()));
+		$this->assertTrue($graphEdge->offsetExists(2));
+		$this->assertFalse($graphEdge->offsetExists(3));
+
+		$graphEdge->offsetUnset(2);
+		$this->assertEquals(2, count($graphEdge->all()));
+		$this->assertTrue($graphEdge->offsetExists(1));
+		$this->assertFalse($graphEdge->offsetExists(2));
 	}
 
 
@@ -231,5 +250,40 @@ class GraphEdgeTest extends TestCase
 		}
 
 		$this->assertEquals(['foo' => 'bar', 'faz' => 'baz'], $newArray);
+	}
+
+
+	public function testAsString(): void
+	{
+		$graphEdgeString = (string) new GraphEdge($this->request, ['foo' => 'bar', 'faz' => 'baz']);
+
+		$this->assertEquals('{"foo":"bar","faz":"baz"}', $graphEdgeString);
+	}
+
+
+	public function testMetaData(): void
+	{
+		$graphEdge = new GraphEdge($this->request, ['foo' => 'bar', 'faz' => 'baz'], ['a' => 'b']);
+
+		$this->assertEquals(['a' => 'b'], $graphEdge->getMetaData());
+	}
+
+
+	public function testCursors(): void
+	{
+		$graphEdge = new GraphEdge($this->request, []);
+
+		$this->assertNull($graphEdge->getNextCursor());
+		$this->assertNull($graphEdge->getPreviousCursor());
+
+		$graphEdge = new GraphEdge($this->request, [], ['paging' => ['cursors' => ['after' => 'foo', 'before' => 'bar']]]);
+
+		$this->assertEquals('foo', $graphEdge->getNextCursor());
+		$this->assertEquals('bar', $graphEdge->getPreviousCursor());
+		$this->assertNull($graphEdge->getPaginationRequest('non_exists'));
+
+		$this->assertNull($graphEdge->getTotalCount());
+		$graphEdge = new GraphEdge($this->request, [], ['summary' => ['total_count' => 0]]);
+		$this->assertEquals(0, $graphEdge->getTotalCount());
 	}
 }
