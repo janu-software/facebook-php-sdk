@@ -35,7 +35,6 @@ use JanuSoftware\Facebook\GraphNode\GraphEdge;
 use JanuSoftware\Facebook\GraphNode\GraphNode;
 use JanuSoftware\Facebook\Helper\CanvasHelper;
 use JanuSoftware\Facebook\Helper\JavaScriptHelper;
-use JanuSoftware\Facebook\Helper\PageTabHelper;
 use JanuSoftware\Facebook\PersistentData\InMemoryPersistentDataHandler;
 use JanuSoftware\Facebook\Request;
 use JanuSoftware\Facebook\Response;

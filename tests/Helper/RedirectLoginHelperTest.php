@@ -26,7 +26,6 @@ declare(strict_types=1);
 namespace JanuSoftware\Facebook\Tests\Helper;
 
 use JanuSoftware\Facebook\Application;
-use JanuSoftware\Facebook\Authentication\AccessToken;
 use JanuSoftware\Facebook\Client;
 use JanuSoftware\Facebook\Exception\SDKException;
 use JanuSoftware\Facebook\Facebook;
