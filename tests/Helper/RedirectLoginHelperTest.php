@@ -26,7 +26,9 @@ declare(strict_types=1);
 namespace JanuSoftware\Facebook\Tests\Helper;
 
 use JanuSoftware\Facebook\Application;
+use JanuSoftware\Facebook\Authentication\AccessToken;
 use JanuSoftware\Facebook\Client;
+use JanuSoftware\Facebook\Exception\SDKException;
 use JanuSoftware\Facebook\Facebook;
 use JanuSoftware\Facebook\Helper\RedirectLoginHelper;
 use JanuSoftware\Facebook\PersistentData\InMemoryPersistentDataHandler;
@@ -71,6 +73,62 @@ class RedirectLoginHelperTest extends TestCase
 	}
 
 
+	public function testAppAccessToken(): void
+	{
+		$this->expectException(SDKException::class);
+		$this->redirectLoginHelper->getLogoutUrl('foo|bar', '');
+	}
+
+
+	public function testReRequestUrl(): void
+	{
+		$expectedUrl = 'https://www.facebook.com/v1337/';
+		$url = $this->redirectLoginHelper->getReRequestUrl($expectedUrl, ['email']);
+		$this->assertStringStartsWith('https://www.facebook.com/v1337/dialog/oauth?auth_type=rerequest', $url);
+		$this->assertStringContainsString('redirect_uri=https%3A%2F%2Fwww.facebook.com%2Fv1337%2F&scope=email', $url);
+	}
+
+
+	public function testReReauthenticateUrl(): void
+	{
+		$expectedUrl = 'https://www.facebook.com/v1337/';
+		$url = $this->redirectLoginHelper->getReAuthenticationUrl($expectedUrl, ['email']);
+		$this->assertStringStartsWith('https://www.facebook.com/v1337/dialog/oauth?auth_type=reauthenticate', $url);
+		$this->assertStringContainsString('redirect_uri=https%3A%2F%2Fwww.facebook.com%2Fv1337%2F&scope=email', $url);
+	}
+
+
+	public function testCsfr(): void
+	{
+		$this->assertNull($this->redirectLoginHelper->getAccessToken());
+
+		$this->expectException(SDKException::class);
+		$_GET['code'] = '200';
+		$this->redirectLoginHelper->getAccessToken();
+		$_GET['state'] = 'ok';
+		$this->redirectLoginHelper->getAccessToken();
+	}
+
+
+	public function testCsfr2(): void
+	{
+		$this->expectException(SDKException::class);
+		$_GET['code'] = '200';
+		$_GET['state'] = 'ok';
+		$this->redirectLoginHelper->getAccessToken();
+	}
+
+
+	public function testCsfr3(): void
+	{
+		$this->expectException(SDKException::class);
+		$_GET['code'] = '200';
+		$_GET['state'] = 'ok';
+		$this->persistentDataHandler->set('state', 'ko');
+		$this->redirectLoginHelper->getAccessToken();
+	}
+
+
 	public function testLogoutURL(): void
 	{
 		$logoutUrl = $this->redirectLoginHelper->getLogoutUrl('foo_token', self::REDIRECT_URL);
@@ -96,5 +154,24 @@ class RedirectLoginHelperTest extends TestCase
 		$accessToken = $this->redirectLoginHelper->getAccessToken(self::REDIRECT_URL);
 
 		$this->assertEquals('foo_token_from_code|foo_code|' . self::REDIRECT_URL, (string) $accessToken);
+	}
+
+
+	public function testGetters(): void
+	{
+		$this->assertNull($this->redirectLoginHelper->getErrorCode());
+		$this->assertNull($this->redirectLoginHelper->getError());
+		$this->assertNull($this->redirectLoginHelper->getErrorReason());
+		$this->assertNull($this->redirectLoginHelper->getErrorDescription());
+
+		$_GET['error_code'] = '123';
+		$_GET['error'] = 'A';
+		$_GET['error_reason'] = 'B';
+		$_GET['error_description'] = 'C';
+
+		$this->assertEquals('123', $this->redirectLoginHelper->getErrorCode());
+		$this->assertEquals('A', $this->redirectLoginHelper->getError());
+		$this->assertEquals('B', $this->redirectLoginHelper->getErrorReason());
+		$this->assertEquals('C', $this->redirectLoginHelper->getErrorDescription());
 	}
 }

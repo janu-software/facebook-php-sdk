@@ -71,6 +71,18 @@ class ApplicationTest extends TestCase
 	}
 
 
+	public function testSerializationFn(): void
+	{
+		$serialized = $this->app->serialize();
+		$newApp = new Application('', '');
+		$newApp->unserialize($serialized);
+
+		$this->assertInstanceOf(Application::class, $newApp);
+		$this->assertEquals('id', $newApp->getId());
+		$this->assertEquals('secret', $newApp->getSecret());
+	}
+
+
 	public function testUnserializedIdsWillBeString(): void
 	{
 		$newApp = unserialize(serialize(new Application('1', 'foo')));

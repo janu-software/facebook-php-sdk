@@ -33,6 +33,9 @@ use JanuSoftware\Facebook\Exception\SDKException;
 use JanuSoftware\Facebook\Facebook;
 use JanuSoftware\Facebook\GraphNode\GraphEdge;
 use JanuSoftware\Facebook\GraphNode\GraphNode;
+use JanuSoftware\Facebook\Helper\CanvasHelper;
+use JanuSoftware\Facebook\Helper\JavaScriptHelper;
+use JanuSoftware\Facebook\Helper\PageTabHelper;
 use JanuSoftware\Facebook\PersistentData\InMemoryPersistentDataHandler;
 use JanuSoftware\Facebook\Request;
 use JanuSoftware\Facebook\Response;
@@ -195,6 +198,7 @@ class FacebookTest extends TestCase
 		$this->assertEquals('1337', $request->getApplication()->getId());
 		$this->assertEquals('foo_secret', $request->getApplication()->getSecret());
 		$this->assertEquals('foo_token', (string) $request->getAccessToken());
+		$this->assertEquals('v1337', $fb->getDefaultGraphVersion());
 		$this->assertEquals('v1337', $request->getGraphVersion());
 		$this->assertEquals(
 			Client::BASE_GRAPH_URL_BETA,
@@ -280,6 +284,11 @@ class FacebookTest extends TestCase
 		$this->assertInstanceOf(GraphNode::class, $nextPage[0]);
 		$this->assertEquals('Foo', $nextPage[0]->getField('name'));
 
+		$prevPage = $fb->previous($graphEdge);
+		$this->assertInstanceOf(GraphEdge::class, $prevPage);
+		$this->assertInstanceOf(GraphNode::class, $prevPage[0]);
+		$this->assertEquals('Foo', $prevPage[0]->getField('name'));
+
 		$lastResponse = $fb->getLastResponse();
 		$this->assertInstanceOf(Response::class, $lastResponse);
 		$this->assertEquals(321, $lastResponse->getHttpStatusCode());
@@ -311,5 +320,25 @@ class FacebookTest extends TestCase
 		]);
 		$fb = new Facebook($config);
 		$fb->uploadVideo('4', __DIR__ . '/foo.txt', [], 'foo-token', 3);
+	}
+
+
+	public function testFileToUpload(): void
+	{
+		$fb = new Facebook($this->config);
+		$file = $fb->fileToUpload(__DIR__ . '/foo.txt');
+		$this->assertEquals(__DIR__ . '/foo.txt', $file->getFilePath());
+		$this->assertEquals('foo.txt', $file->getFileName());
+		$this->assertEquals('This is a text file used for testing. Let\'s dance.', $file->getContents());
+		$this->assertEquals('text/plain', $file->getMimetype());
+		$this->assertEquals(50, $file->getSize());
+	}
+
+
+	public function testOthers(): void
+	{
+		$fb = new Facebook($this->config);
+		$this->assertInstanceOf(JavaScriptHelper::class, $fb->getJavaScriptHelper());
+		$this->assertInstanceOf(CanvasHelper::class, $fb->getCanvasHelper());
 	}
 }

@@ -139,4 +139,23 @@ class SignedRequestTest extends TestCase
 		$this->assertEquals(123, $sr->getUserId());
 		$this->assertTrue($sr->hasOAuthData());
 	}
+
+
+	public function testInvalidBase64(): void
+	{
+		$this->expectException(SDKException::class);
+		$rawSignedRequest = $this->rawSignature . '.' . $this->rawPayload;
+		$sr = new SignedRequest($this->app, $rawSignedRequest);
+		$sr->base64UrlDecode('ěščřžýáíé');
+	}
+
+
+	public function testInvalidHashSignature(): void
+	{
+		$this->expectException(SDKException::class);
+		$rawSignedRequest = $this->rawSignature . '.' . $this->rawPayload;
+		$app = new Application('', '');
+		$sr = new SignedRequest($app, $rawSignedRequest);
+		$sr->make([]);
+	}
 }
