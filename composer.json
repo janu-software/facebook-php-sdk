@@ -22,7 +22,8 @@
 		"php-http/client-implementation": "^1.0",
 		"php-http/httplug": "^2.0",
 		"php-http/discovery": "^1.0",
-		"php-http/message": "^1.0"
+		"php-http/message": "^1.0",
+		"thecodingmachine/phpstan-safe-rule": "^1.2"
 	},
 	"require-dev": {
 		"stanislav-janu/phpstan": "^1.0",
