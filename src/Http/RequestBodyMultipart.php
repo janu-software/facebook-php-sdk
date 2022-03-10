@@ -26,6 +26,7 @@ declare(strict_types=1);
 namespace JanuSoftware\Facebook\Http;
 
 use JanuSoftware\Facebook\FileUpload\File;
+use function Safe\sprintf;
 
 /**
  * Some things copied from Guzzle.

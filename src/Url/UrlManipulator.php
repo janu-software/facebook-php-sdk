@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\Url;
 
+use function Safe\ksort;
 use function Safe\parse_url;
 use function Safe\preg_replace;
 
