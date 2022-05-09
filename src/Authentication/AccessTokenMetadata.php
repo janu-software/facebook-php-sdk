@@ -184,7 +184,11 @@ class AccessTokenMetadata
 	 */
 	public function getExpiresAt(): ?DateTime
 	{
-		return $this->getField('expires_at');
+		$value = $this->getField('expires_at');
+		if ($value === 0) {
+			return null;
+		}
+		return $value;
 	}
 
 

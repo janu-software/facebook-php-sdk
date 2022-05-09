@@ -69,6 +69,20 @@ class AccessTokenMetadataTest extends TestCase
 	}
 
 
+	public function testExpiresAtZero(): void
+	{
+		$response = $this->graphResponseData;
+		$response['data']['expires_at'] = 0;
+		$metadata = new AccessTokenMetadata($response);
+
+		$expires = $metadata->getExpiresAt();
+		$issuedAt = $metadata->getIssuedAt();
+
+		$this->assertNull($expires);
+		$this->assertInstanceOf(DateTime::class, $issuedAt);
+	}
+
+
 	public function testAllTheGettersReturnTheProperValue(): void
 	{
 		$metadata = new AccessTokenMetadata($this->graphResponseData);
