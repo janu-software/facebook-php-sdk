@@ -978,16 +978,16 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "c726b64c1ccfe2896cb7df2e1331c357ad1c8ced"
+                "reference": "26954b3d62a6c5fd0ea8a2a00c0353a14978d05c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/c726b64c1ccfe2896cb7df2e1331c357ad1c8ced",
-                "reference": "c726b64c1ccfe2896cb7df2e1331c357ad1c8ced",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/26954b3d62a6c5fd0ea8a2a00c0353a14978d05c",
+                "reference": "26954b3d62a6c5fd0ea8a2a00c0353a14978d05c",
                 "shasum": ""
             },
             "require": {
@@ -1025,7 +1025,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.0.0"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.0.1"
             },
             "funding": [
                 {
@@ -1041,7 +1041,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-01T23:48:49+00:00"
+            "time": "2022-01-02T09:55:41+00:00"
         },
         {
             "name": "thecodingmachine/safe",
@@ -1751,16 +1751,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.5.2",
+            "version": "1.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "f32e95f571c9587b4e14be05253ae56fedd00b2c"
+                "reference": "d41c39cb2e487663bce9bbd97c660e244b73abad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f32e95f571c9587b4e14be05253ae56fedd00b2c",
-                "reference": "f32e95f571c9587b4e14be05253ae56fedd00b2c",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d41c39cb2e487663bce9bbd97c660e244b73abad",
+                "reference": "d41c39cb2e487663bce9bbd97c660e244b73abad",
                 "shasum": ""
             },
             "require": {
@@ -1786,7 +1786,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.5.2"
+                "source": "https://github.com/phpstan/phpstan/tree/1.6.7"
             },
             "funding": [
                 {
@@ -1806,7 +1806,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-29T07:34:36+00:00"
+            "time": "2022-05-04T22:55:41+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
@@ -1924,21 +1924,21 @@
         },
         {
             "name": "phpstan/phpstan-strict-rules",
-            "version": "1.1.0",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-strict-rules.git",
-                "reference": "e12d55f74a8cca18c6e684c6450767e055ba7717"
+                "reference": "0c82c96f2a55d8b91bbc7ee6512c94f68a206b43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/e12d55f74a8cca18c6e684c6450767e055ba7717",
-                "reference": "e12d55f74a8cca18c6e684c6450767e055ba7717",
+                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/0c82c96f2a55d8b91bbc7ee6512c94f68a206b43",
+                "reference": "0c82c96f2a55d8b91bbc7ee6512c94f68a206b43",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1 || ^8.0",
-                "phpstan/phpstan": "^1.2.0"
+                "php": "^7.2 || ^8.0",
+                "phpstan/phpstan": "^1.6.3"
             },
             "require-dev": {
                 "nikic/php-parser": "^4.13.0",
@@ -1948,9 +1948,6 @@
             },
             "type": "phpstan-extension",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                },
                 "phpstan": {
                     "includes": [
                         "rules.neon"
@@ -1969,9 +1966,9 @@
             "description": "Extra strict and opinionated rules for PHPStan",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-strict-rules/issues",
-                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/1.1.0"
+                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/1.2.3"
             },
-            "time": "2021-11-18T09:30:29+00:00"
+            "time": "2022-05-04T15:20:40+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2293,16 +2290,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.19",
+            "version": "9.5.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "35ea4b7f3acabb26f4bb640f8c30866c401da807"
+                "reference": "12bc8879fb65aef2138b26fc633cb1e3620cffba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/35ea4b7f3acabb26f4bb640f8c30866c401da807",
-                "reference": "35ea4b7f3acabb26f4bb640f8c30866c401da807",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/12bc8879fb65aef2138b26fc633cb1e3620cffba",
+                "reference": "12bc8879fb65aef2138b26fc633cb1e3620cffba",
                 "shasum": ""
             },
             "require": {
@@ -2380,7 +2377,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.19"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.20"
             },
             "funding": [
                 {
@@ -2392,25 +2389,25 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-15T09:57:31+00:00"
+            "time": "2022-04-01T12:37:26+00:00"
         },
         {
             "name": "rector/rector",
-            "version": "0.12.19",
+            "version": "0.12.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "ed06366a1d56bf5709ddc854d0fea043513ac5ac"
+                "reference": "690b31768b322db886b35845f8452025eba2cacb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/ed06366a1d56bf5709ddc854d0fea043513ac5ac",
-                "reference": "ed06366a1d56bf5709ddc854d0fea043513ac5ac",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/690b31768b322db886b35845f8452025eba2cacb",
+                "reference": "690b31768b322db886b35845f8452025eba2cacb",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1|^8.0",
-                "phpstan/phpstan": "^1.4.8"
+                "php": "^7.2|^8.0",
+                "phpstan/phpstan": "^1.6"
             },
             "conflict": {
                 "phpstan/phpdoc-parser": "<1.2",
@@ -2444,7 +2441,7 @@
             "description": "Instant Upgrade and Automated Refactoring of any PHP code",
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.12.19"
+                "source": "https://github.com/rectorphp/rector/tree/0.12.23"
             },
             "funding": [
                 {
@@ -2452,7 +2449,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-23T14:22:44+00:00"
+            "time": "2022-05-01T15:50:16+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -2820,16 +2817,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "5.1.3",
+            "version": "5.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "388b6ced16caa751030f6a69e588299fa09200ac"
+                "reference": "1b5dff7bb151a4db11d49d90e5408e4e938270f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/388b6ced16caa751030f6a69e588299fa09200ac",
-                "reference": "388b6ced16caa751030f6a69e588299fa09200ac",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/1b5dff7bb151a4db11d49d90e5408e4e938270f7",
+                "reference": "1b5dff7bb151a4db11d49d90e5408e4e938270f7",
                 "shasum": ""
             },
             "require": {
@@ -2871,7 +2868,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/environment/issues",
-                "source": "https://github.com/sebastianbergmann/environment/tree/5.1.3"
+                "source": "https://github.com/sebastianbergmann/environment/tree/5.1.4"
             },
             "funding": [
                 {
@@ -2879,7 +2876,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-28T05:52:38+00:00"
+            "time": "2022-04-03T09:37:03+00:00"
         },
         {
             "name": "sebastian/exporter",
