@@ -494,7 +494,7 @@ class Facebook
 	 * @param int                       $maxTransferTries   the max times to retry a failed upload chunk
 	 * @param string|null               $graphVersion       the Graph API version to use
 	 *
-	 * @return array<string, bool>|array<string, int>
+	 * @return array{video_id: int, success: bool}
 	 * @throws SDKException|FilesystemException
 	 */
 	public function uploadVideo(

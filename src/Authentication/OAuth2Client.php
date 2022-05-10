@@ -242,7 +242,7 @@ class OAuth2Client
 
 	/**
 	 * Returns the client_* params for OAuth requests.
-	 * @return array<string, string>
+	 * @return array{client_id: string, client_secret: string}
 	 */
 	protected function getClientParams(): array
 	{
