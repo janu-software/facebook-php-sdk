@@ -32,7 +32,7 @@ use JanuSoftware\Facebook\SignedRequest;
 
 abstract class SignedRequestFromInputHelper
 {
-	protected ?SignedRequest $signedRequest;
+	protected ?SignedRequest $signedRequest = null;
 	protected OAuth2Client $oAuth2Client;
 
 
