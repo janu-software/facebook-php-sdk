@@ -18,6 +18,10 @@ The Facebook PHP SDK can be installed with [Composer](https://getcomposer.org/).
 
     composer require janu-software/facebook-php-sdk
 
+You must use some client using `php-http/client-implementation`. For example: Using with guzzle:
+
+    composer require janu-software/facebook-php-sdk guzzlehttp/guzzle
+
 ## Compatibility
 
 | Version | PHP  |
