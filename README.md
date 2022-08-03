@@ -47,11 +47,11 @@ $fb = new \JanuSoftware\Facebook\Facebook([
 try {
   // If you provided a 'default_access_token', the '{access-token}' is optional.
   $response = $fb->get('/me', '{access-token}');
-} catch(\JanuSoftware\Facebook\Exception\FacebookResponseException $e) {
+} catch(\JanuSoftware\Facebook\Exception\ResponseException $e) {
   // When Graph returns an error
   echo 'Graph returned an error: ' . $e->getMessage();
   exit;
-} catch(\JanuSoftware\Facebook\Exception\FacebookSDKException $e) {
+} catch(\JanuSoftware\Facebook\Exception\SDKException $e) {
   // When validation fails or other local issues
   echo 'Facebook SDK returned an error: ' . $e->getMessage();
   exit;
