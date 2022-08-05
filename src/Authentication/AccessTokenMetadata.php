@@ -31,8 +31,6 @@ use Safe\DateTime;
 /**
  * Represents metadata from an access token.
  *
- * @package Facebook
- *
  * @see     https://developers.facebook.com/docs/graph-api/reference/debug_token
  */
 class AccessTokenMetadata

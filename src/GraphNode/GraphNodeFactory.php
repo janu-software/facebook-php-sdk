@@ -28,7 +28,6 @@ use JanuSoftware\Facebook\Response;
 
 /**
  * Class GraphNodeFactory.
- * @package Facebook
  * ## Assumptions ##
  * GraphEdge - is ALWAYS a numeric array
  * GraphEdge - is ALWAYS an array of GraphNode types

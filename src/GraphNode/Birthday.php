@@ -29,8 +29,6 @@ use DateTime;
 
 /**
  * Birthday object to handle various Graph return formats.
- *
- * @package Facebook
  */
 class Birthday extends DateTime
 {

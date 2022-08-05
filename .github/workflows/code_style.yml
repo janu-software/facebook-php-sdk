@@ -8,6 +8,7 @@ on:
 jobs:
   ecs:
     runs-on: ubuntu-latest
+    continue-on-error: true
     strategy:
       matrix:
         php: [ '8.0', '8.1' ]

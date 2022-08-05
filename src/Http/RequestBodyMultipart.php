@@ -31,8 +31,6 @@ use function Safe\sprintf;
 /**
  * Some things copied from Guzzle.
  *
- * @package Facebook
- *
  * @see https://github.com/guzzle/guzzle/blob/master/src/Post/MultipartBody.php
  */
 class RequestBodyMultipart implements RequestBodyInterface

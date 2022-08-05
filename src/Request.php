@@ -34,7 +34,6 @@ use JetBrains\PhpStorm\ArrayShape;
 
 /**
  * Class Request.
- * @package Facebook
  */
 class Request
 {
