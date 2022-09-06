@@ -25,10 +25,10 @@ jobs:
         uses: canastro/copy-file-action@master
         with:
           source: ".coding-standard/project.xml"
-          target: "temp/nette-coding-standard/preset-sniffer/project.xml"
+          target: "temp/coding-standard/preset-sniffer/project.xml"
       - name: copy preset-fixer
         uses: canastro/copy-file-action@master
         with:
           source: ".coding-standard/project.php"
-          target: "temp/nette-coding-standard/preset-fixer/project.php"
+          target: "temp/coding-standard/preset-fixer/project.php"
       - run: php temp/coding-standard/ecs check src tests --preset project
