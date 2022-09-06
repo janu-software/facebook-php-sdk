@@ -256,7 +256,7 @@ class SignedRequest
 		$urlDecodedBase64 = strtr($input, '-_', '+/');
 		$this->validateBase64($urlDecodedBase64);
 
-		return base64_decode($urlDecodedBase64);
+		return base64_decode($urlDecodedBase64, true);
 	}
 
 
