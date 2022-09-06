@@ -76,8 +76,8 @@ class ResumableUploader
 		try {
 			$response = $this->sendUploadRequest($endpoint, $params);
 		} catch (ResponseException $e) {
-			$preException = $e->getPrevious();
-			if ($allowToThrow || !$preException instanceof ResumableUploadException) {
+			$throwable = $e->getPrevious();
+			if ($allowToThrow || !$throwable instanceof ResumableUploadException) {
 				throw $e;
 			}
 

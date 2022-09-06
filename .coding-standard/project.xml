@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="ProjectSniffer" namespace="Nette">
+	<rule ref="./php80.xml"/>
+	<rule ref="Generic.Strings.UnnecessaryStringConcat.Found">
+		<exclude-pattern>*\.php</exclude-pattern>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses.IncorrectlyOrderedUses">
+		<exclude-pattern>*\.php</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.VariableComment.WrongStyle">
+		<exclude-pattern>*\.php</exclude-pattern>
+	</rule>
+</ruleset>

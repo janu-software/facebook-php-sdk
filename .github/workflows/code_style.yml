@@ -21,4 +21,6 @@ jobs:
           coverage: none
       - run: composer install --prefer-dist --no-progress --no-suggest
       - run: composer create-project nette/coding-standard temp/coding-standard --no-progress
-      - run: php temp/coding-standard/ecs check src tests --preset php80
+      - run: cp .coding-standard/project.xml temp/nette-coding-standard/preset-sniffer/project.xml
+      - run: cp .coding-standard/project.php temp/nette-coding-standard/preset-fixer/project.php
+      - run: php temp/coding-standard/ecs check src tests --preset project
