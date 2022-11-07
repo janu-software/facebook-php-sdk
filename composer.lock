@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5cbe9dd0a4bcb02c1253b0f2867acd27",
+    "content-hash": "848c02a3c88661b73eb1720995fd5aa6",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -286,16 +286,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.4.1",
+            "version": "2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "69568e4293f4fa993f3b0e51c9723e1e17c41379"
+                "reference": "67c26b443f348a51926030c83481b85718457d3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/69568e4293f4fa993f3b0e51c9723e1e17c41379",
-                "reference": "69568e4293f4fa993f3b0e51c9723e1e17c41379",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/67c26b443f348a51926030c83481b85718457d3d",
+                "reference": "67c26b443f348a51926030c83481b85718457d3d",
                 "shasum": ""
             },
             "require": {
@@ -385,7 +385,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.4.1"
+                "source": "https://github.com/guzzle/psr7/tree/2.4.3"
             },
             "funding": [
                 {
@@ -401,7 +401,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-28T14:45:39+00:00"
+            "time": "2022-10-26T14:07:24+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -1531,16 +1531,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.8.7",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "536ff0ed719b5679e9f09c17aeaee9b31969cb8e"
+                "reference": "a59c8b5bfd4a236f27efc8b5ce72c313c2b54b5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/536ff0ed719b5679e9f09c17aeaee9b31969cb8e",
-                "reference": "536ff0ed719b5679e9f09c17aeaee9b31969cb8e",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a59c8b5bfd4a236f27efc8b5ce72c313c2b54b5f",
+                "reference": "a59c8b5bfd4a236f27efc8b5ce72c313c2b54b5f",
                 "shasum": ""
             },
             "require": {
@@ -1570,7 +1570,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.8.7"
+                "source": "https://github.com/phpstan/phpstan/tree/1.9.1"
             },
             "funding": [
                 {
@@ -1586,7 +1586,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-10-04T14:09:33+00:00"
+            "time": "2022-11-04T13:35:59+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
@@ -1749,16 +1749,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.17",
+            "version": "9.2.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "aa94dc41e8661fe90c7316849907cba3007b10d8"
+                "reference": "12fddc491826940cf9b7e88ad9664cf51f0f6d0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/aa94dc41e8661fe90c7316849907cba3007b10d8",
-                "reference": "aa94dc41e8661fe90c7316849907cba3007b10d8",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/12fddc491826940cf9b7e88ad9664cf51f0f6d0a",
+                "reference": "12fddc491826940cf9b7e88ad9664cf51f0f6d0a",
                 "shasum": ""
             },
             "require": {
@@ -1814,7 +1814,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.17"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.18"
             },
             "funding": [
                 {
@@ -1822,7 +1822,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-08-30T12:24:04+00:00"
+            "time": "2022-10-27T13:35:33+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2067,16 +2067,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.25",
+            "version": "9.5.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "3e6f90ca7e3d02025b1d147bd8d4a89fd4ca8a1d"
+                "reference": "851867efcbb6a1b992ec515c71cdcf20d895e9d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3e6f90ca7e3d02025b1d147bd8d4a89fd4ca8a1d",
-                "reference": "3e6f90ca7e3d02025b1d147bd8d4a89fd4ca8a1d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/851867efcbb6a1b992ec515c71cdcf20d895e9d2",
+                "reference": "851867efcbb6a1b992ec515c71cdcf20d895e9d2",
                 "shasum": ""
             },
             "require": {
@@ -2149,7 +2149,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.25"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.26"
             },
             "funding": [
                 {
@@ -2165,30 +2165,29 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-25T03:44:45+00:00"
+            "time": "2022-10-28T06:00:21+00:00"
         },
         {
             "name": "rector/rector",
-            "version": "0.14.5",
+            "version": "0.14.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "f7fd87b2435835f481e6a94ee28e09af412bd3cc"
+                "reference": "3553aaba0e820083fc6d7f0dc78d8d789226a398"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/f7fd87b2435835f481e6a94ee28e09af412bd3cc",
-                "reference": "f7fd87b2435835f481e6a94ee28e09af412bd3cc",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/3553aaba0e820083fc6d7f0dc78d8d789226a398",
+                "reference": "3553aaba0e820083fc6d7f0dc78d8d789226a398",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2|^8.0",
-                "phpstan/phpstan": "^1.8.6"
+                "phpstan/phpstan": "^1.9.0"
             },
             "conflict": {
-                "rector/rector-cakephp": "*",
                 "rector/rector-doctrine": "*",
-                "rector/rector-laravel": "*",
+                "rector/rector-downgrade-php": "*",
                 "rector/rector-php-parser": "*",
                 "rector/rector-phpoffice": "*",
                 "rector/rector-phpunit": "*",
@@ -2215,7 +2214,7 @@
             "description": "Instant Upgrade and Automated Refactoring of any PHP code",
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.14.5"
+                "source": "https://github.com/rectorphp/rector/tree/0.14.7"
             },
             "funding": [
                 {
@@ -2223,7 +2222,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-29T11:05:42+00:00"
+            "time": "2022-11-04T08:48:40+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -3344,7 +3343,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.0 <8.2"
+        "php": ">=8.0 <=8.2"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
