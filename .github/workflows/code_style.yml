@@ -31,4 +31,5 @@ jobs:
         with:
           source: ".coding-standard/project.php"
           target: "temp/coding-standard/preset-fixer/project.php"
+      - run: PHP_CS_FIXER_IGNORE_ENV=1
       - run: php temp/coding-standard/ecs check src tests --preset project
