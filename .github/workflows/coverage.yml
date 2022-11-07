@@ -1,12 +1,6 @@
 name: Coverage
 
 on:
-  workflow_call:
-    inputs:
-      php:
-        required: false
-        type: string
-        default: "8.0"
   pull_request:
 
   push:
@@ -27,7 +21,7 @@ jobs:
         id: "extcache"
         uses: "shivammathur/cache-extensions@v1"
         with:
-          php-version: "${{ inputs.php }}"
+          php-version: "8.0"
           extensions: "pcov"
           key: "v1"
 
@@ -41,7 +35,7 @@ jobs:
       - name: Setup PHP with PCOV
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "${{ inputs.php }}"
+          php-version: "8.0"
           coverage: "pcov"
 
       - name: "Setup problem matchers for PHP"
