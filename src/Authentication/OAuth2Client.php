@@ -111,7 +111,8 @@ class OAuth2Client
 		array $scope = [],
 		array $params = [],
 		string $separator = '&',
-	): string {
+	): string
+	{
 		$params += [
 			'client_id' => $this->application->getId(),
 			'state' => $state,
@@ -221,7 +222,8 @@ class OAuth2Client
 		string $endpoint,
 		array $params,
 		AccessToken|string $accessToken = null,
-	): Response {
+	): Response
+	{
 		$params += $this->getClientParams();
 
 		$accessToken ??= $this->application->getAccessToken();

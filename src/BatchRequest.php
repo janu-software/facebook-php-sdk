@@ -229,7 +229,8 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 		Request $request,
 		array|string $options = null,
 		string $attachedFiles = null,
-	): array {
+	): array
+	{
 		if ($options === null) {
 			$options = [];
 		} elseif (!is_array($options)) {
