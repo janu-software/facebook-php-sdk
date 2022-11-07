@@ -42,11 +42,11 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "${{ inputs.php }}"
-          coverage: pcov
+          coverage: "pcov"
 
       - name: "Setup problem matchers for PHP"
-            shell: "bash"
-            run: 'echo "::add-matcher::${{ runner.tool_cache }}/php.json"'
+        shell: "bash"
+        run: 'echo "::add-matcher::${{ runner.tool_cache }}/php.json"'
 
       - name: "Composer"
         run: "composer install --prefer-dist --no-progress --no-suggest"
