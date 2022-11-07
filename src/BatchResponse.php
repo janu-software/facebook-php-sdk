@@ -99,7 +99,7 @@ class BatchResponse extends Response implements IteratorAggregate, ArrayAccess
 	}
 
 
-	public function getIterator(): \ArrayIterator
+	public function getIterator(): ArrayIterator
 	{
 		return new ArrayIterator($this->responses);
 	}

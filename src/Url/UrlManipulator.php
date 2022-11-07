@@ -50,7 +50,7 @@ class UrlManipulator
 				unset($params[$paramToFilter]);
 			}
 
-			if (count($params) > 0) {
+			if ($params !== []) {
 				$query = '?' . http_build_query($params);
 			}
 		}

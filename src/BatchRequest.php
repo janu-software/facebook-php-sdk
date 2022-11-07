@@ -270,7 +270,7 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 	/**
 	 * Get an iterator for the items.
 	 */
-	public function getIterator(): \ArrayIterator
+	public function getIterator(): ArrayIterator
 	{
 		return new ArrayIterator($this->requests);
 	}
