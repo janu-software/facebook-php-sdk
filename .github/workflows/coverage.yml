@@ -23,7 +23,7 @@ jobs:
           php: "8.0"
 
       - name: "pcov"
-        run: pecl channel-update pecl.php.net && pecl install pcov
+        run: sudo pecl channel-update pecl.php.net && pecl install pcov
 
       - name: "Composer"
         run: "composer install --prefer-dist --no-progress --no-suggest"
