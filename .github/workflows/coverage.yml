@@ -1,6 +1,12 @@
 name: Coverage
 
 on:
+  workflow_call:
+    inputs:
+      php:
+        required: false
+        type: string
+        default: "8.0"
   pull_request:
 
   push:
@@ -17,13 +23,30 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v2"
 
-      - name: "PHP"
-        uses: "contributte/.github/.github/actions/setup-php@v1"
+      - name: "Setup PHP cache environment"
+        id: "extcache"
+        uses: "shivammathur/cache-extensions@v1"
         with:
-          php: "8.0"
+          php-version: "${{ inputs.php }}"
+          extensions: "pcov"
+          key: "v1"
 
-      - name: "pcov"
-        run: sudo pecl channel-update pecl.php.net && sudo pecl install pcov
+      - name: "Cache PHP extensions"
+        uses: "actions/cache@v2"
+        with:
+          path: "${{ steps.extcache.outputs.dir }}"
+          key: "${{ steps.extcache.outputs.key }}"
+          restore-keys: "${{ steps.extcache.outputs.key }}"
+
+      - name: Setup PHP with PCOV
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "${{ inputs.php }}"
+          coverage: pcov
+
+      - name: "Setup problem matchers for PHP"
+            shell: "bash"
+            run: 'echo "::add-matcher::${{ runner.tool_cache }}/php.json"'
 
       - name: "Composer"
         run: "composer install --prefer-dist --no-progress --no-suggest"
