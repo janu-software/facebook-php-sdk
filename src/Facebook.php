@@ -294,7 +294,7 @@ class Facebook
 		string $graphVersion = null,
 	): Response
 	{
-		return $this->sendRequest('GET', $endpoint, $params = [], $accessToken, $eTag, $graphVersion);
+		return $this->sendRequest('GET', $endpoint, [], $accessToken, $eTag, $graphVersion);
 	}
 
 
@@ -434,7 +434,7 @@ class Facebook
 	 * will fallback to this.
 	 * @param string|null $graphVersion the Graph API version to use
 	 */
-	public function newBatchRequest($accessToken = null, $graphVersion = null): BatchRequest
+	public function newBatchRequest(AccessToken|string $accessToken = null, string $graphVersion = null): BatchRequest
 	{
 		$accessToken ??= $this->defaultAccessToken;
 		$graphVersion ??= $this->defaultGraphVersion;
@@ -456,9 +456,9 @@ class Facebook
 		string $method,
 		string $endpoint,
 		array $params = [],
-		$accessToken = null,
-		$eTag = null,
-		$graphVersion = null,
+		AccessToken|string $accessToken = null,
+		string $eTag = null,
+		string $graphVersion = null,
 	): Request
 	{
 		$accessToken ??= $this->defaultAccessToken;
