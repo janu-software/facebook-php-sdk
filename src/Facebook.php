@@ -408,9 +408,7 @@ class Facebook
 	/**
 	 * Sends a batched request to Graph and returns the result.
 	 *
-	 * @param AccessToken|string|null $accessToken
 	 * @param string|null $graphVersion
-	 *
 	 * @throws SDKException
 	 */
 	public function sendBatchRequest(
@@ -430,11 +428,13 @@ class Facebook
 	/**
 	 * Instantiates an empty BatchRequest entity.
 	 *
-	 * @param AccessToken|string|null $accessToken The top-level access token. Requests with no access token
-	 * will fallback to this.
+	 * @param AccessToken|string|null $accessToken The top-level access token. Requests with no access token will fallback to this.
 	 * @param string|null $graphVersion the Graph API version to use
 	 */
-	public function newBatchRequest(AccessToken|string $accessToken = null, string $graphVersion = null): BatchRequest
+	public function newBatchRequest(
+		AccessToken|string|null $accessToken = null,
+		string $graphVersion = null,
+	): BatchRequest
 	{
 		$accessToken ??= $this->defaultAccessToken;
 		$graphVersion ??= $this->defaultGraphVersion;
@@ -446,10 +446,8 @@ class Facebook
 	/**
 	 * Instantiates a new Request entity.
 	 *
-	 * @param AccessToken|string|null $accessToken
 	 * @param string|null $eTag
 	 * @param string|null $graphVersion
-	 *
 	 * @throws SDKException
 	 */
 	public function request(
@@ -507,7 +505,7 @@ class Facebook
 		int|string $target,
 		string $pathToFile,
 		array $metadata = [],
-		string|AccessToken $accessToken = null,
+		string|AccessToken|null $accessToken = null,
 		int $maxTransferTries = 5,
 		string $graphVersion = null,
 	): array

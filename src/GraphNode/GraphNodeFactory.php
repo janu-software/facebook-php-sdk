@@ -176,7 +176,7 @@ class GraphNodeFactory
 	 *
 	 * @param array       $data         the array of data to iterate over
 	 * @param string|null $subclassName the subclass to cast this collection to
-	 * @param string|int|null $parentKey the key of this data (Graph edge)
+	 * @param string|int $parentKey the key of this data (Graph edge)
 	 * @param string|null $parentNodeId the parent Graph node ID
 	 *
 	 * @throws SDKException
@@ -214,9 +214,9 @@ class GraphNodeFactory
 	 */
 	public function safelyMakeGraphEdge(
 		array $data,
-		string $subclassName = null,
-		string|int $parentKey = null,
-		string $parentNodeId = null,
+		?string $subclassName = null,
+		string|int|null $parentKey = null,
+		?string $parentNodeId = null,
 	): GraphEdge
 	{
 		if (!isset($data['data'])) {

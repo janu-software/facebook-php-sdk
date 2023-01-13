@@ -152,6 +152,7 @@ class Response
 	/**
 	 * Throws the exception.
 	 * @throws SDKException
+	 * @return never
 	 */
 	public function throwException(): void
 	{

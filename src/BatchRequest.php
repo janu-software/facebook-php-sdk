@@ -29,6 +29,7 @@ use IteratorAggregate;
 use JanuSoftware\Facebook\Authentication\AccessToken;
 use JanuSoftware\Facebook\Exception\SDKException;
 use JanuSoftware\Facebook\FileUpload\File;
+use Safe\Exceptions\JsonException;
 use function Safe\json_encode;
 
 
@@ -180,6 +181,7 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 
 	/**
 	 * Converts the requests into a JSON(P) string.
+	 * @throws JsonException
 	 */
 	public function convertRequestsToJson(): string
 	{
@@ -220,8 +222,7 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 	 * Converts a Request entity into an array that is batch-friendly.
 	 *
 	 * @param Request           $request       the request entity to convert
-	 * @param array|string|null $options Array of batch request options e.g. 'name', 'omit_response_on_success'.
-	 * If a string is given, it is the value of the 'name' option.
+	 * @param mixed[]|string $options Array of batch request options e.g. 'name', 'omit_response_on_success'. If a string is given, it is the value of the 'name' option.
 	 * @param string|null $attachedFiles names of files associated with the request
 	 * @return mixed[]
 	 */

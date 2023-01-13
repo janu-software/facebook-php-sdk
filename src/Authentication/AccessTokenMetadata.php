@@ -65,7 +65,7 @@ class AccessTokenMetadata
 	 * Returns a value from the metadata.
 	 *
 	 * @param string $field   the property to retrieve
-	 * @param mixed  $default the default to return if the property doesn't exist
+	 * @param mixed $default the default to return if the property doesn't exist
 	 */
 	public function getField(string $field, mixed $default = null): mixed
 	{
@@ -82,7 +82,7 @@ class AccessTokenMetadata
 	 *
 	 * @param string $parentField the parent property
 	 * @param string $field       the property to retrieve
-	 * @param mixed  $default     the default to return if the property doesn't exist
+	 * @param mixed $default the default to return if the property doesn't exist
 	 */
 	public function getChildProperty(string $parentField, string $field, mixed $default = null): mixed
 	{
@@ -102,7 +102,7 @@ class AccessTokenMetadata
 	 * Returns a value from the error metadata.
 	 *
 	 * @param string $field   the property to retrieve
-	 * @param mixed  $default the default to return if the property doesn't exist
+	 * @param mixed $default the default to return if the property doesn't exist
 	 */
 	public function getErrorProperty(string $field, mixed $default = null): mixed
 	{
@@ -114,7 +114,7 @@ class AccessTokenMetadata
 	 * Returns a value from the "metadata" metadata. *Brain explodes*.
 	 *
 	 * @param string $field   the property to retrieve
-	 * @param mixed  $default the default to return if the property doesn't exist
+	 * @param mixed $default the default to return if the property doesn't exist
 	 */
 	public function getMetadataProperty(string $field, mixed $default = null): mixed
 	{

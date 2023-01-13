@@ -51,8 +51,8 @@ class GraphNode implements Stringable
 	/**
 	 * Gets the value of a field from the Graph node.
 	 *
-	 * @param string $name    the field to retrieve
-	 * @param mixed  $default the default to return if the field doesn't exist
+	 * @param string $name the field to retrieve
+	 * @param mixed $default the default to return if the field doesn't exist
 	 */
 	public function getField(string $name, mixed $default = null): mixed
 	{

@@ -42,7 +42,7 @@ class OAuth2Client
 	/**
 	 * The last request sent to Graph.
 	 */
-	protected ?Request $lastRequest;
+	protected ?Request $lastRequest = null;
 
 
 	/**
