@@ -32,8 +32,8 @@ use DateTime;
  */
 class Birthday extends DateTime
 {
-	private bool $hasDate;
-	private bool $hasYear;
+	private readonly bool $hasDate;
+	private readonly bool $hasYear;
 
 
 	/**

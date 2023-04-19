@@ -43,7 +43,7 @@ class UrlManipulator
 		$query = '';
 		if (isset($parts['query'])) {
 			$params = [];
-			parse_str($parts['query'], $params);
+			parse_str((string) $parts['query'], $params);
 
 			// Remove query params
 			foreach ($paramsToFilter as $paramToFilter) {
@@ -108,7 +108,7 @@ class UrlManipulator
 			return [];
 		}
 		$params = [];
-		parse_str($query, $params);
+		parse_str((string) $query, $params);
 
 		return $params;
 	}

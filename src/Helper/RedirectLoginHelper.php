@@ -37,7 +37,7 @@ class RedirectLoginHelper
 	/**
 	 * @const int The length of CSRF string to validate the login link.
 	 */
-	public const CSRF_LENGTH = 32;
+	final public const CSRF_LENGTH = 32;
 
 	protected UrlDetectionInterface $urlDetectionHandler;
 	protected PersistentDataInterface $persistentDataHandler;

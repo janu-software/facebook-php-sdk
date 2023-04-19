@@ -23,7 +23,7 @@ declare(strict_types=1);
  * DEALINGS IN THE SOFTWARE.
  */
 
-namespace Authentication;
+namespace JanuSoftware\Facebook\Tests\Authentication;
 
 use DateTime;
 use JanuSoftware\Facebook\Authentication\AccessTokenMetadata;

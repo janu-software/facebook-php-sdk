@@ -46,8 +46,8 @@ class File
 	 */
 	public function __construct(
 		protected string $path,
-		private int $maxLength = -1,
-		private int $offset = -1,
+		private readonly int $maxLength = -1,
+		private readonly int $offset = -1,
 	) {
 		$this->open();
 	}

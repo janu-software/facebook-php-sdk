@@ -152,9 +152,8 @@ class Response
 	/**
 	 * Throws the exception.
 	 * @throws SDKException
-	 * @return never
 	 */
-	public function throwException(): void
+	public function throwException(): never
 	{
 		throw $this->thrownException;
 	}

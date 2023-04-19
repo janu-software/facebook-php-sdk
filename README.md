@@ -29,6 +29,7 @@ For example: Using with Guzzle:
 | Version | PHP  |
 |---------|------|
 | 0.1     | ^8.0 |
+| 0.2     | ^8.1 |
 
 ## Usage
 

@@ -28,11 +28,11 @@ namespace JanuSoftware\Facebook\FileUpload;
 class TransferChunk
 {
 	public function __construct(
-		private File $file,
-		private int $uploadSessionId,
-		private int $videoId,
-		private int $startOffset,
-		private int $endOffset,
+		private readonly File $file,
+		private readonly int $uploadSessionId,
+		private readonly int $videoId,
+		private readonly int $startOffset,
+		private readonly int $endOffset,
 	) {
 	}
 

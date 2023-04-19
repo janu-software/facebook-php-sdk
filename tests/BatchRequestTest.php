@@ -216,9 +216,9 @@ class BatchRequestTest extends TestCase
 	}
 
 
-	public function requestsAndExpectedResponsesProvider(): array
+	public static function requestsAndExpectedResponsesProvider(): array
 	{
-		$headers = $this->defaultHeaders();
+		$headers = self::defaultHeaders();
 
 		return [
 			[
@@ -274,7 +274,7 @@ class BatchRequestTest extends TestCase
 		);
 
 		$this->assertEquals([
-			'headers' => $this->defaultHeaders(),
+			'headers' => self::defaultHeaders(),
 			'method' => 'POST',
 			'relative_url' => '/bar',
 			'body' => 'message=foobar&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
@@ -301,7 +301,7 @@ class BatchRequestTest extends TestCase
 		$batchRequestArray = $batchRequest->requestEntityToBatchArray($requests[0]['request'], $options);
 
 		$this->assertEquals([
-			'headers' => $this->defaultHeaders(),
+			'headers' => self::defaultHeaders(),
 			'method' => 'GET',
 			'relative_url' => '/bar?access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
 			'name' => 'foo_name',
@@ -319,7 +319,7 @@ class BatchRequestTest extends TestCase
 
 		$params = $batchRequest->getParams();
 
-		$expectedHeaders = json_encode($this->defaultHeaders());
+		$expectedHeaders = json_encode(self::defaultHeaders());
 		$expectedBatchParams = [
 			'batch' => '[{"headers":' . $expectedHeaders . ',"method":"GET","relative_url":"\\/foo?access_token=bar_token&appsecret_proof=2ceec40b7b9fd7d38fff1767b766bcc6b1f9feb378febac4612c156e6a8354bd","name":"foo_name"},'
 				. '{"headers":' . $expectedHeaders . ',"method":"POST","relative_url":"\\/bar","body":"foo=bar&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9"}]',
@@ -346,7 +346,7 @@ class BatchRequestTest extends TestCase
 
 		$attachedFiles = implode(',', array_keys($files));
 
-		$expectedHeaders = json_encode($this->defaultHeaders());
+		$expectedHeaders = json_encode(self::defaultHeaders());
 		$expectedBatchParams = [
 			'batch' => '[{"headers":' . $expectedHeaders . ',"method":"GET","relative_url":"\\/foo?access_token=bar_token&appsecret_proof=2ceec40b7b9fd7d38fff1767b766bcc6b1f9feb378febac4612c156e6a8354bd","name":"foo_name"},'
 				. '{"headers":' . $expectedHeaders . ',"method":"POST","relative_url":"\\/me\\/photos","body":"message=foobar&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9","attached_files":"' . $attachedFiles . '"}]',
@@ -369,7 +369,7 @@ class BatchRequestTest extends TestCase
 		$batchRequest->prepareRequestsForBatch();
 		$params = $batchRequest->getParams();
 
-		$expectedHeaders = json_encode($this->defaultHeaders());
+		$expectedHeaders = json_encode(self::defaultHeaders());
 
 		$expectedBatchParams = [
 			'batch' => '[{"headers":' . $expectedHeaders . ',"method":"GET","relative_url":"\\/foo?access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9",'
@@ -392,7 +392,7 @@ class BatchRequestTest extends TestCase
 	}
 
 
-	private function defaultHeaders(): array
+	private static function defaultHeaders(): array
 	{
 		$headers = [];
 		foreach (Request::getDefaultHeaders() as $name => $value) {

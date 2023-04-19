@@ -52,7 +52,7 @@ class PersistentDataFactoryTest extends TestCase
 	}
 
 
-	public function persistentDataHandlerProviders(): array
+	public static function persistentDataHandlerProviders(): array
 	{
 		$handlers = [
 			['memory', self::COMMON_NAMESPACE . 'InMemoryPersistentDataHandler'],

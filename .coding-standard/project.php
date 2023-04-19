@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-$config = require __DIR__ . '/php80.php';
+$config = require __DIR__ . '/php81.php';
 
 return $config;

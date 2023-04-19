@@ -35,7 +35,7 @@ use function Safe\sprintf;
  */
 class RequestBodyMultipart implements RequestBodyInterface
 {
-	private string $boundary;
+	private readonly string $boundary;
 
 
 	/**
@@ -44,8 +44,8 @@ class RequestBodyMultipart implements RequestBodyInterface
 	 * @param string|null $boundary provide a specific boundary
 	 */
 	public function __construct(
-		private array $params = [],
-		private array $files = [],
+		private readonly array $params = [],
+		private readonly array $files = [],
 		string $boundary = null,
 	) {
 		$this->boundary = $boundary ?? uniqid();

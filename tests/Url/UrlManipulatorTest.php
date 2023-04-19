@@ -48,7 +48,7 @@ class UrlManipulatorTest extends TestCase
 	}
 
 
-	public function provideUris(): array
+	public static function provideUris(): array
 	{
 		return [
 			[
@@ -171,7 +171,7 @@ class UrlManipulatorTest extends TestCase
 	}
 
 
-	public function provideMergableEndpoints(): array
+	public static function provideMergableEndpoints(): array
 	{
 		return [
 			[

@@ -34,37 +34,37 @@ class Client
 	/**
 	 * @const string Production Graph API URL.
 	 */
-	public const BASE_GRAPH_URL = 'https://graph.facebook.com';
+	final public const BASE_GRAPH_URL = 'https://graph.facebook.com';
 
 	/**
 	 * @const string Graph API URL for video uploads.
 	 */
-	public const BASE_GRAPH_VIDEO_URL = 'https://graph-video.facebook.com';
+	final public const BASE_GRAPH_VIDEO_URL = 'https://graph-video.facebook.com';
 
 	/**
 	 * @const string Beta Graph API URL.
 	 */
-	public const BASE_GRAPH_URL_BETA = 'https://graph.beta.facebook.com';
+	final public const BASE_GRAPH_URL_BETA = 'https://graph.beta.facebook.com';
 
 	/**
 	 * @const string Beta Graph API URL for video uploads.
 	 */
-	public const BASE_GRAPH_VIDEO_URL_BETA = 'https://graph-video.beta.facebook.com';
+	final public const BASE_GRAPH_VIDEO_URL_BETA = 'https://graph-video.beta.facebook.com';
 
 	/**
 	 * @const int The timeout in seconds for a normal request.
 	 */
-	public const DEFAULT_REQUEST_TIMEOUT = 60;
+	final public const DEFAULT_REQUEST_TIMEOUT = 60;
 
 	/**
 	 * @const int The timeout in seconds for a request that contains file uploads.
 	 */
-	public const DEFAULT_FILE_UPLOAD_REQUEST_TIMEOUT = 3600;
+	final public const DEFAULT_FILE_UPLOAD_REQUEST_TIMEOUT = 3600;
 
 	/**
 	 * @const int The timeout in seconds for a request that contains video uploads.
 	 */
-	public const DEFAULT_VIDEO_UPLOAD_REQUEST_TIMEOUT = 7200;
+	final public const DEFAULT_VIDEO_UPLOAD_REQUEST_TIMEOUT = 7200;
 
 	public static int $requestCount = 0;
 

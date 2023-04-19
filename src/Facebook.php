@@ -22,7 +22,6 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook;
 
-use Http\Client\HttpClient;
 use InvalidArgumentException;
 use JanuSoftware\Facebook\Authentication\AccessToken;
 use JanuSoftware\Facebook\Authentication\OAuth2Client;
@@ -40,6 +39,7 @@ use JanuSoftware\Facebook\PersistentData\PersistentDataFactory;
 use JanuSoftware\Facebook\PersistentData\PersistentDataInterface;
 use JanuSoftware\Facebook\Url\UrlDetectionHandler;
 use JanuSoftware\Facebook\Url\UrlDetectionInterface;
+use Psr\Http\Client\ClientInterface;
 use Safe\Exceptions\FilesystemException;
 use TypeError;
 
@@ -49,17 +49,17 @@ class Facebook
 	/**
 	 * @const string Version number of the Facebook PHP SDK.
 	 */
-	public const VERSION = '0.1';
+	final public const VERSION = '0.1';
 
 	/**
 	 * @const string The name of the environment variable that contains the app ID.
 	 */
-	public const APP_ID_ENV_NAME = 'FACEBOOK_APP_ID';
+	final public const APP_ID_ENV_NAME = 'FACEBOOK_APP_ID';
 
 	/**
 	 * @const string The name of the environment variable that contains the app secret.
 	 */
-	public const APP_SECRET_ENV_NAME = 'FACEBOOK_APP_SECRET';
+	final public const APP_SECRET_ENV_NAME = 'FACEBOOK_APP_SECRET';
 
 	/**
 	 * The Application entity
@@ -124,8 +124,8 @@ class Facebook
 		if (!$config['app_secret']) {
 			throw new SDKException('Required "app_secret" key not supplied in config and could not find fallback environment variable "' . static::APP_SECRET_ENV_NAME . '"');
 		}
-		if ($config['http_client'] !== null && !$config['http_client'] instanceof HttpClient) {
-			throw new InvalidArgumentException('Required "http_client" key to be null or an instance of \Http\Client\HttpClient');
+		if ($config['http_client'] !== null && !$config['http_client'] instanceof ClientInterface) {
+			throw new InvalidArgumentException('Required "http_client" key to be null or an instance of \Psr\Http\Client\ClientInterface');
 		}
 		if (!$config['default_graph_version']) {
 			throw new InvalidArgumentException('Required "default_graph_version" key not supplied in config');
@@ -175,7 +175,7 @@ class Facebook
 	 */
 	public function getOAuth2Client(): OAuth2Client
 	{
-		if ($this->oAuth2Client === null) {
+		if (!$this->oAuth2Client instanceof OAuth2Client) {
 			$application = $this->getApplication();
 			$client = $this->getClient();
 			$this->oAuth2Client = new OAuth2Client($application, $client, $this->defaultGraphVersion);

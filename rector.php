@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
 use Rector\Config\RectorConfig;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\Php73\Rector\FuncCall\JsonThrowOnErrorRector;
@@ -21,7 +22,7 @@ return static function (RectorConfig $rectorConfig): void {
 	$rectorConfig->cacheDirectory(__DIR__ . '/temp/rector');
 
 	// Define what rule sets will be applied
-	$rectorConfig->import(LevelSetList::UP_TO_PHP_80);
+	$rectorConfig->import(LevelSetList::UP_TO_PHP_81);
 	$rectorConfig->import(SetList::CODE_QUALITY);
 	$rectorConfig->import(SetList::NAMING);
 	$rectorConfig->import(SetList::PSR_4);
@@ -30,7 +31,8 @@ return static function (RectorConfig $rectorConfig): void {
 	$rectorConfig->skip([
 		JsonThrowOnErrorRector::class,
 		ParamAnnotationIncorrectNullableRector::class,
+		FlipTypeControlToUseExclusiveTypeRector::class,
 	]);
 
-	$rectorConfig->phpVersion(PhpVersion::PHP_80);
+	$rectorConfig->phpVersion(PhpVersion::PHP_81);
 };
