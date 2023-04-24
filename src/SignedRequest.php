@@ -96,7 +96,10 @@ class SignedRequest
 	 */
 	public function getUserId(): ?int
 	{
-		return $this->get('user_id');
+		$user_id = $this->get('user_id');
+		return $user_id === null
+			? null
+			: (int) $user_id;
 	}
 
 
