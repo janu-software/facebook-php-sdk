@@ -141,6 +141,15 @@ class SignedRequestTest extends TestCase
 	}
 
 
+	public function testAEmptyObjectPayload(): void
+	{
+		$rawSignedRequest = '4dMvNUHMgl8dlBF-XddkZzQHlhnEtiag0x9p-3-YS3U=.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImlzc3VlZF9hdCI6MTY4MjMzMzc5MH0=';
+		$sr = new SignedRequest($this->app, $rawSignedRequest);
+
+		$this->assertNull($sr->getUserId());
+	}
+
+
 	public function testInvalidBase64(): void
 	{
 		$this->expectException(SDKException::class);
