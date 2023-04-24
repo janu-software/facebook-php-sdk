@@ -29,7 +29,7 @@ use JanuSoftware\Facebook\Client;
 use JanuSoftware\Facebook\Request;
 use JanuSoftware\Facebook\Response;
 
-class FooClientForOAuth2Test extends Client
+class FooClientForOAuth2 extends Client
 {
 	protected string $response = '';
 

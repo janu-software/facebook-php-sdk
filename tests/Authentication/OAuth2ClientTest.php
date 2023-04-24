@@ -39,14 +39,14 @@ class OAuth2ClientTest extends TestCase
 	 */
 	public const TESTING_GRAPH_VERSION = 'v1337';
 
-	protected FooClientForOAuth2Test $client;
+	protected FooClientForOAuth2 $client;
 	protected OAuth2Client $oauth;
 
 
 	protected function setUp(): void
 	{
 		$app = new Application('123', 'foo_secret');
-		$this->client = new FooClientForOAuth2Test;
+		$this->client = new FooClientForOAuth2;
 		$this->oauth = new OAuth2Client($app, $this->client, static::TESTING_GRAPH_VERSION);
 	}
 
