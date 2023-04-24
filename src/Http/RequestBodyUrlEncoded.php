@@ -25,6 +25,10 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\Http;
 
+use GuzzleHttp\Psr7\Utils;
+use Psr\Http\Message\StreamInterface;
+
+
 class RequestBodyUrlEncoded implements RequestBodyInterface
 {
 	/**
@@ -36,8 +40,11 @@ class RequestBodyUrlEncoded implements RequestBodyInterface
 	}
 
 
-	public function getBody(): string
+	public function getBody(): ?StreamInterface
 	{
-		return http_build_query($this->params);
+		$string = http_build_query($this->params);
+		return $string === '' || $string === '0'
+			? null
+			: Utils::streamFor($string);
 	}
 }

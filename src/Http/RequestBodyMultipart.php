@@ -25,7 +25,9 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\Http;
 
+use GuzzleHttp\Psr7\Utils;
 use JanuSoftware\Facebook\FileUpload\File;
+use Psr\Http\Message\StreamInterface;
 use function Safe\sprintf;
 
 /**
@@ -52,7 +54,7 @@ class RequestBodyMultipart implements RequestBodyInterface
 	}
 
 
-	public function getBody(): string
+	public function getBody(): ?StreamInterface
 	{
 		$body = '';
 
@@ -70,7 +72,7 @@ class RequestBodyMultipart implements RequestBodyInterface
 		// Peace out
 		$body .= "--{$this->boundary}--\r\n";
 
-		return $body;
+		return Utils::streamFor($body);
 	}
 
 

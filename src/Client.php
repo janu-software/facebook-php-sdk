@@ -22,10 +22,12 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook;
 
-use Http\Client\HttpClient;
+use GuzzleHttp\Psr7\Utils;
 use Http\Discovery\HttpClientDiscovery;
-use Http\Discovery\MessageFactoryDiscovery;
+use Http\Discovery\Psr17FactoryDiscovery;
 use JanuSoftware\Facebook\Exception\SDKException;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\StreamInterface;
 use function Safe\sprintf;
 
 
@@ -68,14 +70,14 @@ class Client
 
 	public static int $requestCount = 0;
 
-	protected HttpClient $httpClient;
+	protected ClientInterface $httpClient;
 
 
 	/**
 	 * Instantiates a new Client object.
 	 */
 	public function __construct(
-		HttpClient $httpClient = null,
+		ClientInterface $httpClient = null,
 		protected bool $enableBetaMode = false,
 	) {
 		$this->httpClient = $httpClient ?? HttpClientDiscovery::find();
@@ -85,7 +87,7 @@ class Client
 	/**
 	 * Sets the HTTP client handler.
 	 */
-	public function setHttpClient(HttpClient $httpClient): void
+	public function setHttpClient(ClientInterface $httpClient): void
 	{
 		$this->httpClient = $httpClient;
 	}
@@ -94,7 +96,7 @@ class Client
 	/**
 	 * Returns the HTTP client handler.
 	 */
-	public function getHttpClient(): HttpClient
+	public function getHttpClient(): ClientInterface
 	{
 		return $this->httpClient;
 	}
@@ -168,11 +170,15 @@ class Client
 
 		[$url, $method, $headers, $body] = $this->prepareRequestMessage($request);
 
-		/**
-		 * @phpstan-ignore-next-line
-		 */
-		$psr7Response = $this->httpClient->sendRequest(MessageFactoryDiscovery::find()
-			->createRequest($method, $url, $headers, $body));
+		$requestFactory = Psr17FactoryDiscovery::findRequestFactory()->createRequest($method, $url);
+		if ($body instanceof StreamInterface) {
+			$requestFactory = $requestFactory->withBody($body);
+		}
+		foreach ($headers as $name => $value) {
+			$requestFactory = $requestFactory->withHeader($name, $value);
+		}
+
+		$psr7Response = $this->httpClient->sendRequest($requestFactory);
 
 		static::$requestCount++;
 

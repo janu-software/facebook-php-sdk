@@ -25,14 +25,12 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\Tests;
 
-use Http\Client\HttpClient;
 use JanuSoftware\Facebook\Application;
 use JanuSoftware\Facebook\BatchRequest;
 use JanuSoftware\Facebook\BatchResponse;
 use JanuSoftware\Facebook\Client;
 use JanuSoftware\Facebook\Exception\SDKException;
 use JanuSoftware\Facebook\FileUpload\File;
-// These are needed when you uncomment the HTTP clients below.
 use JanuSoftware\Facebook\FileUpload\Video;
 use JanuSoftware\Facebook\GraphNode\GraphNode;
 use JanuSoftware\Facebook\Request;
@@ -40,6 +38,8 @@ use JanuSoftware\Facebook\Response;
 use JanuSoftware\Facebook\Tests\Fixtures\MyFooBatchHttpClient;
 use JanuSoftware\Facebook\Tests\Fixtures\MyFooHttpClient;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Client\ClientInterface;
+
 
 class ClientTest extends TestCase
 {
@@ -71,7 +71,7 @@ class ClientTest extends TestCase
 		$client = new Client;
 		$httpClient = $client->getHttpClient();
 
-		$this->assertInstanceOf(HttpClient::class, $httpClient);
+		$this->assertInstanceOf(ClientInterface::class, $httpClient);
 	}
 
 
@@ -157,6 +157,8 @@ class ClientTest extends TestCase
 		$fbBatchRequest->prepareRequestsForBatch();
 
 		[$url, $method, $headers, $body] = $this->fbClient->prepareRequestMessage($fbBatchRequest);
+
+		$body = $body?->getContents() ?? '';
 
 		$this->assertEquals(Client::BASE_GRAPH_VIDEO_URL, $url);
 		$this->assertEquals('POST', $method);

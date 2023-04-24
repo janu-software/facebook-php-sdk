@@ -254,8 +254,8 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 		// the child requests will always be URL-encoded.
 		$body = $request->getUrlEncodedBody()
 			->getBody();
-		if ($body !== '' && $body !== '0') {
-			$batch['body'] = $body;
+		if ($body !== null) {
+			$batch['body'] = $body->getContents();
 		}
 
 		$batch += $options;

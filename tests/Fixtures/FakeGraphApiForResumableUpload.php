@@ -26,12 +26,12 @@ declare(strict_types=1);
 namespace JanuSoftware\Facebook\Tests\Fixtures;
 
 use GuzzleHttp\Psr7\Response;
-use Http\Client\HttpClient;
+use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 
-class FakeGraphApiForResumableUpload implements HttpClient
+class FakeGraphApiForResumableUpload implements ClientInterface
 {
 	public int $transferCount = 0;
 	private string $respondWith = 'SUCCESS';

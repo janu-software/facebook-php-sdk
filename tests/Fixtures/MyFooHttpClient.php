@@ -26,12 +26,12 @@ declare(strict_types=1);
 namespace JanuSoftware\Facebook\Tests\Fixtures;
 
 use GuzzleHttp\Psr7\Response;
-use Http\Client\HttpClient;
+use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 
-class MyFooHttpClient implements HttpClient
+class MyFooHttpClient implements ClientInterface
 {
 	public function sendRequest(RequestInterface $request): ResponseInterface
 	{

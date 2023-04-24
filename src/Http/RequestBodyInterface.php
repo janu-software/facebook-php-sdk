@@ -25,10 +25,13 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\Http;
 
+use Psr\Http\Message\StreamInterface;
+
+
 interface RequestBodyInterface
 {
 	/**
 	 * Get the body of the request to send to Graph.
 	 */
-	public function getBody(): string;
+	public function getBody(): ?StreamInterface;
 }
