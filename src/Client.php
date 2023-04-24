@@ -22,7 +22,6 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook;
 
-use GuzzleHttp\Psr7\Utils;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\Psr17FactoryDiscovery;
 use JanuSoftware\Facebook\Exception\SDKException;

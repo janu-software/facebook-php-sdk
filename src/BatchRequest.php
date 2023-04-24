@@ -252,10 +252,10 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 
 		// Since file uploads are moved to the root request of a batch request,
 		// the child requests will always be URL-encoded.
-		$body = $request->getUrlEncodedBody()
+		$stream = $request->getUrlEncodedBody()
 			->getBody();
-		if ($body !== null) {
-			$batch['body'] = $body->getContents();
+		if ($stream !== null) {
+			$batch['body'] = $stream->getContents();
 		}
 
 		$batch += $options;
