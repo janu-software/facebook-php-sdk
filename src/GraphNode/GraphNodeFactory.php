@@ -42,17 +42,17 @@ class GraphNodeFactory
 	/**
 	 * @const string The base graph object class.
 	 */
-	final public const BASE_GRAPH_NODE_CLASS = GraphNode::class;
+	final public const BaseGraphNodeClass = GraphNode::class;
 
 	/**
 	 * @const string The base graph edge class.
 	 */
-	final public const BASE_GRAPH_EDGE_CLASS = GraphEdge::class;
+	final public const BaseGraphEdgeClass = GraphEdge::class;
 
 	/**
 	 * @const string The graph object prefix.
 	 */
-	final public const BASE_GRAPH_OBJECT_PREFIX = '\JanuSoftware\Facebook\GraphNode\\';
+	final public const BaseGraphObjectPrefix = '\JanuSoftware\Facebook\GraphNode\\';
 
 	/**
 	 * The decoded body of the Response entity from Graph
@@ -102,7 +102,7 @@ class GraphNodeFactory
 		$this->validateResponseCastableAsGraphEdge();
 
 		if ($subclassName !== null && $auto_prefix) {
-			$subclassName = static::BASE_GRAPH_OBJECT_PREFIX . $subclassName;
+			$subclassName = static::BaseGraphObjectPrefix . $subclassName;
 		}
 
 		return $this->castAsGraphNodeOrGraphEdge($this->decodedBody, $subclassName);
@@ -143,7 +143,7 @@ class GraphNodeFactory
 	 */
 	public function safelyMakeGraphNode(array $data, string $subclassName = null): GraphNode
 	{
-		$subclassName ??= static::BASE_GRAPH_NODE_CLASS;
+		$subclassName ??= static::BaseGraphNodeClass;
 		static::validateSubclass($subclassName);
 
 		// Remember the parent node ID
@@ -234,7 +234,7 @@ class GraphNodeFactory
 		$parentGraphEdgeEndpoint = $parentNodeId !== null && $parentKey !== null
 			? '/' . $parentNodeId . '/' . $parentKey
 			: null;
-		$className = static::BASE_GRAPH_EDGE_CLASS;
+		$className = static::BaseGraphEdgeClass;
 
 		return new $className($this->response->getRequest(), $dataList, $metaData, $parentGraphEdgeEndpoint, $subclassName);
 	}
@@ -278,8 +278,8 @@ class GraphNodeFactory
 	public static function validateSubclass(string $subclassName): void
 	{
 		if (
-			$subclassName == static::BASE_GRAPH_NODE_CLASS
-			|| is_subclass_of($subclassName, static::BASE_GRAPH_NODE_CLASS)
+			$subclassName == static::BaseGraphNodeClass
+			|| is_subclass_of($subclassName, static::BaseGraphNodeClass)
 		) {
 			return;
 		}

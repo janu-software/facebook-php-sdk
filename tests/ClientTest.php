@@ -79,11 +79,11 @@ class ClientTest extends TestCase
 	{
 		$client = new Client(null, false);
 		$url = $client->getBaseGraphUrl();
-		$this->assertEquals(Client::BASE_GRAPH_URL, $url);
+		$this->assertEquals(Client::BaseGraphUrl, $url);
 
 		$client = new Client(null, true);
 		$url = $client->getBaseGraphUrl();
-		$this->assertEquals(Client::BASE_GRAPH_URL_BETA, $url);
+		$this->assertEquals(Client::BaseGraphUrlBeta, $url);
 	}
 
 
@@ -92,11 +92,11 @@ class ClientTest extends TestCase
 		$client = new Client;
 		$client->enableBetaMode(false);
 		$url = $client->getBaseGraphUrl();
-		$this->assertEquals(Client::BASE_GRAPH_URL, $url);
+		$this->assertEquals(Client::BaseGraphUrl, $url);
 
 		$client->enableBetaMode(true);
 		$url = $client->getBaseGraphUrl();
-		$this->assertEquals(Client::BASE_GRAPH_URL_BETA, $url);
+		$this->assertEquals(Client::BaseGraphUrlBeta, $url);
 	}
 
 
@@ -105,11 +105,11 @@ class ClientTest extends TestCase
 		$client = new Client;
 		$client->enableBetaMode(false);
 		$url = $client->getBaseGraphUrl($postToVideoUrl = true);
-		$this->assertEquals(Client::BASE_GRAPH_VIDEO_URL, $url);
+		$this->assertEquals(Client::BaseGraphVideoUrl, $url);
 
 		$client->enableBetaMode(true);
 		$url = $client->getBaseGraphUrl($postToVideoUrl = true);
-		$this->assertEquals(Client::BASE_GRAPH_VIDEO_URL_BETA, $url);
+		$this->assertEquals(Client::BaseGraphVideoUrlBeta, $url);
 	}
 
 
@@ -160,7 +160,7 @@ class ClientTest extends TestCase
 
 		$body = $body?->getContents() ?? '';
 
-		$this->assertEquals(Client::BASE_GRAPH_VIDEO_URL, $url);
+		$this->assertEquals(Client::BaseGraphVideoUrl, $url);
 		$this->assertEquals('POST', $method);
 		$this->assertStringContainsString('multipart/form-data; boundary=', $headers['Content-Type']);
 		$this->assertStringContainsString('Content-Disposition: form-data; name="batch"', $body);

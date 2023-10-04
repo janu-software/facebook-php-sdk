@@ -63,7 +63,7 @@ class RedirectLoginHelperTest extends TestCase
 			'client_id' => '123',
 			'redirect_uri' => self::REDIRECT_URL,
 			'state' => $this->persistentDataHandler->get('state'),
-			'sdk' => 'php-sdk-' . Facebook::VERSION,
+			'sdk' => 'php-sdk-' . Facebook::Version,
 			'scope' => implode(',', $scope),
 		];
 		foreach ($params as $key => $value) {

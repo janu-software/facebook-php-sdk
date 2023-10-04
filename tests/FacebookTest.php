@@ -59,7 +59,7 @@ class FacebookTest extends TestCase
 	{
 		$this->expectException(SDKException::class);
 		// unset value so there is no fallback to test expected Exception
-		putenv(Facebook::APP_ID_ENV_NAME . '=');
+		putenv(Facebook::AppIdEnvName . '=');
 		$config = [
 			'app_secret' => 'foo_secret',
 			'default_graph_version' => 'v0.0',
@@ -72,7 +72,7 @@ class FacebookTest extends TestCase
 	{
 		$this->expectException(SDKException::class);
 		// unset value so there is no fallback to test expected Exception
-		putenv(Facebook::APP_SECRET_ENV_NAME . '=');
+		putenv(Facebook::AppSecretEnvName . '=');
 		$config = [
 			'app_id' => 'foo_id',
 			'default_graph_version' => 'v0.0',
@@ -200,7 +200,7 @@ class FacebookTest extends TestCase
 		$this->assertEquals('v1337', $fb->getDefaultGraphVersion());
 		$this->assertEquals('v1337', $request->getGraphVersion());
 		$this->assertEquals(
-			Client::BASE_GRAPH_URL_BETA,
+			Client::BaseGraphUrlBeta,
 			$fb->getClient()->getBaseGraphUrl(),
 		);
 	}
@@ -221,7 +221,7 @@ class FacebookTest extends TestCase
 		$this->assertEquals('foo_token', (string) $batchRequest->getAccessToken());
 		$this->assertEquals('v1337', $batchRequest->getGraphVersion());
 		$this->assertEquals(
-			Client::BASE_GRAPH_URL_BETA,
+			Client::BaseGraphUrlBeta,
 			$fb->getClient()->getBaseGraphUrl(),
 		);
 		$this->assertInstanceOf('JanuSoftware\Facebook\BatchRequest', $batchRequest);

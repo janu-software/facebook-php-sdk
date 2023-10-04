@@ -37,7 +37,7 @@ class RedirectLoginHelper
 	/**
 	 * @const int The length of CSRF string to validate the login link.
 	 */
-	final public const CSRF_LENGTH = 32;
+	final public const CsrfLength = 32;
 
 	protected UrlDetectionInterface $urlDetectionHandler;
 	protected PersistentDataInterface $persistentDataHandler;
@@ -95,7 +95,7 @@ class RedirectLoginHelper
 
 	private function getPseudoRandomString(): string
 	{
-		return bin2hex(random_bytes(static::CSRF_LENGTH));
+		return bin2hex(random_bytes(static::CsrfLength));
 	}
 
 
