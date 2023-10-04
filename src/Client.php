@@ -22,8 +22,8 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook;
 
-use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
 use JanuSoftware\Facebook\Exception\SDKException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\StreamInterface;
@@ -79,7 +79,7 @@ class Client
 		ClientInterface $httpClient = null,
 		protected bool $enableBetaMode = false,
 	) {
-		$this->httpClient = $httpClient ?? HttpClientDiscovery::find();
+		$this->httpClient = $httpClient ?? Psr18ClientDiscovery::find();
 	}
 
 
