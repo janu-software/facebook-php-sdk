@@ -121,11 +121,7 @@ abstract class SignedRequestFromInputHelper
 	 */
 	public function getRawSignedRequestFromPost(): ?string
 	{
-		if (isset($_POST['signed_request'])) {
-			return $_POST['signed_request'];
-		}
-
-		return null;
+		return $_POST['signed_request'] ?? null;
 	}
 
 
@@ -134,10 +130,6 @@ abstract class SignedRequestFromInputHelper
 	 */
 	public function getRawSignedRequestFromCookie(): ?string
 	{
-		if (isset($_COOKIE['fbsr_' . $this->application->getId()])) {
-			return $_COOKIE['fbsr_' . $this->application->getId()];
-		}
-
-		return null;
+		return $_COOKIE['fbsr_' . $this->application->getId()] ?? null;
 	}
 }

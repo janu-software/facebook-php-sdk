@@ -69,11 +69,7 @@ class AccessTokenMetadata
 	 */
 	public function getField(string $field, mixed $default = null): mixed
 	{
-		if (isset($this->metadata[$field])) {
-			return $this->metadata[$field];
-		}
-
-		return $default;
+		return $this->metadata[$field] ?? $default;
 	}
 
 

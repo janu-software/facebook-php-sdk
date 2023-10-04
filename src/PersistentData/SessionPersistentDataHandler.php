@@ -51,11 +51,7 @@ class SessionPersistentDataHandler implements PersistentDataInterface
 
 	public function get(string $key): mixed
 	{
-		if (isset($_SESSION[$this->sessionPrefix . $key])) {
-			return $_SESSION[$this->sessionPrefix . $key];
-		}
-
-		return null;
+		return $_SESSION[$this->sessionPrefix . $key] ?? null;
 	}
 
 

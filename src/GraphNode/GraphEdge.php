@@ -63,11 +63,7 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 	 */
 	public function getField(string $name, mixed $default = null): mixed
 	{
-		if (isset($this->items[$name])) {
-			return $this->items[$name];
-		}
-
-		return $default;
+		return $this->items[$name] ?? $default;
 	}
 
 
@@ -242,11 +238,7 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 	 */
 	public function getCursor(string $direction): ?string
 	{
-		if (isset($this->metaData['paging']['cursors'][$direction])) {
-			return $this->metaData['paging']['cursors'][$direction];
-		}
-
-		return null;
+		return $this->metaData['paging']['cursors'][$direction] ?? null;
 	}
 
 
@@ -331,10 +323,6 @@ class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
 	 */
 	public function getTotalCount(): ?int
 	{
-		if (isset($this->metaData['summary']['total_count'])) {
-			return $this->metaData['summary']['total_count'];
-		}
-
-		return null;
+		return $this->metaData['summary']['total_count'] ?? null;
 	}
 }

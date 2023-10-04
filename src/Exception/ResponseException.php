@@ -96,11 +96,7 @@ class ResponseException extends SDKException
 
 	private function get(string $key, mixed $default = null): mixed
 	{
-		if (isset($this->responseData['error'][$key])) {
-			return $this->responseData['error'][$key];
-		}
-
-		return $default;
+		return $this->responseData['error'][$key] ?? $default;
 	}
 
 

@@ -83,11 +83,7 @@ class SignedRequest
 	 */
 	public function get(string $key, mixed $default = null): mixed
 	{
-		if (isset($this->payload[$key])) {
-			return $this->payload[$key];
-		}
-
-		return $default;
+		return $this->payload[$key] ?? $default;
 	}
 
 

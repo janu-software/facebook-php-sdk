@@ -57,11 +57,7 @@ class PageTabHelper extends CanvasHelper
 	 */
 	public function getPageData(string $key, mixed $default = null): mixed
 	{
-		if (isset($this->pageData[$key])) {
-			return $this->pageData[$key];
-		}
-
-		return $default;
+		return $this->pageData[$key] ?? $default;
 	}
 
 
