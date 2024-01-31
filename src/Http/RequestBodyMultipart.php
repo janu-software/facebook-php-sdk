@@ -28,7 +28,6 @@ namespace JanuSoftware\Facebook\Http;
 use GuzzleHttp\Psr7\Utils;
 use JanuSoftware\Facebook\FileUpload\File;
 use Psr\Http\Message\StreamInterface;
-use function Safe\sprintf;
 
 /**
  * Some things copied from Guzzle.

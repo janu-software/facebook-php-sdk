@@ -27,7 +27,6 @@ use Http\Discovery\Psr18ClientDiscovery;
 use JanuSoftware\Facebook\Exception\SDKException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\StreamInterface;
-use function Safe\sprintf;
 
 
 class Client
