@@ -30,6 +30,7 @@ For example: Using with Guzzle:
 |---------|------|
 | 0.1     | ^8.0 |
 | 0.2     | ^8.1 |
+| 0.3     | ^8.1 |
 
 ## Usage
 
@@ -41,7 +42,7 @@ require_once __DIR__ . '/vendor/autoload.php'; // change path as needed
 $fb = new \JanuSoftware\Facebook\Facebook([
   'app_id' => '{app-id}',
   'app_secret' => '{app-secret}',
-  'default_graph_version' => 'v15.0',
+  'default_graph_version' => 'v19.0',
   //'default_access_token' => '{access-token}', // optional
 ]);
 

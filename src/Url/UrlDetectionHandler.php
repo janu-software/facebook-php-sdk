@@ -106,7 +106,7 @@ class UrlDetectionHandler implements UrlDetectionInterface
 		$appendPort = ':' . $currentPort;
 
 		// Don't append port number if a normal port.
-		if (($scheme == 'http' && $currentPort == '80') || ($scheme == 'https' && $currentPort == '443')) {
+		if (($scheme === 'http' && $currentPort === '80') || ($scheme === 'https' && $currentPort === '443')) {
 			$appendPort = '';
 		}
 
