@@ -47,9 +47,9 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 	 * @param Request[] $requests
 	 */
 	public function __construct(
-		Application $application = null,
+		?Application $application = null,
 		array $requests = [],
-		AccessToken|string $accessToken = null,
+		AccessToken|string|null $accessToken = null,
 		?string $graphVersion = null,
 	) {
 		parent::__construct($application, $accessToken, 'POST', '', [], null, $graphVersion);
@@ -221,15 +221,16 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 	/**
 	 * Converts a Request entity into an array that is batch-friendly.
 	 *
-	 * @param Request           $request       the request entity to convert
-	 * @param mixed[]|string $options Array of batch request options e.g. 'name', 'omit_response_on_success'. If a string is given, it is the value of the 'name' option.
-	 * @param string|null $attachedFiles names of files associated with the request
+	 * @param Request             $request       the request entity to convert
+	 * @param string|mixed[]|null $options       Array of batch request options e.g. 'name', 'omit_response_on_success'. If a string is given, it is the value of the 'name' option.
+	 * @param string|null         $attachedFiles names of files associated with the request
+	 *
 	 * @return mixed[]
 	 */
 	public function requestEntityToBatchArray(
 		Request $request,
-		array|string $options = null,
-		string $attachedFiles = null,
+		array|string|null $options = null,
+		?string $attachedFiles = null,
 	): array
 	{
 		if ($options === null) {

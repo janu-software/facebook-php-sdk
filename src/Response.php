@@ -222,7 +222,7 @@ class Response
 	 *
 	 * @throws SDKException
 	 */
-	public function getGraphNode(string $subclassName = null): GraphNode
+	public function getGraphNode(?string $subclassName = null): GraphNode
 	{
 		$graphNodeFactory = new GraphNodeFactory($this);
 
@@ -238,7 +238,7 @@ class Response
 	 *
 	 * @throws SDKException
 	 */
-	public function getGraphEdge(string $subclassName = null, bool $auto_prefix = true): GraphEdge
+	public function getGraphEdge(?string $subclassName = null, bool $auto_prefix = true): GraphEdge
 	{
 		$graphNodeFactory = new GraphNodeFactory($this);
 

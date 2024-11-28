@@ -32,7 +32,7 @@ class ResponseException extends SDKException
 
 	public function __construct(
 		protected Response $response,
-		SDKException $sdkException = null,
+		?SDKException $sdkException = null,
 	) {
 		$this->responseData = $response->getDecodedBody();
 

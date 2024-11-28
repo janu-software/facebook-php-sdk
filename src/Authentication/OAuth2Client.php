@@ -221,7 +221,7 @@ class OAuth2Client
 	protected function sendRequestWithClientParams(
 		string $endpoint,
 		array $params,
-		AccessToken|string $accessToken = null,
+		AccessToken|string|null $accessToken = null,
 	): Response
 	{
 		$params += $this->getClientParams();

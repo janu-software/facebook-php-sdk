@@ -80,7 +80,7 @@ class GraphNodeFactory
 	 * @throws SDKException
 	 */
 	public function makeGraphNode(
-		string $subclassName = null,
+		?string $subclassName = null,
 	): GraphNode
 	{
 		$this->validateResponseCastableAsGraphNode();
@@ -97,7 +97,7 @@ class GraphNodeFactory
 	 *
 	 * @throws SDKException
 	 */
-	public function makeGraphEdge(string $subclassName = null, bool $auto_prefix = true): GraphEdge
+	public function makeGraphEdge(?string $subclassName = null, bool $auto_prefix = true): GraphEdge
 	{
 		$this->validateResponseCastableAsGraphEdge();
 
@@ -141,7 +141,7 @@ class GraphNodeFactory
 	 *
 	 * @throws SDKException
 	 */
-	public function safelyMakeGraphNode(array $data, string $subclassName = null): GraphNode
+	public function safelyMakeGraphNode(array $data, ?string $subclassName = null): GraphNode
 	{
 		$subclassName ??= static::BaseGraphNodeClass;
 		static::validateSubclass($subclassName);
@@ -174,18 +174,18 @@ class GraphNodeFactory
 	/**
 	 * Takes an array of values and determines how to cast each node.
 	 *
-	 * @param array       $data         the array of data to iterate over
-	 * @param string|null $subclassName the subclass to cast this collection to
-	 * @param string|int $parentKey the key of this data (Graph edge)
-	 * @param string|null $parentNodeId the parent Graph node ID
+	 * @param array           $data         the array of data to iterate over
+	 * @param string|null     $subclassName the subclass to cast this collection to
+	 * @param string|int|null $parentKey    the key of this data (Graph edge)
+	 * @param string|null     $parentNodeId the parent Graph node ID
 	 *
 	 * @throws SDKException
 	 */
 	public function castAsGraphNodeOrGraphEdge(
 		array $data,
-		string $subclassName = null,
-		string|int $parentKey = null,
-		string $parentNodeId = null,
+		?string $subclassName = null,
+		string|int|null $parentKey = null,
+		?string $parentNodeId = null,
 	): GraphEdge|GraphNode
 	{
 		if (isset($data['data'])) {
