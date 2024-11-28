@@ -50,8 +50,8 @@ class RedirectLoginHelper
 	 */
 	public function __construct(
 		protected OAuth2Client $oAuth2Client,
-		PersistentDataInterface $persistentData = null,
-		UrlDetectionInterface $urlDetection = null,
+		?PersistentDataInterface $persistentData = null,
+		?UrlDetectionInterface $urlDetection = null,
 	) {
 		$this->persistentDataHandler = $persistentData ?? new SessionPersistentDataHandler;
 		$this->urlDetectionHandler = $urlDetection ?? new UrlDetectionHandler;
@@ -177,7 +177,7 @@ class RedirectLoginHelper
 	 *
 	 * @throws SDKException
 	 */
-	public function getAccessToken(string $redirectUrl = null): ?AccessToken
+	public function getAccessToken(?string $redirectUrl = null): ?AccessToken
 	{
 		$code = $this->getCode();
 		if ($code === null) {

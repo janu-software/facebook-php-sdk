@@ -68,12 +68,12 @@ class Request
 	 * @throws SDKException
 	 */
 	public function __construct(
-		Application $application = null,
-		AccessToken|string $accessToken = null,
-		string $method = null,
-		string $endpoint = null,
+		?Application $application = null,
+		AccessToken|string|null $accessToken = null,
+		?string $method = null,
+		?string $endpoint = null,
 		array $params = [],
-		string $eTag = null,
+		?string $eTag = null,
 		protected ?string $graphVersion = null,
 	) {
 		$this->setApp($application);
@@ -135,7 +135,7 @@ class Request
 	/**
 	 * Set the Application entity used for this request.
 	 */
-	public function setApp(Application $application = null): void
+	public function setApp(?Application $application = null): void
 	{
 		$this->app = $application;
 	}

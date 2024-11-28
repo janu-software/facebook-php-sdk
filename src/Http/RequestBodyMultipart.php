@@ -47,7 +47,7 @@ class RequestBodyMultipart implements RequestBodyInterface
 	public function __construct(
 		private readonly array $params = [],
 		private readonly array $files = [],
-		string $boundary = null,
+		?string $boundary = null,
 	) {
 		$this->boundary = $boundary ?? uniqid();
 	}

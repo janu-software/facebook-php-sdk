@@ -289,9 +289,9 @@ class Facebook
 	 */
 	public function get(
 		string $endpoint,
-		AccessToken|string $accessToken = null,
-		string $eTag = null,
-		string $graphVersion = null,
+		AccessToken|string|null $accessToken = null,
+		?string $eTag = null,
+		?string $graphVersion = null,
 	): Response
 	{
 		return $this->sendRequest('GET', $endpoint, [], $accessToken, $eTag, $graphVersion);
@@ -306,9 +306,9 @@ class Facebook
 	public function post(
 		string $endpoint,
 		array $params = [],
-		AccessToken|string $accessToken = null,
-		string $eTag = null,
-		string $graphVersion = null,
+		AccessToken|string|null $accessToken = null,
+		?string $eTag = null,
+		?string $graphVersion = null,
 	): Response
 	{
 		return $this->sendRequest('POST', $endpoint, $params, $accessToken, $eTag, $graphVersion);
@@ -323,9 +323,9 @@ class Facebook
 	public function delete(
 		string $endpoint,
 		array $params = [],
-		AccessToken|string $accessToken = null,
-		string $eTag = null,
-		string $graphVersion = null,
+		AccessToken|string|null $accessToken = null,
+		?string $eTag = null,
+		?string $graphVersion = null,
 	): Response
 	{
 		return $this->sendRequest('DELETE', $endpoint, $params, $accessToken, $eTag, $graphVersion);
@@ -392,9 +392,9 @@ class Facebook
 		string $method,
 		string $endpoint,
 		array $params = [],
-		AccessToken|string $accessToken = null,
-		string $eTag = null,
-		string $graphVersion = null,
+		AccessToken|string|null $accessToken = null,
+		?string $eTag = null,
+		?string $graphVersion = null,
 	): Response
 	{
 		$accessToken ??= $this->defaultAccessToken;
@@ -413,8 +413,8 @@ class Facebook
 	 */
 	public function sendBatchRequest(
 		array $requests,
-		AccessToken|string $accessToken = null,
-		string $graphVersion = null,
+		AccessToken|string|null $accessToken = null,
+		?string $graphVersion = null,
 	): BatchResponse
 	{
 		$accessToken ??= $this->defaultAccessToken;
@@ -433,7 +433,7 @@ class Facebook
 	 */
 	public function newBatchRequest(
 		AccessToken|string|null $accessToken = null,
-		string $graphVersion = null,
+		?string $graphVersion = null,
 	): BatchRequest
 	{
 		$accessToken ??= $this->defaultAccessToken;
@@ -454,9 +454,9 @@ class Facebook
 		string $method,
 		string $endpoint,
 		array $params = [],
-		AccessToken|string $accessToken = null,
-		string $eTag = null,
-		string $graphVersion = null,
+		AccessToken|string|null $accessToken = null,
+		?string $eTag = null,
+		?string $graphVersion = null,
 	): Request
 	{
 		$accessToken ??= $this->defaultAccessToken;
@@ -507,7 +507,7 @@ class Facebook
 		array $metadata = [],
 		string|AccessToken|null $accessToken = null,
 		int $maxTransferTries = 5,
-		string $graphVersion = null,
+		?string $graphVersion = null,
 	): array
 	{
 		$accessToken ??= $this->defaultAccessToken;

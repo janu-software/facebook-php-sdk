@@ -47,7 +47,7 @@ class SignedRequest
 	 */
 	public function __construct(
 		protected Application $application,
-		string $rawSignedRequest = null,
+		?string $rawSignedRequest = null,
 	) {
 		if ($rawSignedRequest === null) {
 			return;

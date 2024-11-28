@@ -60,7 +60,7 @@ class Client
 	 * Instantiates a new Client object.
 	 */
 	public function __construct(
-		ClientInterface $httpClient = null,
+		?ClientInterface $httpClient = null,
 		protected bool $enableBetaMode = false,
 	) {
 		$this->httpClient = $httpClient ?? Psr18ClientDiscovery::find();

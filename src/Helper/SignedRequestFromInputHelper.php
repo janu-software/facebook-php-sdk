@@ -57,7 +57,7 @@ abstract class SignedRequestFromInputHelper
 	/**
 	 * Instantiates a new SignedRequest entity.
 	 */
-	public function instantiateSignedRequest(string $rawSignedRequest = null): void
+	public function instantiateSignedRequest(?string $rawSignedRequest = null): void
 	{
 		$rawSignedRequest ??= $this->getRawSignedRequest();
 
