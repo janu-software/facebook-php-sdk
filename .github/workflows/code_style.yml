@@ -20,7 +20,7 @@ jobs:
           php-version: ${{ matrix.php }}
           coverage: none
       - run: composer install --prefer-dist --no-progress --no-suggest
-      - run: composer create-project nette/coding-standard temp/coding-standard --no-progress
+      - run: composer create-project janu-software/coding-standard temp/coding-standard --no-progress
       - name: copy preset-sniffer
         uses: canastro/copy-file-action@master
         with:
