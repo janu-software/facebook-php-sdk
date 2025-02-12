@@ -37,7 +37,7 @@ class OAuth2Client
 	/**
 	 * @const string The base authorization URL.
 	 */
-	final public const BaseAuthorizationUrl = 'https://www.facebook.com';
+	final public const string BaseAuthorizationUrl = 'https://www.facebook.com';
 
 	/**
 	 * The last request sent to Graph.

@@ -49,17 +49,17 @@ class Facebook
 	/**
 	 * @const string Version number of the Facebook PHP SDK.
 	 */
-	final public const Version = '0.1';
+	final public const string Version = '0.1';
 
 	/**
 	 * @const string The name of the environment variable that contains the app ID.
 	 */
-	final public const AppIdEnvName = 'FACEBOOK_APP_ID';
+	final public const string AppIdEnvName = 'FACEBOOK_APP_ID';
 
 	/**
 	 * @const string The name of the environment variable that contains the app secret.
 	 */
-	final public const AppSecretEnvName = 'FACEBOOK_APP_SECRET';
+	final public const string AppSecretEnvName = 'FACEBOOK_APP_SECRET';
 
 	/**
 	 * The Application entity

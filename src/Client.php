@@ -34,22 +34,22 @@ class Client
 	/**
 	 * @const string Production Graph API URL.
 	 */
-	final public const BaseGraphUrl = 'https://graph.facebook.com';
+	final public const string BaseGraphUrl = 'https://graph.facebook.com';
 
 	/**
 	 * @const string Graph API URL for video uploads.
 	 */
-	final public const BaseGraphVideoUrl = 'https://graph-video.facebook.com';
+	final public const string BaseGraphVideoUrl = 'https://graph-video.facebook.com';
 
 	/**
 	 * @const string Beta Graph API URL.
 	 */
-	final public const BaseGraphUrlBeta = 'https://graph.beta.facebook.com';
+	final public const string BaseGraphUrlBeta = 'https://graph.beta.facebook.com';
 
 	/**
 	 * @const string Beta Graph API URL for video uploads.
 	 */
-	final public const BaseGraphVideoUrlBeta = 'https://graph-video.beta.facebook.com';
+	final public const string BaseGraphVideoUrlBeta = 'https://graph-video.beta.facebook.com';
 
 	public static int $requestCount = 0;
 

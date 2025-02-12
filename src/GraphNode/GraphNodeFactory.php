@@ -42,17 +42,17 @@ class GraphNodeFactory
 	/**
 	 * @const string The base graph object class.
 	 */
-	final public const BaseGraphNodeClass = GraphNode::class;
+	final public const string BaseGraphNodeClass = GraphNode::class;
 
 	/**
 	 * @const string The base graph edge class.
 	 */
-	final public const BaseGraphEdgeClass = GraphEdge::class;
+	final public const string BaseGraphEdgeClass = GraphEdge::class;
 
 	/**
 	 * @const string The graph object prefix.
 	 */
-	final public const BaseGraphObjectPrefix = '\JanuSoftware\Facebook\GraphNode\\';
+	final public const string BaseGraphObjectPrefix = '\JanuSoftware\Facebook\GraphNode\\';
 
 	/**
 	 * The decoded body of the Response entity from Graph

@@ -21,7 +21,7 @@ jobs:
         id: "extcache"
         uses: "shivammathur/cache-extensions@v1"
         with:
-          php-version: "8.1"
+          php-version: "8.3"
           extensions: "pcov"
           key: "v1"
 
@@ -35,7 +35,7 @@ jobs:
       - name: Setup PHP with PCOV
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.1"
+          php-version: "8.3"
           coverage: "pcov"
 
       - name: "Setup problem matchers for PHP"
