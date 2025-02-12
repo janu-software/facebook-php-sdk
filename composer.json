@@ -22,7 +22,7 @@
 		"php-http/httplug": "^2.4",
 		"php-http/discovery": "^1.15",
 		"php-http/message": "^1.14",
-		"thecodingmachine/safe": ">=2.5",
+		"thecodingmachine/safe": "^2.5 || ^3.0",
 		"guzzlehttp/psr7": "^2.5"
 	},
 	"require-dev": {
