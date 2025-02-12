@@ -158,8 +158,8 @@ class UrlDetectionHandler implements UrlDetectionInterface
 		$elements = explode(',', $header);
 		$host = $elements[count($elements) - 1];
 
-		return preg_match('/^([a-z\\d](-*[a-z\\d])*)(\\.([a-z\\d](-*[a-z\\d])*))*$/i', $host) === 1 //valid chars check
+		return preg_match('/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i', $host) === 1 //valid chars check
 			&& 0 < strlen($host) && strlen($host) < 254 //overall length check
-			&& preg_match('/^[^\\.]{1,63}(\\.[^\\.]{1,63})*$/', $host) === 1; //length of each label
+			&& preg_match('/^[^\.]{1,63}(\.[^\.]{1,63})*$/', $host) === 1; //length of each label
 	}
 }

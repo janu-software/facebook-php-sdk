@@ -22,13 +22,13 @@
 		"php-http/httplug": "^2.4",
 		"php-http/discovery": "^1.15",
 		"php-http/message": "^1.14",
-		"thecodingmachine/safe": "^2.5",
+		"thecodingmachine/safe": ">= 2.5",
 		"guzzlehttp/psr7": "^2.5"
 	},
 	"require-dev": {
-		"stanislav-janu/phpstan": "^1.0",
+		"stanislav-janu/phpstan": "^2.0",
 		"phpunit/phpunit": "^10.3",
-		"rector/rector": "^1.1",
+		"rector/rector": "^2.0",
 		"jetbrains/phpstorm-attributes": "^1.0",
 		"guzzlehttp/guzzle": "^7.8",
 		"php-http/guzzle7-adapter": "^1.0",
@@ -41,7 +41,7 @@
 		"sacc": "vendor/bin/phpstan.phar clear-result-cache",
 		"re": "vendor/bin/rector process src -n --ansi",
 		"re-f": "vendor/bin/rector process src --ansi",
-		"cs-i": "rm -rf temp/nette-coding-standard && composer create-project nette/coding-standard temp/nette-coding-standard && cp ./.coding-standard/project.xml ./temp/nette-coding-standard/preset-sniffer/project.xml && cp ./.coding-standard/project.php ./temp/nette-coding-standard/preset-fixer/project.php",
+		"cs-i": "rm -rf temp/nette-coding-standard && composer create-project janu-software/coding-standard temp/nette-coding-standard && cp ./.coding-standard/project.xml ./temp/nette-coding-standard/preset-sniffer/project.xml && cp ./.coding-standard/project.php ./temp/nette-coding-standard/preset-fixer/project.php",
 		"cs": "PHP_CS_FIXER_IGNORE_ENV=1 php -d memory_limit=512M temp/nette-coding-standard/ecs check src tests --preset project",
 		"cs-f": "PHP_CS_FIXER_IGNORE_ENV=1 php -d memory_limit=512M temp/nette-coding-standard/ecs check src tests --preset project --fix"
 	},

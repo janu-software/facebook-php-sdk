@@ -292,8 +292,7 @@ class Facebook
 		AccessToken|string|null $accessToken = null,
 		?string $eTag = null,
 		?string $graphVersion = null,
-	): Response
-	{
+	): Response {
 		return $this->sendRequest('GET', $endpoint, [], $accessToken, $eTag, $graphVersion);
 	}
 
@@ -309,8 +308,7 @@ class Facebook
 		AccessToken|string|null $accessToken = null,
 		?string $eTag = null,
 		?string $graphVersion = null,
-	): Response
-	{
+	): Response {
 		return $this->sendRequest('POST', $endpoint, $params, $accessToken, $eTag, $graphVersion);
 	}
 
@@ -326,8 +324,7 @@ class Facebook
 		AccessToken|string|null $accessToken = null,
 		?string $eTag = null,
 		?string $graphVersion = null,
-	): Response
-	{
+	): Response {
 		return $this->sendRequest('DELETE', $endpoint, $params, $accessToken, $eTag, $graphVersion);
 	}
 
@@ -395,8 +392,7 @@ class Facebook
 		AccessToken|string|null $accessToken = null,
 		?string $eTag = null,
 		?string $graphVersion = null,
-	): Response
-	{
+	): Response {
 		$accessToken ??= $this->defaultAccessToken;
 		$graphVersion ??= $this->defaultGraphVersion;
 		$request = $this->request($method, $endpoint, $params, $accessToken, $eTag, $graphVersion);
@@ -415,8 +411,7 @@ class Facebook
 		array $requests,
 		AccessToken|string|null $accessToken = null,
 		?string $graphVersion = null,
-	): BatchResponse
-	{
+	): BatchResponse {
 		$accessToken ??= $this->defaultAccessToken;
 		$graphVersion ??= $this->defaultGraphVersion;
 		$batchRequest = new BatchRequest($this->app, $requests, $accessToken, $graphVersion);
@@ -434,8 +429,7 @@ class Facebook
 	public function newBatchRequest(
 		AccessToken|string|null $accessToken = null,
 		?string $graphVersion = null,
-	): BatchRequest
-	{
+	): BatchRequest {
 		$accessToken ??= $this->defaultAccessToken;
 		$graphVersion ??= $this->defaultGraphVersion;
 
@@ -457,8 +451,7 @@ class Facebook
 		AccessToken|string|null $accessToken = null,
 		?string $eTag = null,
 		?string $graphVersion = null,
-	): Request
-	{
+	): Request {
 		$accessToken ??= $this->defaultAccessToken;
 		$graphVersion ??= $this->defaultGraphVersion;
 
@@ -508,8 +501,7 @@ class Facebook
 		string|AccessToken|null $accessToken = null,
 		int $maxTransferTries = 5,
 		?string $graphVersion = null,
-	): array
-	{
+	): array {
 		$accessToken ??= $this->defaultAccessToken;
 		$graphVersion ??= $this->defaultGraphVersion;
 
@@ -539,8 +531,7 @@ class Facebook
 		string $endpoint,
 		TransferChunk $transferChunk,
 		int $retryCountdown,
-	): TransferChunk
-	{
+	): TransferChunk {
 		$newChunk = $resumableUploader->transfer($endpoint, $transferChunk, $retryCountdown < 1);
 
 		if ($newChunk !== $transferChunk) {

@@ -40,8 +40,7 @@ class PersistentDataFactory
 	 */
 	public static function createPersistentDataHandler(
 		null|PersistentDataInterface|string $handler,
-	): InMemoryPersistentDataHandler|PersistentDataInterface|SessionPersistentDataHandler
-	{
+	): InMemoryPersistentDataHandler|PersistentDataInterface|SessionPersistentDataHandler {
 		if ($handler === null) {
 			return session_status() === PHP_SESSION_ACTIVE
 				? new SessionPersistentDataHandler

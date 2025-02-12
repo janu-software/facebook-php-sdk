@@ -81,8 +81,7 @@ class GraphNodeFactory
 	 */
 	public function makeGraphNode(
 		?string $subclassName = null,
-	): GraphNode
-	{
+	): GraphNode {
 		$this->validateResponseCastableAsGraphNode();
 
 		return $this->castAsGraphNodeOrGraphEdge($this->decodedBody, $subclassName);
@@ -186,8 +185,7 @@ class GraphNodeFactory
 		?string $subclassName = null,
 		string|int|null $parentKey = null,
 		?string $parentNodeId = null,
-	): GraphEdge|GraphNode
-	{
+	): GraphEdge|GraphNode {
 		if (isset($data['data'])) {
 			// Create GraphEdge
 			if (static::isCastableAsGraphEdge($data['data'])) {
@@ -217,8 +215,7 @@ class GraphNodeFactory
 		?string $subclassName = null,
 		string|int|null $parentKey = null,
 		?string $parentNodeId = null,
-	): GraphEdge
-	{
+	): GraphEdge {
 		if (!isset($data['data'])) {
 			throw new SDKException('Cannot cast data to GraphEdge. Expected a "data" key.', 620);
 		}
@@ -278,7 +275,7 @@ class GraphNodeFactory
 	public static function validateSubclass(string $subclassName): void
 	{
 		if (
-			$subclassName == static::BaseGraphNodeClass
+			$subclassName === static::BaseGraphNodeClass
 			|| is_subclass_of($subclassName, static::BaseGraphNodeClass)
 		) {
 			return;
