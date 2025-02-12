@@ -23,11 +23,11 @@ declare(strict_types=1);
 namespace JanuSoftware\Facebook;
 
 use JanuSoftware\Facebook\Exception\SDKException;
+use ValueError;
 use function Safe\base64_decode;
 use function Safe\json_decode;
 use function Safe\json_encode;
 use function Safe\preg_match;
-use ValueError;
 
 
 class SignedRequest

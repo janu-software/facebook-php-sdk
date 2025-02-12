@@ -30,8 +30,8 @@ use IteratorAggregate;
 use JanuSoftware\Facebook\Exception\SDKException;
 use JanuSoftware\Facebook\Request;
 use JanuSoftware\Facebook\Url\UrlManipulator;
-use function Safe\json_encode;
 use Stringable;
+use function Safe\json_encode;
 
 
 class GraphEdge implements ArrayAccess, Countable, IteratorAggregate, Stringable
