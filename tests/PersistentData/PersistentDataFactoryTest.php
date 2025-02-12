@@ -29,6 +29,7 @@ use JanuSoftware\Facebook\PersistentData\InMemoryPersistentDataHandler;
 use JanuSoftware\Facebook\PersistentData\PersistentDataFactory;
 use JanuSoftware\Facebook\PersistentData\PersistentDataInterface;
 use JanuSoftware\Facebook\PersistentData\SessionPersistentDataHandler;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class PersistentDataFactoryTest extends TestCase
@@ -37,13 +38,8 @@ class PersistentDataFactoryTest extends TestCase
 	public const COMMON_INTERFACE = PersistentDataInterface::class;
 
 
-	/**
-	 * @param mixed  $handler
-	 * @param string $expected
-	 *
-	 * @dataProvider persistentDataHandlerProviders
-	 */
-	public function testCreatePersistentDataHandler($handler, $expected): void
+	#[DataProvider('persistentDataHandlerProviders')]
+	public function testCreatePersistentDataHandler(mixed $handler, string $expected): void
 	{
 		$persistentDataHandler = PersistentDataFactory::createPersistentDataHandler($handler);
 

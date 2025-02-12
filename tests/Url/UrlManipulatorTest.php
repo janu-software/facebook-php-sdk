@@ -26,13 +26,12 @@ declare(strict_types=1);
 namespace JanuSoftware\Facebook\Tests\Url;
 
 use JanuSoftware\Facebook\Url\UrlManipulator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class UrlManipulatorTest extends TestCase
 {
-	/**
-	 * @dataProvider provideUris
-	 */
+	#[DataProvider('provideUris')]
 	public function testParamsGetRemovedFromAUrl(string $dirtyUrl, string $expectedCleanUrl): void
 	{
 		$removeParams = [
@@ -160,9 +159,7 @@ class UrlManipulatorTest extends TestCase
 	}
 
 
-	/**
-	 * @dataProvider provideMergableEndpoints
-	 */
+	#[DataProvider('provideMergeableEndpoints')]
 	public function testParamsCanBeMergedOntoUrlProperly(string $urlOne, string $urlTwo, string $expected): void
 	{
 		$result = UrlManipulator::mergeUrlParams($urlOne, $urlTwo);
@@ -171,7 +168,7 @@ class UrlManipulatorTest extends TestCase
 	}
 
 
-	public static function provideMergableEndpoints(): array
+	public static function provideMergeableEndpoints(): array
 	{
 		return [
 			[

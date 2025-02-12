@@ -37,6 +37,7 @@ use JanuSoftware\Facebook\Request;
 use JanuSoftware\Facebook\Response;
 use JanuSoftware\Facebook\Tests\Fixtures\MyFooBatchHttpClient;
 use JanuSoftware\Facebook\Tests\Fixtures\MyFooHttpClient;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
 
@@ -201,9 +202,7 @@ class ClientTest extends TestCase
 	}
 
 
-	/**
-	 * @group integration
-	 */
+	#[Group('integration')]
 	public function testCanCreateATestUserAndGetTheProfileAndThenDeleteTheTestUser(): void
 	{
 		$this->initializeTestApp();

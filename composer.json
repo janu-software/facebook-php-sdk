@@ -27,7 +27,7 @@
 	},
 	"require-dev": {
 		"stanislav-janu/phpstan": "^2",
-		"phpunit/phpunit": "^10.3",
+		"phpunit/phpunit": "^12",
 		"rector/rector": "^2",
 		"jetbrains/phpstorm-attributes": "^1.0",
 		"guzzlehttp/guzzle": "^7.8",

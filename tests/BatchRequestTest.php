@@ -30,6 +30,7 @@ use JanuSoftware\Facebook\BatchRequest;
 use JanuSoftware\Facebook\Exception\SDKException;
 use JanuSoftware\Facebook\FileUpload\File;
 use JanuSoftware\Facebook\Request;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class BatchRequestTest extends TestCase
@@ -198,13 +199,8 @@ class BatchRequestTest extends TestCase
 	}
 
 
-	/**
-	 * @dataProvider requestsAndExpectedResponsesProvider
-	 *
-	 * @param mixed $request
-	 * @param mixed $expectedArray
-	 */
-	public function testBatchRequestEntitiesProperlyGetConvertedToAnArray($request, $expectedArray): void
+	#[DataProvider('requestsAndExpectedResponsesProvider')]
+	public function testBatchRequestEntitiesProperlyGetConvertedToAnArray(mixed $request, mixed $expectedArray): void
 	{
 		$batchRequest = $this->createBatchRequest();
 		$batchRequest->add($request, 'foo_name');

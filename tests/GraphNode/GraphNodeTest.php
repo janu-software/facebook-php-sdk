@@ -29,6 +29,7 @@ use DateTime;
 use Iterator;
 use JanuSoftware\Facebook\GraphNode\Birthday;
 use JanuSoftware\Facebook\GraphNode\GraphNode;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class GraphNodeTest extends TestCase
@@ -51,9 +52,7 @@ class GraphNodeTest extends TestCase
 	}
 
 
-	/**
-	 * @dataProvider provideDateTimeFieldNames
-	 */
+	#[DataProvider('provideDateTimeFieldNames')]
 	public function testCastDateTimeFieldsToDateTime($fieldName): void
 	{
 		$graphNode = new GraphNode([$fieldName => '1989-11-02']);
@@ -76,9 +75,7 @@ class GraphNodeTest extends TestCase
 	}
 
 
-	/**
-	 * @dataProvider provideValidDateTimeFieldValues
-	 */
+	#[DataProvider('provideValidDateTimeFieldValues')]
 	public function testCastDateTimeFieldValueToDateTime($value, $message, $prettyDate = null): void
 	{
 		$graphNode = new GraphNode(['created_time' => $value]);
@@ -102,9 +99,7 @@ class GraphNodeTest extends TestCase
 	}
 
 
-	/**
-	 * @dataProvider provideInvalidDateTimeFieldValues
-	 */
+	#[DataProvider('provideInvalidDateTimeFieldValues')]
 	public function testNotCastDateTimeFieldValueToDateTime($value, $message): void
 	{
 		$graphNode = new GraphNode(['created_time' => $value]);
