@@ -2,8 +2,8 @@ name: Code checks
 
 on:
   push:
+    branches: [ main ]
   pull_request: null
-  workflow_dispatch:
 
 jobs:
   ecs:
