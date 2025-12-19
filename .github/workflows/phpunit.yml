@@ -2,8 +2,8 @@ name: PHPUnit
 
 on:
   push:
-    branches: [ main ]
   pull_request: null
+  workflow_dispatch:
 
 jobs:
   tester:

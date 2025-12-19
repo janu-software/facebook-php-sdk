@@ -2,8 +2,8 @@ name: PHP Composer
 
 on:
   push:
-    branches: [ main ]
   pull_request: null
+  workflow_dispatch:
 
 jobs:
   build:
