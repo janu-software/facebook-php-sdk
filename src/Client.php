@@ -103,11 +103,11 @@ class Client
 	{
 		if ($postToVideoUrl) {
 			return $this->enableBetaMode
-				? static::BaseGraphVideoUrlBeta
-				: static::BaseGraphVideoUrl;
+				? self::BaseGraphVideoUrlBeta
+				: self::BaseGraphVideoUrl;
 		}
 
-		return $this->enableBetaMode ? static::BaseGraphUrlBeta : static::BaseGraphUrl;
+		return $this->enableBetaMode ? self::BaseGraphUrlBeta : self::BaseGraphUrl;
 	}
 
 

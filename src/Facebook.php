@@ -109,8 +109,8 @@ class Facebook
 	public function __construct(array $config = [])
 	{
 		$config = array_merge([
-			'app_id' => getenv(static::AppIdEnvName),
-			'app_secret' => getenv(static::AppSecretEnvName),
+			'app_id' => getenv(self::AppIdEnvName),
+			'app_secret' => getenv(self::AppSecretEnvName),
 			'default_graph_version' => null,
 			'enable_beta_mode' => false,
 			'http_client' => null,
@@ -119,10 +119,10 @@ class Facebook
 		], $config);
 
 		if (!$config['app_id']) {
-			throw new SDKException('Required "app_id" key not supplied in config and could not find fallback environment variable "' . static::AppIdEnvName . '"');
+			throw new SDKException('Required "app_id" key not supplied in config and could not find fallback environment variable "' . self::AppIdEnvName . '"');
 		}
 		if (!$config['app_secret']) {
-			throw new SDKException('Required "app_secret" key not supplied in config and could not find fallback environment variable "' . static::AppSecretEnvName . '"');
+			throw new SDKException('Required "app_secret" key not supplied in config and could not find fallback environment variable "' . self::AppSecretEnvName . '"');
 		}
 		if ($config['http_client'] !== null && !$config['http_client'] instanceof ClientInterface) {
 			throw new InvalidArgumentException('Required "http_client" key to be null or an instance of \Psr\Http\Client\ClientInterface');

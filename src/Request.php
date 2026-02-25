@@ -203,7 +203,7 @@ class Request
 	 */
 	public function validateMethod(): void
 	{
-		if ($this->method === null || $this->method === '' || $this->method === '0') {
+		if (in_array($this->method, [null, '', '0'], true)) {
 			throw new SDKException('HTTP method not specified.');
 		}
 
@@ -254,7 +254,7 @@ class Request
 	{
 		$headers = static::getDefaultHeaders();
 
-		if ($this->eTag !== null && $this->eTag !== '' && $this->eTag !== '0') {
+		if (!in_array($this->eTag, [null, '', '0'], true)) {
 			$headers['If-None-Match'] = $this->eTag;
 		}
 

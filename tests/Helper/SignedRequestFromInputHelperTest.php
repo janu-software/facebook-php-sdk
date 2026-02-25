@@ -95,6 +95,7 @@ class SignedRequestFromInputHelperTest extends TestCase
 		$this->assertEquals('foo_access_token_from:foo_code', $accessToken->getValue());
 	}
 
+
 	public function testGetSignedRequestReturnsSignedRequest(): void
 	{
 		$this->helper->instantiateSignedRequest($this->rawSignedRequestAuthorizedWithAccessToken);
@@ -104,6 +105,7 @@ class SignedRequestFromInputHelperTest extends TestCase
 		$this->assertEquals('123', $signedRequest->getUserId());
 	}
 
+
 	public function testGetSignedRequestReturnsNullWhenNoSignedRequest(): void
 	{
 		$this->helper->instantiateSignedRequest(null);
@@ -112,6 +114,7 @@ class SignedRequestFromInputHelperTest extends TestCase
 		$this->assertNull($signedRequest);
 	}
 
+
 	public function testGetUserIdReturnsUserIdFromSignedRequest(): void
 	{
 		$this->helper->instantiateSignedRequest($this->rawSignedRequestAuthorizedWithAccessToken);
@@ -119,6 +122,7 @@ class SignedRequestFromInputHelperTest extends TestCase
 
 		$this->assertEquals(123, $userId);
 	}
+
 
 	public function testGetUserIdReturnsNullWhenNoSignedRequest(): void
 	{
@@ -136,6 +140,7 @@ class SignedRequestFromInputHelperTest extends TestCase
 
 		$this->assertNull($rawSignedRequest);
 	}
+
 
 	public function testRawSignedRequestFromCookieReturnsNull(): void
 	{

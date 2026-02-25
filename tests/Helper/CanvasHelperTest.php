@@ -52,12 +52,14 @@ class CanvasHelperTest extends TestCase
 		$this->assertEquals($this->rawSignedRequestAuthorized, $rawSignedRequest);
 	}
 
+
 	public function testGetAppDataReturnsNullWhenNoSignedRequest(): void
 	{
 		$_POST = [];
 		$appData = $this->helper->getAppData();
 		$this->assertNull($appData);
 	}
+
 
 	public function testGetAppDataReturnsValueFromSignedRequest(): void
 	{
@@ -67,6 +69,7 @@ class CanvasHelperTest extends TestCase
 		// The signed request doesn't have app_data, so it should be null
 		$this->assertNull($appData);
 	}
+
 
 	public function testGetRawSignedRequestFromPostReturnsNullWhenNotPresent(): void
 	{

@@ -49,6 +49,7 @@ class PageTabHelperTest extends TestCase
 		$this->assertTrue($helper->getPageData('liked'));
 	}
 
+
 	public function testPageDataReturnsNullWhenNoSignedRequest(): void
 	{
 		$_POST = [];

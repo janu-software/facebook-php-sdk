@@ -101,7 +101,7 @@ class GraphNodeFactory
 		$this->validateResponseCastableAsGraphEdge();
 
 		if ($subclassName !== null && $auto_prefix) {
-			$subclassName = static::BaseGraphObjectPrefix . $subclassName;
+			$subclassName = self::BaseGraphObjectPrefix . $subclassName;
 		}
 
 		return $this->castAsGraphNodeOrGraphEdge($this->decodedBody, $subclassName);
@@ -142,7 +142,7 @@ class GraphNodeFactory
 	 */
 	public function safelyMakeGraphNode(array $data, ?string $subclassName = null): GraphNode
 	{
-		$subclassName ??= static::BaseGraphNodeClass;
+		$subclassName ??= self::BaseGraphNodeClass;
 		static::validateSubclass($subclassName);
 
 		// Remember the parent node ID
@@ -231,7 +231,7 @@ class GraphNodeFactory
 		$parentGraphEdgeEndpoint = $parentNodeId !== null && $parentKey !== null
 			? '/' . $parentNodeId . '/' . $parentKey
 			: null;
-		$className = static::BaseGraphEdgeClass;
+		$className = self::BaseGraphEdgeClass;
 
 		return new $className($this->response->getRequest(), $dataList, $metaData, $parentGraphEdgeEndpoint, $subclassName);
 	}
@@ -275,8 +275,8 @@ class GraphNodeFactory
 	public static function validateSubclass(string $subclassName): void
 	{
 		if (
-			$subclassName === static::BaseGraphNodeClass
-			|| is_subclass_of($subclassName, static::BaseGraphNodeClass)
+			$subclassName === self::BaseGraphNodeClass
+			|| is_subclass_of($subclassName, self::BaseGraphNodeClass)
 		) {
 			return;
 		}

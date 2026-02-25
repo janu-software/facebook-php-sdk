@@ -95,7 +95,7 @@ class RedirectLoginHelper
 
 	private function getPseudoRandomString(): string
 	{
-		return bin2hex(random_bytes(static::CsrfLength));
+		return bin2hex(random_bytes(self::CsrfLength));
 	}
 
 

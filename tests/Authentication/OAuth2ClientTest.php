@@ -145,6 +145,7 @@ class OAuth2ClientTest extends TestCase
 		$this->assertEquals($expectedParams, $request->getParams());
 	}
 
+
 	public function testCanGetLongLivedAccessTokenFromAccessTokenObject(): void
 	{
 		$this->client->setAccessTokenResponse();
@@ -177,11 +178,13 @@ class OAuth2ClientTest extends TestCase
 		$this->assertEquals('/oauth/client_code', $request->getEndpoint());
 	}
 
+
 	public function testGetLastRequestReturnsNullInitially(): void
 	{
 		$lastRequest = $this->oauth->getLastRequest();
 		$this->assertNull($lastRequest);
 	}
+
 
 	public function testDebugTokenWithAccessTokenObject(): void
 	{
@@ -193,6 +196,7 @@ class OAuth2ClientTest extends TestCase
 		$this->assertInstanceOf(AccessTokenMetadata::class, $metadata);
 		$this->assertEquals('444', $metadata->getUserId());
 	}
+
 
 	public function testAuthorizationUrlWithDefaultSeparator(): void
 	{

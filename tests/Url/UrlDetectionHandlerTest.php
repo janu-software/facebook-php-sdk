@@ -141,6 +141,7 @@ class UrlDetectionHandlerTest extends TestCase
 		$this->assertEquals('http://foo.bar:8888/foo.php', $currentUri);
 	}
 
+
 	public function testProperlyDetectsHttpsFromHttpsServerVariable(): void
 	{
 		$_SERVER = [
@@ -155,6 +156,7 @@ class UrlDetectionHandlerTest extends TestCase
 
 		$this->assertEquals('https://foo.bar/secure', $currentUri);
 	}
+
 
 	public function testProperlyDetectsHttpsFromHttpsOnValue(): void
 	{
@@ -171,6 +173,7 @@ class UrlDetectionHandlerTest extends TestCase
 		$this->assertEquals('https://foo.bar/secure', $currentUri);
 	}
 
+
 	public function testFallsBackToServerNameWhenHttpHostNotAvailable(): void
 	{
 		$_SERVER = [
@@ -185,6 +188,7 @@ class UrlDetectionHandlerTest extends TestCase
 		$this->assertEquals('http://server.example.com/path', $currentUri);
 	}
 
+
 	public function testFallsBackToServerAddrWhenHostNameNotAvailable(): void
 	{
 		$_SERVER = [
@@ -198,6 +202,7 @@ class UrlDetectionHandlerTest extends TestCase
 
 		$this->assertEquals('http://192.168.1.1/path', $currentUri);
 	}
+
 
 	public function testIgnoresPortWhenProxyIndicatesHttps(): void
 	{
@@ -231,6 +236,7 @@ class UrlDetectionHandlerTest extends TestCase
 		$this->assertEquals('http://foo.bar/path', $currentUri);
 	}
 
+
 	public function testProperlyTrimsHostname(): void
 	{
 		$_SERVER = [
@@ -244,6 +250,7 @@ class UrlDetectionHandlerTest extends TestCase
 
 		$this->assertEquals('http://foo.bar/path', $currentUri);
 	}
+
 
 	public function testRemovesPortNumberFromHost(): void
 	{
@@ -259,6 +266,7 @@ class UrlDetectionHandlerTest extends TestCase
 		$this->assertEquals('http://foo.bar:8080/path', $currentUri);
 	}
 
+
 	public function testConvertsHostnameToLowercase(): void
 	{
 		$_SERVER = [
@@ -272,6 +280,7 @@ class UrlDetectionHandlerTest extends TestCase
 
 		$this->assertStringContainsString('foo.bar', $currentUri);
 	}
+
 
 	public function testDetectsPortFromXForwardedPortHeader(): void
 	{
@@ -287,6 +296,7 @@ class UrlDetectionHandlerTest extends TestCase
 
 		$this->assertEquals('http://foo.bar:9000/path', $currentUri);
 	}
+
 
 	public function testDetectsHttpsPortFromXForwardedProto(): void
 	{

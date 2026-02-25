@@ -23,9 +23,9 @@ declare(strict_types=1);
 namespace JanuSoftware\Facebook\GraphNode;
 
 use Safe\DateTime;
+use Stringable;
 use function Safe\json_encode;
 use function Safe\preg_match;
-use Stringable;
 
 
 class GraphNode implements Stringable

@@ -165,6 +165,7 @@ class BatchResponseTest extends TestCase
 		], $batchResponse[1]->getHeaders());
 	}
 
+
 	public function testBatchResponseImplementsArrayAccess(): void
 	{
 		$graphResponseJson = '[';
@@ -184,6 +185,7 @@ class BatchResponseTest extends TestCase
 		$this->assertFalse(isset($batchResponse[2]));
 	}
 
+
 	public function testBatchResponseCanUnsetElements(): void
 	{
 		$graphResponseJson = '[';
@@ -200,6 +202,7 @@ class BatchResponseTest extends TestCase
 		unset($batchResponse[0]);
 		$this->assertFalse(isset($batchResponse[0]));
 	}
+
 
 	public function testBatchResponseCanCountResponses(): void
 	{
@@ -219,6 +222,7 @@ class BatchResponseTest extends TestCase
 		$this->assertCount(3, $batchResponse);
 	}
 
+
 	public function testBatchResponseReturnsIterator(): void
 	{
 		$graphResponseJson = '[';
@@ -233,6 +237,7 @@ class BatchResponseTest extends TestCase
 		$iterator = $batchResponse->getIterator();
 		$this->assertInstanceOf(\ArrayIterator::class, $iterator);
 	}
+
 
 	public function testBatchResponseCanSetElement(): void
 	{

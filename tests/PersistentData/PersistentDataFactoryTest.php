@@ -57,6 +57,7 @@ class PersistentDataFactoryTest extends TestCase
 		PersistentDataFactory::createPersistentDataHandler('invalid_handler');
 	}
 
+
 	public function testFactoryCannotBeInstantiated(): void
 	{
 		$reflectionClass = new \ReflectionClass(PersistentDataFactory::class);
@@ -64,6 +65,7 @@ class PersistentDataFactoryTest extends TestCase
 		$this->assertNotNull($constructor);
 		$this->assertTrue($constructor->isPrivate());
 	}
+
 
 	public static function persistentDataHandlerProviders(): array
 	{
