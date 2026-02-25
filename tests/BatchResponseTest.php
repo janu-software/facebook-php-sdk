@@ -164,4 +164,90 @@ class BatchResponseTest extends TestCase
 			'ETag' => '"barTag"',
 		], $batchResponse[1]->getHeaders());
 	}
+
+	public function testBatchResponseImplementsArrayAccess(): void
+	{
+		$graphResponseJson = '[';
+		$graphResponseJson .= '{"code":200,"headers":[],"body":"{\"foo\":\"bar\"}"}';
+		$graphResponseJson .= ',{"code":200,"headers":[],"body":"{\"baz\":\"qux\"}"}';
+		$graphResponseJson .= ']';
+		$response = new Response($this->request, $graphResponseJson, 200);
+		$batchRequest = new BatchRequest($this->app, [
+			new Request($this->app, 'token'),
+			new Request($this->app, 'token'),
+		]);
+		$batchResponse = new BatchResponse($batchRequest, $response);
+
+		// Test isset
+		$this->assertTrue(isset($batchResponse[0]));
+		$this->assertTrue(isset($batchResponse[1]));
+		$this->assertFalse(isset($batchResponse[2]));
+	}
+
+	public function testBatchResponseCanUnsetElements(): void
+	{
+		$graphResponseJson = '[';
+		$graphResponseJson .= '{"code":200,"headers":[],"body":"{\"foo\":\"bar\"}"}';
+		$graphResponseJson .= ',{"code":200,"headers":[],"body":"{\"baz\":\"qux\"}"}';
+		$graphResponseJson .= ']';
+		$response = new Response($this->request, $graphResponseJson, 200);
+		$batchRequest = new BatchRequest($this->app, [
+			new Request($this->app, 'token'),
+			new Request($this->app, 'token'),
+		]);
+		$batchResponse = new BatchResponse($batchRequest, $response);
+
+		unset($batchResponse[0]);
+		$this->assertFalse(isset($batchResponse[0]));
+	}
+
+	public function testBatchResponseCanCountResponses(): void
+	{
+		$graphResponseJson = '[';
+		$graphResponseJson .= '{"code":200,"headers":[],"body":"{\"foo\":\"bar\"}"}';
+		$graphResponseJson .= ',{"code":200,"headers":[],"body":"{\"baz\":\"qux\"}"}';
+		$graphResponseJson .= ',{"code":200,"headers":[],"body":"{\"test\":\"value\"}"}';
+		$graphResponseJson .= ']';
+		$response = new Response($this->request, $graphResponseJson, 200);
+		$batchRequest = new BatchRequest($this->app, [
+			new Request($this->app, 'token'),
+			new Request($this->app, 'token'),
+			new Request($this->app, 'token'),
+		]);
+		$batchResponse = new BatchResponse($batchRequest, $response);
+
+		$this->assertCount(3, $batchResponse);
+	}
+
+	public function testBatchResponseReturnsIterator(): void
+	{
+		$graphResponseJson = '[';
+		$graphResponseJson .= '{"code":200,"headers":[],"body":"{\"foo\":\"bar\"}"}';
+		$graphResponseJson .= ']';
+		$response = new Response($this->request, $graphResponseJson, 200);
+		$batchRequest = new BatchRequest($this->app, [
+			new Request($this->app, 'token'),
+		]);
+		$batchResponse = new BatchResponse($batchRequest, $response);
+
+		$iterator = $batchResponse->getIterator();
+		$this->assertInstanceOf(\ArrayIterator::class, $iterator);
+	}
+
+	public function testBatchResponseCanSetElement(): void
+	{
+		$graphResponseJson = '[';
+		$graphResponseJson .= '{"code":200,"headers":[],"body":"{\"foo\":\"bar\"}"}';
+		$graphResponseJson .= ']';
+		$response = new Response($this->request, $graphResponseJson, 200);
+		$batchRequest = new BatchRequest($this->app, [
+			new Request($this->app, 'token'),
+		]);
+		$batchResponse = new BatchResponse($batchRequest, $response);
+
+		$responseArray = ['code' => 200, 'headers' => [], 'body' => '{"new":"data"}'];
+		$batchResponse[0] = $responseArray;
+
+		$this->assertNotNull($batchResponse[0]);
+	}
 }

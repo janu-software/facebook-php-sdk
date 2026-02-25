@@ -145,6 +145,16 @@ class OAuth2ClientTest extends TestCase
 		$this->assertEquals($expectedParams, $request->getParams());
 	}
 
+	public function testCanGetLongLivedAccessTokenFromAccessTokenObject(): void
+	{
+		$this->client->setAccessTokenResponse();
+
+		$token = new AccessToken('short_token');
+		$accessToken = $this->oauth->getLongLivedAccessToken($token);
+
+		$this->assertEquals('my_access_token', $accessToken->getValue());
+	}
+
 
 	public function testCanGetCodeFromLongLivedAccessToken(): void
 	{
@@ -165,5 +175,31 @@ class OAuth2ClientTest extends TestCase
 		$request = $this->oauth->getLastRequest();
 		$this->assertEquals($expectedParams, $request->getParams());
 		$this->assertEquals('/oauth/client_code', $request->getEndpoint());
+	}
+
+	public function testGetLastRequestReturnsNullInitially(): void
+	{
+		$lastRequest = $this->oauth->getLastRequest();
+		$this->assertNull($lastRequest);
+	}
+
+	public function testDebugTokenWithAccessTokenObject(): void
+	{
+		$this->client->setMetadataResponse();
+
+		$token = new AccessToken('baz_token');
+		$metadata = $this->oauth->debugToken($token);
+
+		$this->assertInstanceOf(AccessTokenMetadata::class, $metadata);
+		$this->assertEquals('444', $metadata->getUserId());
+	}
+
+	public function testAuthorizationUrlWithDefaultSeparator(): void
+	{
+		$authUrl = $this->oauth->getAuthorizationUrl('https://foo.bar', 'foo_state');
+
+		$expectedUrl = 'https://www.facebook.com/' . static::TESTING_GRAPH_VERSION . '/dialog/oauth?';
+		$this->assertStringStartsWith($expectedUrl, $authUrl);
+		$this->assertStringContainsString('&', $authUrl);
 	}
 }

@@ -46,5 +46,19 @@ class PageTabHelperTest extends TestCase
 		$this->assertEquals('42', $helper->getPageId());
 		$this->assertEquals('42', $helper->getPageData('id'));
 		$this->assertEquals('default', $helper->getPageData('foo', 'default'));
+		$this->assertTrue($helper->getPageData('liked'));
+	}
+
+	public function testPageDataReturnsNullWhenNoSignedRequest(): void
+	{
+		$_POST = [];
+
+		$app = new Application('123', 'foo_app_secret');
+		$helper = new PageTabHelper($app, new Client, 'v0.0');
+
+		$this->assertNull($helper->getPageId());
+		$this->assertNull($helper->getPageData('id'));
+		$this->assertFalse($helper->isAdmin());
+		$this->assertNull($helper->getPageData('liked'));
 	}
 }

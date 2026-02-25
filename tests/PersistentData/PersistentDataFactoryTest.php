@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook\Tests\PersistentData;
 
+use InvalidArgumentException;
 use JanuSoftware\Facebook\PersistentData\InMemoryPersistentDataHandler;
 use JanuSoftware\Facebook\PersistentData\PersistentDataFactory;
 use JanuSoftware\Facebook\PersistentData\PersistentDataInterface;
@@ -47,6 +48,22 @@ class PersistentDataFactoryTest extends TestCase
 		$this->assertInstanceOf($expected, $persistentDataHandler);
 	}
 
+
+	public function testInvalidHandlerThrowsException(): void
+	{
+		$this->expectException(InvalidArgumentException::class);
+		$this->expectExceptionMessage('The persistent data handler must be set to "session", "memory", or be an instance of Facebook\PersistentData\PersistentDataInterface');
+
+		PersistentDataFactory::createPersistentDataHandler('invalid_handler');
+	}
+
+	public function testFactoryCannotBeInstantiated(): void
+	{
+		$reflectionClass = new \ReflectionClass(PersistentDataFactory::class);
+		$constructor = $reflectionClass->getConstructor();
+		$this->assertNotNull($constructor);
+		$this->assertTrue($constructor->isPrivate());
+	}
 
 	public static function persistentDataHandlerProviders(): array
 	{

@@ -113,6 +113,35 @@ class AccessTokenTest extends TestCase
 		$this->assertEquals($accessToken->getExpiresAt(), $newAccessToken->getExpiresAt());
 	}
 
+	public function testAccessTokenExpiresAtReturnsNullWhenNotSet(): void
+	{
+		$accessToken = new AccessToken('foo_token');
+
+		$this->assertNull($accessToken->getExpiresAt());
+	}
+
+	public function testAccessTokenIsNotExpiredWhenNoExpirationSet(): void
+	{
+		$accessToken = new AccessToken('foo_token');
+
+		$this->assertNull($accessToken->isExpired());
+	}
+
+	public function testNormalAccessTokenWithExpirationCanExpire(): void
+	{
+		$futureTime = time() + (60 * 60 * 24); // one day from now
+		$accessToken = new AccessToken('normal_token', $futureTime);
+
+		$this->assertFalse($accessToken->isExpired());
+	}
+
+	public function testAppAccessTokenNeverShowsExpiration(): void
+	{
+		// App access token without expiration time never expires
+		$accessToken = new AccessToken('123|secret');
+		$isExpired = $accessToken->isExpired();
+		$this->assertFalse($isExpired);
+	}
 
 	private function aWeekFromNow(): int
 	{

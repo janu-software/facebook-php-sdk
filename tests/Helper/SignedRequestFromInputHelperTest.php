@@ -94,4 +94,54 @@ class SignedRequestFromInputHelperTest extends TestCase
 		$this->assertInstanceOf(AccessToken::class, $accessToken);
 		$this->assertEquals('foo_access_token_from:foo_code', $accessToken->getValue());
 	}
+
+	public function testGetSignedRequestReturnsSignedRequest(): void
+	{
+		$this->helper->instantiateSignedRequest($this->rawSignedRequestAuthorizedWithAccessToken);
+		$signedRequest = $this->helper->getSignedRequest();
+
+		$this->assertNotNull($signedRequest);
+		$this->assertEquals('123', $signedRequest->getUserId());
+	}
+
+	public function testGetSignedRequestReturnsNullWhenNoSignedRequest(): void
+	{
+		$this->helper->instantiateSignedRequest(null);
+		$signedRequest = $this->helper->getSignedRequest();
+
+		$this->assertNull($signedRequest);
+	}
+
+	public function testGetUserIdReturnsUserIdFromSignedRequest(): void
+	{
+		$this->helper->instantiateSignedRequest($this->rawSignedRequestAuthorizedWithAccessToken);
+		$userId = $this->helper->getUserId();
+
+		$this->assertEquals(123, $userId);
+	}
+
+	public function testGetUserIdReturnsNullWhenNoSignedRequest(): void
+	{
+		$this->helper->instantiateSignedRequest(null);
+		$userId = $this->helper->getUserId();
+
+		$this->assertNull($userId);
+	}
+
+
+	public function testRawSignedRequestFromPostReturnsNull(): void
+	{
+		$_POST = [];
+		$rawSignedRequest = $this->helper->getRawSignedRequestFromPost();
+
+		$this->assertNull($rawSignedRequest);
+	}
+
+	public function testRawSignedRequestFromCookieReturnsNull(): void
+	{
+		$_COOKIE = [];
+		$rawSignedRequest = $this->helper->getRawSignedRequestFromCookie();
+
+		$this->assertNull($rawSignedRequest);
+	}
 }

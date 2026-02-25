@@ -1,4 +1,4 @@
 /vendor
 /temp
-/tests/coverage
+/tests/coverage*
 .phpunit.cache
