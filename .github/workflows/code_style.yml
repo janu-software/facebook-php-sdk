@@ -14,21 +14,15 @@ jobs:
         php: [ '8.3', '8.4', '8.5' ]
     name: PHP ${{ matrix.php }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           coverage: none
-      - run: composer install --prefer-dist --no-progress --no-suggest
+      - run: composer install --prefer-dist --no-progress
       - run: composer create-project janu-software/coding-standard temp/coding-standard --no-progress
-      - name: copy preset-sniffer
-        uses: canastro/copy-file-action@master
-        with:
-          source: ".coding-standard/project.xml"
-          target: "temp/coding-standard/preset-sniffer/project.xml"
-      - name: copy preset-fixer
-        uses: canastro/copy-file-action@master
-        with:
-          source: ".coding-standard/project.php"
-          target: "temp/coding-standard/preset-fixer/project.php"
+      - name: copy presets
+        run: |
+          cp .coding-standard/project.xml temp/coding-standard/preset-sniffer/project.xml
+          cp .coding-standard/project.php temp/coding-standard/preset-fixer/project.php
       - run: php temp/coding-standard/ecs check src tests --preset project

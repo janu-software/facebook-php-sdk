@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
     - name: Cache Composer packages
       id: composer-cache
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: vendor
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
@@ -25,4 +25,4 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer install --prefer-dist --no-progress

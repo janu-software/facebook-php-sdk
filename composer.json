@@ -23,14 +23,14 @@
 		"php-http/discovery": "^1.15",
 		"php-http/message": "^1.14",
 		"thecodingmachine/safe": "^2.5 || ^3.0",
-		"guzzlehttp/psr7": "^2.5"
+		"guzzlehttp/psr7": "^2.12.3"
 	},
 	"require-dev": {
 		"stanislav-janu/phpstan": "^2",
 		"phpunit/phpunit": "^12",
 		"rector/rector": "^2",
 		"jetbrains/phpstorm-attributes": "^1.0",
-		"guzzlehttp/guzzle": "^7.8",
+		"guzzlehttp/guzzle": "^7.15.2",
 		"php-http/guzzle7-adapter": "^1.0",
 		"symfony/deprecation-contracts": "^3.5"
 	},

@@ -108,13 +108,13 @@ class BatchRequestTest extends TestCase
 	public function testAddingRequestsWillBeFormattedInAnArrayProperly(): void
 	{
 		$requests = [
-			null => new Request(null, null, 'GET', '/foo'),
+			'' => new Request(null, null, 'GET', '/foo'),
 			'my-second-request' => new Request(null, null, 'POST', '/bar', ['foo' => 'bar']),
 			'my-third-request' => new Request(null, null, 'DELETE', '/baz'),
 		];
 
 		$batchRequest = $this->createBatchRequest();
-		$batchRequest->add($requests[null]);
+		$batchRequest->add($requests['']);
 		$batchRequest->add($requests['my-second-request'], 'my-second-request');
 		$batchRequest->add($requests['my-third-request'], 'my-third-request');
 
