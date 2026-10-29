@@ -211,7 +211,8 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 		$batchCount = count($this->requests);
 		if ($batchCount === 0) {
 			throw new SDKException('There are no batch requests to send.');
-		} elseif ($batchCount > 50) {
+		}
+		if ($batchCount > 50) {
 			// Per: https://developers.facebook.com/docs/graph-api/making-multiple-requests#limits
 			throw new SDKException('You cannot send more than 50 batch requests at a time.');
 		}

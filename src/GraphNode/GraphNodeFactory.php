@@ -126,7 +126,7 @@ class GraphNodeFactory
 	 */
 	public function validateResponseCastableAsGraphEdge(): void
 	{
-		if (!(isset($this->decodedBody['data']) && static::isCastableAsGraphEdge($this->decodedBody['data']))) {
+		if (!isset($this->decodedBody['data']) || !static::isCastableAsGraphEdge($this->decodedBody['data'])) {
 			throw new SDKException('Unable to convert response from Graph to a GraphEdge because the response does not look like a GraphEdge. Try using GraphNodeFactory::makeGraphNode() instead.', 620);
 		}
 	}
