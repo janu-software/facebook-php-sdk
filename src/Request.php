@@ -58,9 +58,6 @@ class Request
 	/** The files to send with this request */
 	protected array $files = [];
 
-	/** ETag to send with this request */
-	protected ?string $eTag;
-
 
 	/**
 	 * Creates a new Request entity.
@@ -73,7 +70,8 @@ class Request
 		?string $method = null,
 		?string $endpoint = null,
 		array $params = [],
-		?string $eTag = null,
+		/** ETag to send with this request */
+		protected ?string $eTag = null,
 		protected ?string $graphVersion = null,
 	) {
 		$this->setApp($application);
@@ -81,7 +79,6 @@ class Request
 		$this->setMethod($method);
 		$this->setEndpoint($endpoint);
 		$this->setParams($params);
-		$this->setETag($eTag);
 	}
 
 
@@ -273,6 +270,8 @@ class Request
 
 	/**
 	 * Sets the eTag value.
+	 *
+	 * @deprecated Graph API ignores the If-None-Match header since October 27, 2026 and always returns the full response.
 	 */
 	public function setETag(?string $eTag): void
 	{

@@ -124,6 +124,8 @@ class Response
 
 	/**
 	 * Get the ETag associated with the response.
+	 *
+	 * @deprecated Graph API no longer sends the ETag header since October 27, 2026, so this returns null.
 	 */
 	public function getETag(): ?string
 	{

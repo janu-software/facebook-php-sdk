@@ -43,7 +43,7 @@ require_once __DIR__ . '/vendor/autoload.php'; // change path as needed
 $fb = new \JanuSoftware\Facebook\Facebook([
   'app_id' => '{app-id}',
   'app_secret' => '{app-secret}',
-  'default_graph_version' => 'v22.0',
+  'default_graph_version' => 'v26.0',
   //'default_access_token' => '{access-token}', // optional
 ]);
 
