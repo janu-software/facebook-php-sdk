@@ -55,6 +55,15 @@ class FacebookTest extends TestCase
 	];
 
 
+	public function testGetVersionReturnsInstalledVersionWithoutPrefix(): void
+	{
+		$version = Facebook::getVersion();
+
+		$this->assertNotSame('', $version);
+		$this->assertStringStartsNotWith('v', $version);
+	}
+
+
 	public function testInstantiatingWithoutAppIdThrows(): void
 	{
 		$this->expectException(SDKException::class);

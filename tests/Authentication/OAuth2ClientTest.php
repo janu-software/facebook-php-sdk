@@ -88,7 +88,7 @@ class OAuth2ClientTest extends TestCase
 			'client_id' => '123',
 			'redirect_uri' => 'https://foo.bar',
 			'state' => 'foo_state',
-			'sdk' => 'php-sdk-' . Facebook::Version,
+			'sdk' => 'php-sdk-' . Facebook::getVersion(),
 			'scope' => implode(',', $scope),
 			'foo' => 'bar',
 		];

@@ -466,7 +466,7 @@ class Request
 	public static function getDefaultHeaders(): array
 	{
 		return [
-			'User-Agent' => 'fb-php-' . Facebook::Version,
+			'User-Agent' => 'fb-php-' . Facebook::getVersion(),
 			'Accept-Encoding' => '*',
 		];
 	}

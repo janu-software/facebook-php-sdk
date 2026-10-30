@@ -17,6 +17,7 @@
 	],
 	"require": {
 		"php": ">=8.3 <8.6",
+		"composer-runtime-api": "^2.0",
 		"psr/http-message": "^2.0",
 		"php-http/client-implementation": "^1.0",
 		"php-http/httplug": "^2.4",

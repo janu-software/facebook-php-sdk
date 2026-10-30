@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace JanuSoftware\Facebook;
 
+use Composer\InstalledVersions;
 use InvalidArgumentException;
 use JanuSoftware\Facebook\Authentication\AccessToken;
 use JanuSoftware\Facebook\Authentication\OAuth2Client;
@@ -48,8 +49,9 @@ class Facebook
 {
 	/**
 	 * @const string Version number of the Facebook PHP SDK.
+	 * @deprecated Use Facebook::getVersion(), which reads the installed version from Composer.
 	 */
-	final public const string Version = '0.1';
+	final public const string Version = '0.4';
 
 	/**
 	 * @const string The name of the environment variable that contains the app ID.
@@ -60,6 +62,11 @@ class Facebook
 	 * @const string The name of the environment variable that contains the app secret.
 	 */
 	final public const string AppSecretEnvName = 'FACEBOOK_APP_SECRET';
+
+	/**
+	 * Composer name of this package.
+	 */
+	private const string PackageName = 'janu-software/facebook-php-sdk';
 
 	/**
 	 * The Application entity
@@ -149,6 +156,21 @@ class Facebook
 		}
 
 		$this->defaultGraphVersion = $config['default_graph_version'];
+	}
+
+
+	/**
+	 * Returns the installed version of the Facebook PHP SDK, e.g. "0.4.2".
+	 */
+	public static function getVersion(): string
+	{
+		if (!InstalledVersions::isInstalled(self::PackageName)) {
+			return 'dev';
+		}
+
+		$version = InstalledVersions::getPrettyVersion(self::PackageName);
+
+		return $version === null ? 'dev' : ltrim($version, 'v');
 	}
 
 

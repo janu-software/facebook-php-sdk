@@ -116,7 +116,7 @@ class OAuth2Client
 			'client_id' => $this->application->getId(),
 			'state' => $state,
 			'response_type' => 'code',
-			'sdk' => 'php-sdk-' . Facebook::Version,
+			'sdk' => 'php-sdk-' . Facebook::getVersion(),
 			'redirect_uri' => $redirectUrl,
 			'scope' => implode(',', $scope),
 		];
